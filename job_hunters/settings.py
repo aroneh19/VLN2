@@ -22,10 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django_countries',
-    'job_hunters',
-    'user.apps.UserConfig',
-    'products.apps.ProductsConfig',
-    'cart.apps.CartConfig'
+    'job_hunters'
 ]
 
 MIDDLEWARE = [
