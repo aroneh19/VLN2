@@ -1,8 +1,8 @@
 from django.db import models
-from job_hunters.user.models import User
+from user.models import User
 
 # Create your models here.
-class Recommendation(models.models):
+class Recommendation(models.Model):
     recom_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
