@@ -8,7 +8,7 @@ class Category(models.Model):
 class JobType(models.Model):
     type = models.CharField(max_length=100)
 
-class JobOffer(models.Model):
+class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     job_type = models.ForeignKey(JobType, on_delete=models.CASCADE)

@@ -1,6 +1,6 @@
 from django.db import models
 from user.models import User
-from joboffer.models import JobOffer
+from job.models import JobOffer
 
 # Create your models here.
 class Status(models.Model):
