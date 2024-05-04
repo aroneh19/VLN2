@@ -67,21 +67,14 @@ WSGI_APPLICATION = 'job_hunters.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'vln2_assignment_groups_37_user',
+        'PASSWORD': 'LpfOjAuLbx',
+        'HOST': 'verklegt-namskeid-ii.northeurope.cloudapp.azure.com',
+        'PORT': '5432'
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'vln2_assignment_groups_37_user',
-#         'PASSWORD': 'LpfOjAuLbx',
-#         'HOST': 'verklegt-namskeid-ii.northeurope.cloudapp.azure.com',
-#         'PORT': '5432'
-#     }
-# }
 
 
 
