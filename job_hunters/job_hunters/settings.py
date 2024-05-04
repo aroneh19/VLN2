@@ -31,6 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
+    'company',
+    'job',
+    'application',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +76,10 @@ DATABASES = {
         'USER': 'vln2_assignment_groups_37_user',
         'PASSWORD': 'LpfOjAuLbx',
         'HOST': 'verklegt-namskeid-ii.northeurope.cloudapp.azure.com',
-        'PORT': '5432'
+        'PORT': '5432',
+        'OPTIONS': {
+            'options': '-c search_path=vln2_assignment_groups_37'
+        }
     }
 }
 
