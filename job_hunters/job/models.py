@@ -14,7 +14,7 @@ class Job(models.Model):
     jid = models.AutoField(primary_key=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    job_type = models.ForeignKey(JobType, on_delete=models.CASCADE)
+    joid = models.ForeignKey(JobType, on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     start_date = models.DateField()
