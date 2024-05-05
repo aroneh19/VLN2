@@ -9,9 +9,15 @@ class Location(models.Model):
     postcode = models.IntegerField()
     city = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"{self.postcode}"
+
 class Country(models.Model):
     coid = models.AutoField(primary_key=True)
     country = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.country
 
 class User(models.Model):
     uid = models.AutoField(primary_key=True)
@@ -22,6 +28,7 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     street_name = models.CharField(max_length=255)
     house_number = models.CharField(max_length=10)
+    date_of_birth = models.DateField()
     picture = models.URLField()
     lid = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     coid = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
