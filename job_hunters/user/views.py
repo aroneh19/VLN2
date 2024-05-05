@@ -7,3 +7,6 @@ def register(request):
     countries = Country.objects.all()
     postcodes = Location.objects.all()
     return render(request, 'user/register.html', {'countries': countries, 'postcodes': postcodes})
+
+def login(request):
+    return render(request, 'user/login.html')

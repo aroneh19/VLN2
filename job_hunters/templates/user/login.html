@@ -1,27 +1,18 @@
-{% extends 'base.html' %}
+<h1>Welcome back!</h1>
+<h1>Login and reconnect with your career goals.</h1>
 
-{% block page_title %}
-    Zavant
-{% endblock %} 
+<form>
+  <div class="ssn">
+    <input type="text" name="ssn" placeholder="Social security number" />
+  </div>
 
-{% block content %}
-    <h1>Welcome back!</h1>
-    <h1>Login and reconnect with your career goals.</h1>
+  <div class="password">
+    <input type="password" name="password" placeholder="Password" />
+  </div>
 
-    <form>
-        <div class="ssn">
-            <input type="text" name="ssn" placeholder="Social security number">
-        </div>
+  <div class="btn">
+    <button type="submit">Log in</button>
+  </div>
 
-        <div class="password">
-            <input type="password" name="password" placeholder="Password">
-        </div>
-
-        <div class="btn">
-            <button type="submit">Log in</button>
-        </div>
-
-        <p>Don't have an account yet? <a href="">Sign up</a></p>
-    </form>
-
-{% endblock %} 
+  <p>Don't have an account yet? <a href="register.html">Sign up</a></p>
+</form>
