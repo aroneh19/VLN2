@@ -1,0 +1,93 @@
+
+
+<body>
+    <div class="Contact_Info">
+        <fieldset>
+            <legend>Contact Information</legend>
+                <label for="name">Name: </label>
+                <input type="text" name="" id="info"><br>
+                <label for="street">Street Name:</label>
+                <input type="text" name="street" id="info"><br>
+                <label for="House_number">House number: </label>
+                <input type="text" name="house" id="info"><br>
+                <label for="city">City:</label>
+                <input type="text" name="country" id="info"><br>
+                <label for="Postal_code">Postal Code: </label>
+                <input type="text" name="postal" id="info"><br>
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="">Select Country</option>
+                    {% for country in countries %}
+                        <option value="{{ country.id }}">{{ country.country }}</option>
+                    {% endfor %}
+                </select><br>              
+        </fieldset>
+    </div>
+    <label for="cover_letter">Cover Letter:</label>
+    <div class="cover_letter">
+        <fieldset>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+        </fieldset>
+    </div>
+    <div class="recommendations">
+        {% for recommendation in recommendations %}
+        <fieldset>
+            <legend>Recommendation</legend>  
+            <label for="name{{ recommendation.id }}">Name:</label>
+            <input type="text" id="name{{ recommendation.id }}" name="name{{ recommendation.id }}" value="{{ recommendation.name }}"><br>
+    
+            <label for="email{{ recommendation.id }}">Email address:</label>
+            <input type="email" id="email{{ recommendation.id }}" name="email{{ recommendation.id }}" value="{{ recommendation.email }}"><br>
+    
+            <label for="phone{{ recommendation.id }}">Phone number:</label>
+            <input type="tel" id="phone{{ recommendation.id }}" name="phone{{ recommendation.id }}" value="{{ recommendation.phone }}"><br>
+    
+            <label for="contact{{ recommendation.id }}">May be contacted:</label>
+            <input type="checkbox" id="contact{{ recommendation.id }}" name="contact{{ recommendation.id }}" {% if recommendation.contactable %}checked{% endif %}><br>
+        </fieldset>
+        {% endfor %}
+    </div>
+    <div class="experiences">
+        {% for experience in experiences %}
+        <fieldset>
+            <legend>Experience</legend>  
+            <label for="place_of_work{{ experience.id }}">Place of Work:</label>
+            <input type="text" id="place_of_work{{ experience.id }}" name="place_of_work{{ experience.id }}" value="{{ experience.place_of_work }}"><br>
+    
+            <label for="role{{ experience.id }}">Role:</label>
+            <input type="text" id="role{{ experience.id }}" name="role{{ experience.id }}" value="{{ experience.role }}"><br>
+    
+            <label for="start_date{{ experience.id }}">Start Date:</label>
+            <input type="date" id="start_date{{ experience.id }}" name="start_date{{ experience.id }}" value="{{ experience.start_date }}"><br>
+    
+            <label for="end_date{{ experience.id }}">End Date:</label>
+            <input type="date" id="end_date{{ experience.id }}" name="end_date{{ experience.id }}" value="{{ experience.end_date }}"><br>
+        </fieldset>
+        {% endfor %}
+    </div>
+</body>
+
+
+<!--Applying for a job - should be a multi step phase
+○ Contact information
+■ Full name
+■ Street name
+■ House number
+■ City
+■ Country (displayed as a <select> HTML element)
+■ Postal code
+○ Cover letter
+■ A text section to write a cover letter
+○ Experiences
+■ A list of experiences related to previous jobs
+● Place of work
+● Role
+● Start date
+● End date
+○ Recommendations
+■ A list of contacts which can be contacted for recommendations
+● Name
+● Email address
+● Phone number
+● Checkbox whether they may be contacted or not
+● Role, e.g. Manager at Reykjavik Seafood-->
