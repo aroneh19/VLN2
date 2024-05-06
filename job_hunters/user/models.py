@@ -32,8 +32,8 @@ class User(models.Model):
     house_number = models.CharField(max_length=10)
     date_of_birth = models.DateField(default=datetime(2000, 1, 1).date())
     picture = models.URLField()
-    lid = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
-    coid = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 
 class Experience(models.Model):
     eid = models.AutoField(primary_key=True)
@@ -41,7 +41,7 @@ class Experience(models.Model):
     role = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField()
-    uid = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Recommendation(models.Model):
@@ -51,4 +51,4 @@ class Recommendation(models.Model):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(max_length=100)
     may_be_contacted = models.BooleanField(default=False)
-    uid = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -12,5 +12,5 @@ class Application(models.Model):
     date_applied = models.DateField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     cover_letter = models.TextField()
-    uid = models.ForeignKey(User, on_delete=models.CASCADE)
-    jid = models.ForeignKey(Job, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
