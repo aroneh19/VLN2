@@ -6,7 +6,7 @@ def jobs():
     pass
 
 
-def index(request):
+def home(request):
     return render(request, 'index.html')
 
 

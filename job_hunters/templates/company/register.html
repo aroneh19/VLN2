@@ -1,3 +1,31 @@
-{% extends 'base.html' %}
-{% block content %}
-{% endblock %}
+<body>
+    <h1>Your Dream Job Awaits: Sign Up Now!</h1>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="name" required><br>
+        
+        <label for="ssn">Social Security Number:</label>
+        <input type="text" id="ssn" name="ssn" required><br>
+        
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br>
+        
+        <label for="logo_url">Logo URL:</label>
+        <input type="url" id="logo_url" name="logo" required><br>
+        
+        <label for="cover_url">Cover URL:</label>
+        <input type="url" id="cover_url" name="cover" required><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+        
+        <label for="website_url">Website URL:</label>
+        <input type="url" id="website_url" name="website" required><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+        <body>Already have an account?</body><br>
+        <a href="{% url 'login' %}">Log In</a>
+  </body>
