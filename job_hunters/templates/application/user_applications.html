@@ -1,0 +1,12 @@
+<div class="applications">
+  {% for application in applications %}
+  <fieldset>
+    <legend>Application for {{ application.job_title }}</legend>
+    <p>Job Title: {{ application.job_title }}</p>
+    <p>Company: {{ application.company }}</p>
+    <p>Application Date: {{ application.application_date }}</p>
+    <p>Status of Application {{application.application_status}}</p>
+    <p>Full Time or Part Time {{application.application_type}}</p>
+  </fieldset>
+  {% endfor %}
+</div>
