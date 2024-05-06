@@ -13,3 +13,6 @@ def login(request):
 
 def edit(request):
     return render(request, 'user/edit.html')
+
+def profile(request):
+    return render(request, 'user/profile.html')

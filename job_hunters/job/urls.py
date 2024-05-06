@@ -1,4 +1,6 @@
 from django.urls import path
-from .views import (x)
+from . import views
 
-urlpatterns = []
+urlpatterns = [
+    path('jobs.html/', views.job, name='jobs'),
+]
