@@ -16,6 +16,9 @@ def login(request):
 def edit(request):
     return render(request, 'user/edit.html')
 
+def profile(request):
+    return render(request, 'user/profile.html')
+
 def save_user_with_hashed_password(user_data):
     # Hash the password before saving
     hashed_password = make_password(user_data['password'])
