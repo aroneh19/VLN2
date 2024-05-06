@@ -1,6 +1,6 @@
 <body>
     <h1>Your Dream Job Awaits: Sign Up Now!</h1>
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'user_register' %}" method="post">
       {% csrf_token %}
       <h2>Basic Information:</h2>
         <label for="name">Full Name:</label>
@@ -57,5 +57,5 @@
     </form>
 
         <body>Already have an account?</body><br>
-        <a href="{% url 'login' %}">Log In</a>
+        <a href="{% url 'user_login' %}">Log In</a>
   </body>

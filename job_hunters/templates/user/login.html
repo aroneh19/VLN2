@@ -1,7 +1,7 @@
 <h1>Welcome back!</h1>
 <h1>Login and reconnect with your career goals.</h1>
 
-<form action="{% url 'login' %}" method="post">
+<form action="{% url 'user_login' %}" method="post">
   <div class="ssn">
     <input type="text" name="ssn" placeholder="Social security number" />
   </div>
@@ -15,6 +15,6 @@
   </div>
 
   <p>
-    Don't have an account yet? <br /><a href="{% url 'register' %}">Sign up</a>
+    Don't have an account yet? <br /><a href="{% url 'user_register' %}">Sign up</a>
   </p>
 </form>
