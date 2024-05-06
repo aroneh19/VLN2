@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 from django.db import models
 
+from datetime import datetime
+
 
 class Location(models.Model):
     lid = models.AutoField(primary_key=True)
@@ -28,7 +30,7 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     street_name = models.CharField(max_length=255)
     house_number = models.CharField(max_length=10)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(default=datetime(2000, 1, 1).date())
     picture = models.URLField()
     lid = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     coid = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
