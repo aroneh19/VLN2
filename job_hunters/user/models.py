@@ -45,7 +45,7 @@ class Experience(models.Model):
 
 
 class Recommendation(models.Model):
-    recom_id = models.AutoField(primary_key=True)
+    rid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone_number = models.CharField(max_length=20)
