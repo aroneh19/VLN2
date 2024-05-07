@@ -27,7 +27,7 @@
             <select id="country" name="country" required>
                 <option value="">Select Country</option>
                 {% for country in countries %}
-                    <option value="{{ country.country }}" {% if user.country and country.id == user.country.id %}selected{% endif %}>{{ country.country }}</option>
+                    <option value="{{ country.country }}" {% if country.coid == user.country.coid %}selected{% endif %}>{{ country.country }}</option>
                 {% endfor %}
             </select><br>             
         </fieldset>
@@ -49,10 +49,10 @@
             <input type="email" id="email{{ recommendation.rid  }}" name="email{{ recommendation.rid  }}" value="{{ recommendation.email }}"><br>
     
             <label for="phone{{ recommendation.rid  }}">Phone number:</label>
-            <input type="tel" id="phone{{ recommendation.rid  }}" name="phone{{ recommendation.rid  }}" value="{{ recommendation.phone }}"><br>
+            <input type="tel" id="phone{{ recommendation.rid  }}" name="phone{{ recommendation.rid  }}" value="{{ recommendation.phone_number}}"><br>
     
             <label for="contact{{ recommendation.rid  }}">May be contacted:</label>
-            <input type="checkbox" id="contact{{ recommendation.rid  }}" name="contact{{ recommendation.rid  }}" {% if recommendation.contactable %}checked{% endif %}><br>
+            <input type="checkbox" id="contact{{ recommendation.rid  }}" name="contact{{ recommendation.rid  }}" {% if recommendation.may_be_contacted %}checked{% endif %}><br>
         </fieldset>
         {% endfor %}
     </div>
@@ -67,10 +67,10 @@
             <input type="text" id="role{{ experience.eid }}" name="role{{ experience.eid }}" value="{{ experience.role }}"><br>
     
             <label for="start_date{{ experience.eid }}">Start Date:</label>
-            <input type="date" id="start_date{{ experience.eid }}" name="start_date{{ experience.eid }}" value="{{ experience.start_date }}"><br>
+            <input type="date" id="start_date{{ experience.eid }}" name="start_date{{ experience.eid }}" value="{{ experience.start_date|date:'Y-m-d' }}"><br>
     
             <label for="end_date{{ experience.eid }}">End Date:</label>
-            <input type="date" id="end_date{{ experience.eid }}" name="end_date{{ experience.eid }}" value="{{ experience.end_date }}"><br>
+            <input type="date" id="end_date{{ experience.eid }}" name="end_date{{ experience.eid }}" value="{{ experience.end_date|date:'Y-m-d' }}"><br>
         </fieldset>
         {% endfor %}
     </div>
