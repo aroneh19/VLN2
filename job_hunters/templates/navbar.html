@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
 <header class="header">
-        <h1>ZAVANT</h1>
+        <h1><a href="{% url 'home' %}">ZAVANT</a></h1>
         <nav>
-            <a href="jobs.html">Jobs</a>
-            <a href="company/profile.html">Companies</a>
+            <a href="{% url 'jobs' %}">Jobs</a>
+            <a href="{% url 'company_profile' %}">Companies</a>
             <a href="">Why Zavant</a>
-            <a href="user/profile.html">Profile</a>
+            <a href="{% url 'user_profile' %}">Profile</a>
         </nav>
     </header>    
-</body>
-</html>
