@@ -22,14 +22,14 @@
         <select id="country" name="country" required>
             <option value="">Select Country</option>
             {% for country in countries %}
-                <option value="{{ country.id }}">{{ country.country }}</option>
+                <option value="{{ country.coid }}">{{ country.country }}</option>
             {% endfor %}
         </select><br>
 
         <h2>Contact Information:</h2>
         
-        <label for="phone_number">Phone Number:</label>
-        <input type="text" id="phone_number" name="phone_number" required><br>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required><br>
 
         <label for="street_name">Street Name:</label>
         <input type="text" id="street_name" name="street_name" required><br>
@@ -37,21 +37,18 @@
         <label for="house_number">House Number:</label>
         <input type="text" id="house_number" name="house_number" required><br>
 
-        <label for="postcode">Post Code:</label>
-        <select id="postcode" name="postcode" required>
+        <label for="location">Location:</label>
+        <select id="location" name="location" required>
             <option value="">Select Post Code</option>
-            {% for postcode in postcodes %}
-                <option value="{{ postcode.id }}">{{ postcode.postcode }}</option>
+            {% for location in locations %}
+                <option value="{{ location.lid }}">{{ location.postcode }}, {{ location.city }}</option>
             {% endfor %}
         </select><br>
 
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required><br>
-
         <h2>Profile Picture:</h2>
 
-        <label for="picture">Profile Picture:</label>
-        <input type="file" id="picture" name="picture" accept="image/*" required><br>
+        <label for="picture">Profile Picture URL:</label>
+        <input type="url" id="picture" name="picture" required><br>
 
         <button type="submit">Sign Up:</button><br>
     </form>
