@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse 
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import make_password
 from .models import User, Country, Location
 from .forms import UserRegistrationForm
 import os
-from django.contrib.auth import authenticate, login
+
 
 def login_user(request):
     return render(request, 'user/login.html')
@@ -22,7 +24,9 @@ def register_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.password = make_password(form.cleaned_data['password'])
+            user.save()
             
             ssn = form.cleaned_data['ssn']
             password = form.cleaned_data['password']
