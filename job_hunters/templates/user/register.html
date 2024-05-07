@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
 <body>
     <h1>Your Dream Job Awaits: Sign Up Now!</h1>
     <form action="{% url 'user_register' %}" method="post">
@@ -56,3 +62,5 @@
         <body>Already have an account?</body><br>
         <a href="{% url 'user_login' %}">Log In</a>
   </body>
+
+  {% endblock %}
