@@ -12,7 +12,8 @@ def edit_user(request):
     return render(request, 'user/edit.html')
 
 def profile_user(request):
-    pass
+    return render(request, 'user/profile.html')
+
 
 def register_user(request):
     countries = Country.objects.all()
