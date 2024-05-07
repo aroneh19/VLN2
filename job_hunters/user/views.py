@@ -8,10 +8,10 @@ from django.contrib.auth import authenticate, login
 def login_user(request):
     return render(request, 'user/login.html')
 
-def edit(request):
+def edit_user(request):
     return render(request, 'user/edit.html')
 
-def profile(request):
+def profile_user(request):
     pass
 
 def register_user(request):

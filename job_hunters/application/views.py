@@ -1,9 +1,16 @@
 from django.shortcuts import render
 from .models import Application
+from user.models import Recommendation, Experience, Country, User
 
-# Create your views here.
+
 def application_form(request):
-    return render(request, 'application/application.html')
+    user_id = 2
+    user = User.objects.get(uid=user_id)
+    recommendations = Recommendation.objects.filter(user=user)
+    experiences = Experience.objects.filter(user=user)
+    countries = Country.objects.all()
+    return render(request, 'application/application.html', {'recommendations': recommendations, 'experiences': experiences, 'countries': countries, 'user': user})
 
 def user_application(request):
     return render(request, 'application/user_application.html')
+

@@ -4,23 +4,28 @@
     <div class="Contact_Info">
         <fieldset>
             <legend>Contact Information</legend>
-                <label for="name">Name: </label>
-                <input type="text" name="" id="info"><br>
-                <label for="street">Street Name:</label>
-                <input type="text" name="street" id="info"><br>
-                <label for="House_number">House number: </label>
-                <input type="text" name="house" id="info"><br>
-                <label for="city">City:</label>
-                <input type="text" name="country" id="info"><br>
-                <label for="Postal_code">Postal Code: </label>
-                <input type="text" name="postal" id="info"><br>
-                <label for="country">Country:</label>
-                <select id="country" name="country" required>
-                    <option value="">Select Country</option>
-                    {% for country in countries %}
-                        <option value="{{ country.id }}">{{ country.country }}</option>
-                    {% endfor %}
-                </select><br>              
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="{{ user.name }}"><br>
+            
+            <label for="street">Street Name:</label>
+            <input type="text" name="street" id="street" value="{{ user.street_name }}"><br>
+            
+            <label for="House_number">House number:</label>
+            <input type="text" name="house" id="house" value="{{ user.house_number }}"><br>
+            
+            <label for="city">City:</label>
+            <input type="text" name="city" id="city" value="{{ user.location.city }}"><br>
+            
+            <label for="Postal_code">Postal Code:</label>
+            <input type="text" name="postal" id="postal" value="{{ user.location.postcode }}"><br>
+            
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="">Select Country</option>
+                {% for country in countries %}
+                    <option value="{{ country.country }}" {% if user.country and country.id == user.country.id %}selected{% endif %}>{{ country.country }}</option>
+                {% endfor %}
+            </select><br>             
         </fieldset>
     </div>
     <label for="cover_letter">Cover Letter:</label>
@@ -33,17 +38,17 @@
         {% for recommendation in recommendations %}
         <fieldset>
             <legend>Recommendation</legend>  
-            <label for="name{{ recommendation.id }}">Name:</label>
-            <input type="text" id="name{{ recommendation.id }}" name="name{{ recommendation.id }}" value="{{ recommendation.name }}"><br>
+            <label for="name{{ recommendation.name }}">Name:</label>
+            <input type="text" id="name{{ recommendation.rid  }}" name="name{{ recommendation.rid  }}" value="{{ recommendation.name }}"><br>
     
-            <label for="email{{ recommendation.id }}">Email address:</label>
-            <input type="email" id="email{{ recommendation.id }}" name="email{{ recommendation.id }}" value="{{ recommendation.email }}"><br>
+            <label for="email{{ recommendation.rid  }}">Email address:</label>
+            <input type="email" id="email{{ recommendation.rid  }}" name="email{{ recommendation.rid  }}" value="{{ recommendation.email }}"><br>
     
-            <label for="phone{{ recommendation.id }}">Phone number:</label>
-            <input type="tel" id="phone{{ recommendation.id }}" name="phone{{ recommendation.id }}" value="{{ recommendation.phone }}"><br>
+            <label for="phone{{ recommendation.rid  }}">Phone number:</label>
+            <input type="tel" id="phone{{ recommendation.rid  }}" name="phone{{ recommendation.rid  }}" value="{{ recommendation.phone }}"><br>
     
-            <label for="contact{{ recommendation.id }}">May be contacted:</label>
-            <input type="checkbox" id="contact{{ recommendation.id }}" name="contact{{ recommendation.id }}" {% if recommendation.contactable %}checked{% endif %}><br>
+            <label for="contact{{ recommendation.rid  }}">May be contacted:</label>
+            <input type="checkbox" id="contact{{ recommendation.rid  }}" name="contact{{ recommendation.rid  }}" {% if recommendation.contactable %}checked{% endif %}><br>
         </fieldset>
         {% endfor %}
     </div>
@@ -51,19 +56,22 @@
         {% for experience in experiences %}
         <fieldset>
             <legend>Experience</legend>  
-            <label for="place_of_work{{ experience.id }}">Place of Work:</label>
-            <input type="text" id="place_of_work{{ experience.id }}" name="place_of_work{{ experience.id }}" value="{{ experience.place_of_work }}"><br>
+            <label for="place_of_work{{ experience.eid }}">Place of Work:</label>
+            <input type="text" id="place_of_work{{ experience.eid }}" name="place_of_work{{ experience.eid }}" value="{{ experience.place_of_work }}"><br>
     
-            <label for="role{{ experience.id }}">Role:</label>
-            <input type="text" id="role{{ experience.id }}" name="role{{ experience.id }}" value="{{ experience.role }}"><br>
+            <label for="role{{ experience.eid }}">Role:</label>
+            <input type="text" id="role{{ experience.eid }}" name="role{{ experience.eid }}" value="{{ experience.role }}"><br>
     
-            <label for="start_date{{ experience.id }}">Start Date:</label>
-            <input type="date" id="start_date{{ experience.id }}" name="start_date{{ experience.id }}" value="{{ experience.start_date }}"><br>
+            <label for="start_date{{ experience.eid }}">Start Date:</label>
+            <input type="date" id="start_date{{ experience.eid }}" name="start_date{{ experience.eid }}" value="{{ experience.start_date }}"><br>
     
-            <label for="end_date{{ experience.id }}">End Date:</label>
-            <input type="date" id="end_date{{ experience.id }}" name="end_date{{ experience.id }}" value="{{ experience.end_date }}"><br>
+            <label for="end_date{{ experience.eid }}">End Date:</label>
+            <input type="date" id="end_date{{ experience.eid }}" name="end_date{{ experience.eid }}" value="{{ experience.end_date }}"><br>
         </fieldset>
         {% endfor %}
+    </div>
+    <div>
+        <input type="submit" value="APPLY">
     </div>
 </body>
 

@@ -1,3 +1,75 @@
-{% extends 'base.html' %}
 {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <style>
+      .Contact_Info {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="Contact_info"> Contact information</label><br>
+    <div class="Contact_Info">
+      <fieldset>
+        <label for="name">Full Name</label><br />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter name"
+        /><br /><br />
+        <label for="email">Email</label><br />
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+        /><br /><br />
+        <label for="phone">Phone Number</label><br />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Enter phone number"
+        /><br /><br />
+        <label for="address">Address</label><br />
+        <input
+          type="text"
+          id="address"
+          name="address"
+          placeholder="Enter address"
+        /><br /><br />
+        <label for="ssn">Social Security Number</label><br />
+        <input
+          type="text"
+          id="ssn"
+          name="ssn"
+          placeholder="XXX-XX-XXXX"
+          pattern="\d{3}-\d{2}-\d{4}"
+          title="Please enter your SSN in the format XXX-XX-XXXX"
+          required
+        /><br /><br />
+        <label for="dob">Date of Birth</label><br />
+        <input type="date" id="dob" name="dob" /><br /><br />
+        <label for="country">Country</label><br />
+        <input
+          type="text"
+          id="country"
+          name="country"
+          placeholder="Enter country"
+        /><br /><br />
+      </fieldset>
+    </div>
+    <br><br><label for="recommendation">Recommendation</label><br>
+    <textarea id="recommendation" name="recommendation" rows="4" cols="50"></textarea><br>
+    <br><label for="education">Education</label><br>
+    <textarea id="education" name="education" rows="4" cols="50"></textarea><br>
+    <br><label for="experience">Experience</label><br>
+    <textarea id="experience" name="experience" rows="4" cols="50"></textarea><br>
+  </body>
+</html>
 {% endblock %}
