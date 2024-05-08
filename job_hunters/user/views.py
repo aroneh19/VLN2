@@ -3,20 +3,18 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from .models import User, Country, Location
-from .forms import UserRegistrationForm, CustomAuthenticationForm
+from .forms import UserRegistrationForm
 
 def login_user(request):
     if request.method == "POST":
-        form = CustomAuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
+        username = request.POST.get('ssn')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
             login(request, user)
-            goto = request.GET.get('next') or 'profile'
             return redirect('home')
-        else:
-            print(form.errors)
-            messages.error(request, 'Login failed!')
-            messages.error(request, form.errors)
+
     return render(request, 'user/login.html')
 
 def edit_user(request):
@@ -38,15 +36,28 @@ def register_user(request):
             user.password = make_password(form.cleaned_data['password'])
             user.save()
             
-            ssn = form.cleaned_data['ssn']
+            username = form.cleaned_data['ssn']
             password = form.cleaned_data['password']
-            user = authenticate(request, username=ssn, password=password)
-            login(request, user)
-            messages.info(request, 'You have successfully registered')
-            messages.info(request, 'You can now login.')
-            return redirect('home')                
+
+            print("Username:", username)
+            print("Password:", password)
+
+
+            user = authenticate(username=username, password=password)
+            print("Authenticated User:", user)
+            if user is not None:
+                login(request, user)
+                messages.info(request, 'You have successfully registered')
+                messages.info(request, 'You can now login.')
+                return redirect('home')
+            else:
+                print("Authentication failed for username:", username)
+                messages.error(request, 'Authentication failed. Please check your username and password.')
         else:
+            print(form.errors)
             messages.error(request, 'Registration failed!')
             messages.error(request, form.errors)
+    else:
+        form = UserRegistrationForm()
     
     return render(request, 'user/register.html', {'form': form, 'countries': countries, 'locations': locations})

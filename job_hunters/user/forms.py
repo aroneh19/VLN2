@@ -7,10 +7,3 @@ class UserRegistrationForm(forms.ModelForm):
         model = User
         fields = ['ssn', 'name', 'password', 'phone', 'email', 'street_name', 
                   'house_number', 'date_of_birth', 'picture', 'location', 'country']
-        
-class CustomAuthenticationForm(AuthenticationForm):
-    ssn = forms.CharField(label="Social Security Number", max_length=11)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['username'] = self.fields.pop('ssn')
