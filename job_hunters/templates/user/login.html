@@ -8,6 +8,7 @@
 <h1>Login and reconnect with your career goals.</h1>
 
 <form action="{% url 'user_login' %}" method="post">
+  {% csrf_token %}
   <div class="ssn">
     <input type="text" name="ssn" placeholder="Social security number" />
   </div>
