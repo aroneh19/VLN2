@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {% extends 'base.html' %}
 
 {% block title %}Profile{% endblock %}
@@ -67,13 +68,37 @@
           placeholder="Enter country"
         /><br /><br />
       </fieldset>
+=======
+{% load static %} {% block content %}
+<div class="container">
+  <div class="contact-info">
+    <h2>Contact information</h2>
+    <label for="name"><strong>Full name</strong></label>
+    <p id="name">{{ user.name }}</p>
+    <label for="email"><strong>Email</strong></label>
+    <p id="email">{{ user.email}}</p>
+    <label for="phone"><strong>Phone number</strong></label>
+    <p id="phone">{{ user.phone }}</p>
+    <label for="address"><strong>Address</strong></label>
+    <p id="address">{{ user.street_name }} {{ user.house_number }}</p>
+    <label for="ssn"><strong>Social security number</strong></label>
+    <p id="ssn">{{ user.ssn }}</p>
+    <label for="dob"><strong>Date of birth</strong></label>
+    <p id="dob">{{ user.date_of_birth|date:'Y-m-d' }}</p>
+    <label for="country"><strong>Country</strong></label>
+    <p id="country">{{ user.country }}</p>
+  </div>
+  <div class="other-info">
+    <div class="recommendation box">
+      <h2>Recommendation</h2>
+>>>>>>> Stashed changes
     </div>
-    <br><br><label for="recommendation">Recommendation</label><br>
-    <textarea id="recommendation" name="recommendation" rows="4" cols="50"></textarea><br>
-    <br><label for="education">Education</label><br>
-    <textarea id="education" name="education" rows="4" cols="50"></textarea><br>
-    <br><label for="experience">Experience</label><br>
-    <textarea id="experience" name="experience" rows="4" cols="50"></textarea><br>
-  </body>
-</html>
+    <div class="education box">
+      <h2>Education</h2>
+    </div>
+    <div class="experience box">
+      <h2>Experience</h2>
+    </div>
+  </div>
+</div>
 {% endblock %}
