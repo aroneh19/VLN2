@@ -3,29 +3,59 @@
 {% block title %}Edit Profile{% endblock %}
 
 {% block content %}
-
-<div class="container">
-        <div class="contact-info">
-            <h2>Contact information</h2>
-            <p><strong>Full name:</strong></p>
-            <p><strong>Email:</strong></p>
-            <p><strong>Phone number:</strong></p>
-            <p><strong>Address:</strong></p>
-            <p><strong>Social security number:</strong></p>
-            <p><strong>Date of birth:</strong></p>
-            <p><strong>Country:</strong></p>
-        </div>
-        <div class="other-info">
-            <div class="recommendation box">
-                <h2>Recommendation</h2>
-            </div>
-            <div class="education box">
-                <h2>Education</h2>
-            </div>
-            <div class="experience box">
-                <h2>Experience</h2>
-            </div>
-        </div>
-    </div> 
+<head>
+    <br><title>Contact Form</title>
+  </head>
+  <body>
+    <label for="Contact_info"> Contact information</label><br><br>
+    <div class="Contact_Info">
+        <label for="name">Full Name</label><br />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value="{{ user.name }}"
+        /><br /><br />
+        <label for="email">Email</label><br />
+        <input
+          type="text"
+          id="email"
+          name="email"
+          value="{{ user.email }}"
+        /><br /><br />
+        <label for="phone">Phone Number</label><br />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          value="{{ user.phone }}"
+        /><br /><br />
+        <label for="address">Address</label><br />
+        <input
+          type="text"
+          id="address"
+          name="address"
+          value="{{ user.street_name }} {{ user.house_number }}"
+        /><br /><br />
+        <label for="ssn">Social Security Number</label>
+        <p id="ssn"> {{ user.ssn }} </p>
+        <label for="dob"><strong>Date of birth</strong></label>
+        <p id="dob"> {{ user.date_of_birth|date:'Y-m-d' }} </p>
+        <label for="country">Country</label><br>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          value="{{ user.country }}"
+        /><br /><br />
+    </div>
+    <div class="education box">
+      <h2>Education</h2>
+    </div>
+    <div class="experience box">
+      <h2>Experience</h2>
+    </div>
+  </div>
+</div>
 
 {% endblock %} 

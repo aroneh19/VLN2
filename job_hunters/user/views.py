@@ -10,11 +10,14 @@ def login_user(request):
     return render(request, 'user/login.html')
 
 def edit_user(request):
-    return render(request, 'user/edit.html')
+    user_id = 3
+    user = User.objects.get(uid=user_id)
+    return render(request, 'user/edit.html', {'user': user})
 
 def profile_user(request):
-    return render(request, 'user/profile.html')
-
+    user_id = 3
+    user = User.objects.get(uid=user_id)
+    return render(request, 'user/profile.html', {'user': user})
 
 def register_user(request):
     countries = Country.objects.all()

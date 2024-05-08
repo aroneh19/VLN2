@@ -3,77 +3,35 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Form</title>
-    <style>
-      .Contact_Info {
-        display: inline-block;
-      }
-    </style>
-  </head>
-  <body>
-    <label for="Contact_info"> Contact information</label><br>
-    <div class="Contact_Info">
-      <fieldset>
-        <label for="name">Full Name</label><br />
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Enter name"
-        /><br /><br />
-        <label for="email">Email</label><br />
-        <input
-          type="text"
-          id="email"
-          name="email"
-          placeholder="Enter email"
-        /><br /><br />
-        <label for="phone">Phone Number</label><br />
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="Enter phone number"
-        /><br /><br />
-        <label for="address">Address</label><br />
-        <input
-          type="text"
-          id="address"
-          name="address"
-          placeholder="Enter address"
-        /><br /><br />
-        <label for="ssn">Social Security Number</label><br />
-        <input
-          type="text"
-          id="ssn"
-          name="ssn"
-          placeholder="XXX-XX-XXXX"
-          pattern="\d{3}-\d{2}-\d{4}"
-          title="Please enter your SSN in the format XXX-XX-XXXX"
-          required
-        /><br /><br />
-        <label for="dob">Date of Birth</label><br />
-        <input type="date" id="dob" name="dob" /><br /><br />
-        <label for="country">Country</label><br />
-        <input
-          type="text"
-          id="country"
-          name="country"
-          placeholder="Enter country"
-        /><br /><br />
-      </fieldset>
+<div class="container">
+  <div class="contact-info">
+    <h2>Contact information</h2>
+    <label for="name"><strong>Full name</strong></label>
+    <p id="name">{{ user.name }}</p>
+    <label for="email"><strong>Email</strong></label>
+    <p id="email">{{ user.email}}</p>
+    <label for="phone"><strong>Phone number</strong></label>
+    <p id="phone">{{ user.phone }}</p>
+    <label for="address"><strong>Address</strong></label>
+    <p id="address">{{ user.street_name }} {{ user.house_number }}</p>
+    <label for="ssn"><strong>Social security number</strong></label>
+    <p id="ssn">{{ user.ssn }}</p>
+    <label for="dob"><strong>Date of birth</strong></label>
+    <p id="dob">{{ user.date_of_birth|date:'Y-m-d' }}</p>
+    <label for="country"><strong>Country</strong></label>
+    <p id="country">{{ user.country }}</p>
+  </div>
+  <div class="other-info">
+    <div class="recommendation box">
+      <h2>Recommendation</h2>
     </div>
-    <br><br><label for="recommendation">Recommendation</label><br>
-    <textarea id="recommendation" name="recommendation" rows="4" cols="50"></textarea><br>
-    <br><label for="education">Education</label><br>
-    <textarea id="education" name="education" rows="4" cols="50"></textarea><br>
-    <br><label for="experience">Experience</label><br>
-    <textarea id="experience" name="experience" rows="4" cols="50"></textarea><br>
-  </body>
-</html>
+    <div class="education box">
+      <h2>Education</h2>
+    </div>
+    <div class="experience box">
+      <h2>Experience</h2>
+    </div>
+  </div>
+</div>
+<a href="{% url 'user_edit' %}">Edit Profile</a>
 {% endblock %}
