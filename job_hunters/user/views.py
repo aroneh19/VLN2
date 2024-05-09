@@ -8,7 +8,9 @@ from .forms import ProfileRegistrationForm
 
 
 def edit_user(request):
-    return render(request, 'user/edit.html')
+    user_id = 3
+    user = User.objects.get(uid=user_id)
+    return render(request, 'user/edit.html', {'user': user})
 
 def profile_user(request):
     user_id = 3
