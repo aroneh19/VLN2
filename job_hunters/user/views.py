@@ -10,10 +10,14 @@ def login_user(request):
         ssn = request.POST.get('ssn')
         password = request.POST.get('password')
 
-        user = authenticate(request, ssn=ssn, password=password)
-
-        if user is not None:
-            return redirect('home')
+        try:
+            user = User.objects.get(ssn=ssn)
+            if user.check_password(password):
+                return redirect('home')
+            else:
+                messages.error(request, 'Invalid SSN or password.')
+        except User.DoesNotExist:
+            messages.error(request, 'User does not exist.')
 
     return render(request, 'user/login.html')
 

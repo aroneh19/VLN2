@@ -24,6 +24,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -48,9 +49,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-]
 
 ROOT_URLCONF = 'job_hunters.urls'
 
