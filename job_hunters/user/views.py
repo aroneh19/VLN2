@@ -7,12 +7,12 @@ from .forms import UserRegistrationForm
 
 def login_user(request):
     if request.method == "POST":
-        username = request.POST.get('ssn')
+        ssn = request.POST.get('ssn')
         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, ssn=ssn, password=password)
+
         if user is not None:
-            login(request, user)
             return redirect('home')
 
     return render(request, 'user/login.html')
@@ -32,31 +32,8 @@ def register_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.password = make_password(form.cleaned_data['password'])
-            user.save()
-            
-            username = form.cleaned_data['ssn']
-            password = form.cleaned_data['password']
-
-            print("Username:", username)
-            print("Password:", password)
-
-
-            user = authenticate(username=username, password=password)
-            print("Authenticated User:", user)
-            if user is not None:
-                login(request, user)
-                messages.info(request, 'You have successfully registered')
-                messages.info(request, 'You can now login.')
-                return redirect('home')
-            else:
-                print("Authentication failed for username:", username)
-                messages.error(request, 'Authentication failed. Please check your username and password.')
-        else:
-            print(form.errors)
-            messages.error(request, 'Registration failed!')
-            messages.error(request, form.errors)
+            form.save()
+            return redirect('user_login')
     else:
         form = UserRegistrationForm()
     

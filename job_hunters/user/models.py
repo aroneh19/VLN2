@@ -4,6 +4,7 @@ from django.db import models
 from django.db import models
 
 from datetime import datetime
+from django.contrib.auth.hashers import make_password
 
 
 class Location(models.Model):
@@ -34,6 +35,12 @@ class User(models.Model):
     picture = models.URLField(default="http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcR0NrOJEpfjkM0zxD-aO9b-bWqW3mhY57jPMg3aSbxTYO__R4jOvx8T2Oa7Fm9yxXOGg4B_ns3SZaZGCiBOPQw")
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
+
+    def check_password(self, password):
+        hashed_password = make_password(password)
+        print(hashed_password)
+        print(self.password)
+        return self.password == hashed_password
 
 class Experience(models.Model):
     eid = models.AutoField(primary_key=True)
