@@ -6,13 +6,21 @@ from .models import Profile, Country, Location
 from .forms import CustomUserCreationForm
 
 def edit_user(request):
-    user_id = 3
-    user = User.objects.get(uid=user_id)
-    return render(request, 'user/edit.html', {'user': user})
+    countries = Country.objects.all()
+    locations = Location.objects.all()
+    user_id = 2
+    p = Profile()
+    user = Profile.objects.get(user=user_id)
+    context = {
+        'user': user,
+        'countries': countries,
+        'locations': locations
+    }
+    return render(request, 'user/edit.html', context)
 
 def profile_user(request):
-    user_id = 3
-    user = User.objects.get(uid=user_id)
+    user_id = 2
+    user = Profile.objects.get(user_id=user_id)
     return render(request, 'user/profile.html', {'user': user})
 
 def register_user(request):
