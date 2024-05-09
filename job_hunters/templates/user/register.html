@@ -6,57 +6,10 @@
 
 <body>
     <h1>Your Dream Job Awaits: Sign Up Now!</h1>
-    <form action="{% url 'user_register' %}" method="post">
-      {% csrf_token %}
-      <h2>Basic Information:</h2>
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required><br>
-
-        <label for="ssn">Social Security Number:</label>
-        <input type="text" id="ssn" name="ssn" required><br>
-
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-
-        <label for="date_of_birth">Date of Birth:</label>
-        <input type="date" id="date_of_birth" name="date_of_birth" required><br>
-        
-        <label for="country">Country:</label>
-        <select id="country" name="country" required>
-            <option value="">Select Country</option>
-            {% for country in countries %}
-                <option value="{{ country.coid }}">{{ country.country }}</option>
-            {% endfor %}
-        </select><br>
-
-        <h2>Contact Information:</h2>
-        
-        <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" required><br>
-
-        <label for="street_name">Street Name:</label>
-        <input type="text" id="street_name" name="street_name" required><br>
-
-        <label for="house_number">House Number:</label>
-        <input type="text" id="house_number" name="house_number" required><br>
-
-        <label for="location">Location:</label>
-        <select id="location" name="location" required>
-            <option value="">Select Post Code</option>
-            {% for location in locations %}
-                <option value="{{ location.lid }}">{{ location.postcode }}, {{ location.city }}</option>
-            {% endfor %}
-        </select><br>
-
-        <h2>Profile Picture:</h2>
-
-        <label for="picture">Profile Picture URL:</label>
-        <input type="url" id="picture" name="picture" required><br>
-
-        <button type="submit">Sign Up:</button><br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
     </form>
 
         <body>Already have an account?</body><br>
