@@ -1,11 +1,7 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
-
+from django.contrib.auth.models import User
 from datetime import datetime
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import AbstractUser
+
 
 
 class Location(models.Model):
@@ -23,13 +19,9 @@ class Country(models.Model):
     def __str__(self):
         return self.country
 
-class User(models.Model):
-    uid = models.AutoField(primary_key=True)
-    ssn = models.IntegerField(unique=True)
-    name = models.CharField(max_length=100)
-    password = models.CharField(max_length=255)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     phone = models.CharField(max_length=20)
-    email = models.EmailField(unique=True)
     street_name = models.CharField(max_length=255)
     house_number = models.CharField(max_length=10)
     date_of_birth = models.DateField(default=datetime(2000, 1, 1).date())
@@ -44,7 +36,7 @@ class Experience(models.Model):
     role = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
 
 class Recommendation(models.Model):
@@ -54,4 +46,4 @@ class Recommendation(models.Model):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(max_length=100)
     may_be_contacted = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    Profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 from .models import User, Country, Location
-from .forms import UserRegistrationForm
+from .forms import ProfileRegistrationForm
 
 def login_user(request):
     if request.method == "POST":
@@ -34,11 +34,11 @@ def register_user(request):
     locations = Location.objects.all()
     
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = ProfileRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('user_login')
     else:
-        form = UserRegistrationForm()
+        form = ProfileRegistrationForm()
     
     return render(request, 'user/register.html', {'form': form, 'countries': countries, 'locations': locations})
