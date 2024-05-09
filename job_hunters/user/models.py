@@ -24,8 +24,8 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20)
     street_name = models.CharField(max_length=255)
     house_number = models.CharField(max_length=10)
-    date_of_birth = models.DateField(default=datetime(2000, 1, 1).date())
-    picture = models.URLField(default="http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcR0NrOJEpfjkM0zxD-aO9b-bWqW3mhY57jPMg3aSbxTYO__R4jOvx8T2Oa7Fm9yxXOGg4B_ns3SZaZGCiBOPQw")
+    date_of_birth = models.DateField()
+    picture = models.URLField()
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 
