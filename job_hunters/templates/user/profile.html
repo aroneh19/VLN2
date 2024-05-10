@@ -6,38 +6,47 @@
 <div class="container">
   <div class="contact-info">
     <h2>Contact information</h2>
-    <label for="picture">Profile Picture</label><br>
-    <img src="{{ user.picture }}" alt="Profile Picture" width="100" height="100"><br><br>
+    <label for="picture">Profile Picture:</label><br>
+    <img src="{{ profile.picture }}" alt="Profile Picture" width="100" height="100"><br><br>
     
-    <label for="name"><strong>First name</strong></label>
-    <p id="name">{{ user.user.first_name }}</p>
+    <label for="name"><strong>First Name:</strong></label>
+    <p id="name">{{ profile.user.first_name }}</p>
     
-    <label for="name"><strong>Last name</strong></label>
-    <p id="name">{{ user.user.last_name }}</p>
+    <label for="name"><strong>Last Name:</strong></label>
+    <p id="name">{{ profile.user.last_name }}</p>
     
-    <label for="email"><strong>Email</strong></label>
-    <p id="email">{{ user.user.email}}</p>
+    <label for="email"><strong>Email:</strong></label>
+    <p id="email">{{ profile.user.email}}</p>
     
-    <label for="phone"><strong>Phone number</strong></label>
-    <p id="phone">{{ user.phone }}</p>
+    <label for="phone"><strong>Phone Number:</strong></label>
+    <p id="phone">{{ profile.phone }}</p>
     
-    <label for="address"><strong>Address</strong></label>
-    <p id="address">{{ user.street_name }} {{ user.house_number }}</p>
+    <label for="street_name"><strong>Street Name:</strong></label>
+    <p id="street_name">{{ profile.street_name }}</p>
+
+    <label for="house_number"><strong>House Number:</strong></label>
+    <p id="house_number">{{ profile.house_number }}</p>
     
-    <label for="ssn"><strong>Social security number</strong></label>
-    <p id="ssn">{{ user.user.username }}</p>
+    <label for="ssn"><strong>Social Security Number:</strong></label>
+    <p id="ssn">{{ profile.user.username }}</p>
     
-    <label for="dob"><strong>Date of birth</strong></label>
-    <p id="dob">{{ user.date_of_birth|date:'Y-m-d' }}</p>
+    <label for="dob"><strong>Date of Birth:</strong></label>
+    <p id="dob">{{ profile.date_of_birth|date:'d-m-Y' }}</p>
     
-    <label for="country"><strong>Country</strong></label>
-    <p id="country">{{ user.country }}</p>
+    <label for="country"><strong>Country:</strong></label>
+    <p id="country">{{ profile.country }}</p>
+
+    <label for="postcode"><strong>Post Code:</strong></label>
+    <p id="postcode">{{ profile.location.postcode }}</p>
+
+    <label for="city"><strong>City:</strong></label>
+    <p id="city">{{ profile.location.city }}</p>
   </div>
   <div class="other-info">
     <div class="recommendation box">
-      <h2>Recommendation</h2>
+      <h2>Recommendation:</h2>
     <div class="experience box">
-      <h2>Experience</h2>
+      <h2>Experience:</h2>
     </div>
   </div>
 </div>

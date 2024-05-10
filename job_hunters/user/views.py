@@ -47,9 +47,7 @@ def edit_user(request):
     user_id = 2
     user = Profile.objects.get(user=user_id)
     context = {
-        'user': user,
-        'countries': countries,
-        'locations': locations
+        'profile': user
     }
     return render(request, 'user/edit.html', context)
 
@@ -67,13 +65,9 @@ def edit_user(request):
 
 @login_required
 def profile_view(request):
-    countries = Country.objects.all()
-    locations = Location.objects.all()
-    user = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(user=request.user)
     context = {
-        'user': user,
-        'countries': countries,
-        'locations': locations
+        'profile': profile
     }
     return render(request, "user/profile.html", context)
 
