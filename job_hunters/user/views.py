@@ -41,11 +41,6 @@ def login_view(request):
     }
     return render(request, 'user/login.html', context)
 
-@login_required
-def profile_view(request):
-    return render(request, "user/profile.html")
-
-
 def edit_user(request):
     countries = Country.objects.all()
     locations = Location.objects.all()
@@ -70,16 +65,13 @@ def edit_user(request):
 #     return render(request, 'user/profile.html', {'user': ProfileForm})
 
 
-
-
-
 @login_required
 def profile_view(request):
     countries = Country.objects.all()
     locations = Location.objects.all()
-    user_profile = Profile.objects.get(user=request.user)
+    user = Profile.objects.get(user=request.user)
     context = {
-        'user': user_profile,
+        'user': user,
         'countries': countries,
         'locations': locations
     }
