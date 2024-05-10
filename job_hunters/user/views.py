@@ -10,7 +10,6 @@ def edit_user(request):
     countries = Country.objects.all()
     locations = Location.objects.all()
     user_id = 2
-    p = Profile()
     user = Profile.objects.get(user=user_id)
     context = {
         'user': user,
