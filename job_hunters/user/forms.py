@@ -19,6 +19,7 @@ class CustomUserCreationForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
+        exclude = ['id', 'user']
         fields = ['phone', 'street_name', 'house_number',
                   'date_of_birth', 'picture', 'location', 'country']
 
