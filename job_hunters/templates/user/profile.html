@@ -34,7 +34,7 @@
     <p id="dob">{{ profile.date_of_birth|date:'d-m-Y' }}</p>
     
     <label for="country"><strong>Country:</strong></label>
-    <p id="country">{{ profile.country }}</p>
+    <p id="country">{{ profile.country.country }}</p>
 
     <label for="postcode"><strong>Post Code:</strong></label>
     <p id="postcode">{{ profile.location.postcode }}</p>
