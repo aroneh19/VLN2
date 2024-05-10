@@ -33,7 +33,6 @@ def register_company(request):
     else:
         form = CustomCompanyCreationForm()
     
-    
     return render(request, 'user/register.html', {'form': form})
 
 
