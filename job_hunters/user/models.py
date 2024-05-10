@@ -38,6 +38,9 @@ class Experience(models.Model):
     end_date = models.DateField()
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return f"{self.place_of_work} - {self.role}"
+
 
 class Recommendation(models.Model):
     rid = models.AutoField(primary_key=True)
@@ -46,4 +49,7 @@ class Recommendation(models.Model):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(max_length=100)
     may_be_contacted = models.BooleanField(default=False)
-    Profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.name

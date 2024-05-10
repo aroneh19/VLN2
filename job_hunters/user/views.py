@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Country, Location
+from .models import Profile, Country, Location, Experience, Recommendation
 from .forms import CustomUserCreationForm, ProfileForm
 
 def register_user(request):
@@ -66,8 +66,12 @@ def edit_user(request):
 @login_required
 def profile_view(request):
     profile = Profile.objects.get(user=request.user)
+    recommendation = Recommendation.objects.filter(profile=profile)
+    experience = Experience.objects.filter(profile=profile)
     context = {
-        'profile': profile
+        'profile': profile,
+        'recommendations': recommendation,
+        'experiences': experience
     }
     return render(request, "user/profile.html", context)
 
