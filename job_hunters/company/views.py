@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Company
 from  .forms import CustomCompanyCreationForm
@@ -32,5 +33,13 @@ def register_company(request):
     else:
         form = CustomCompanyCreationForm()
     
-    
     return render(request, 'user/register.html', {'form': form})
+
+
+@login_required
+def company_view(request):
+    return render(request, "company/profile.html")
+
+@login_required
+def edit_comapny(request):
+    return render(request, "company/edit.html")
