@@ -11,7 +11,7 @@ class Status(models.Model):
 class Application(models.Model):
     aid = models.AutoField(primary_key=True)
     date_applied = models.DateField(default=timezone.now)
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, default= 1)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, default= 2)
     cover_letter = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
