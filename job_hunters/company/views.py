@@ -52,3 +52,7 @@ def profile_company(request):
 @login_required
 def edit_company(request):
     return render(request, "company/edit.html")
+
+@login_required
+def post_jobs(request):
+    return render(request, "company/post_jobs.html")

@@ -69,34 +69,16 @@
     color: #77654B;
 }
 
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header nav {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .header nav .info {
-        justify-content: flex-start;
-        margin-bottom: 10px;
-    }
-
-    .header nav .profile {
-        justify-content: flex-start;
-    }
-}
+/* @media (max-width: 0px) {
+} */
 
  .dropdown {
         position: relative;
         display: inline-block;
         color: #77654B;
-        height: 20px;
-        width: 20px;
-        background-image: url('caret1.svg');
+        height: 24px;
+        width: 24x;
+        background-image: url('caret.svg');
         background-size: cover;
     }
 
@@ -104,8 +86,6 @@
         display: none;
         position: absolute;
         background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
     }
 
@@ -131,4 +111,9 @@
         font-size: 16px;
         border: none;
         cursor: pointer;
+    }
+
+    .logout-button {
+        color: #F0E5D8;
+        
     }
