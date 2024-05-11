@@ -8,10 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
 from .forms import CustomUserCreationForm, ProfileForm
 
-def register_user(request):
-    countries = Country.objects.all()
-    locations = Location.objects.all()
-    
+def register_view(request):    
     if request.method == 'POST':
         form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
@@ -22,8 +19,6 @@ def register_user(request):
             print(form.errors)
     context = {
         'form': CustomUserCreationForm(),
-        'countries': countries,
-        'locations': locations,
     }
     
     return render(request, 'user/register.html', context)
@@ -62,15 +57,28 @@ def profile_view(request):
     return render(request, "user/profile.html", context)
 
 @login_required
-def edit_user(request):
+def edit_view(request):
+    profile = Profile.objects.get(user=request.user)
     countries = Country.objects.all()
     locations = Location.objects.all()
-    user_id = 2
-    profile = Profile.objects.get(user=user_id)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('user_profile')
+        else:
+            print(form.errors)
+    else:
+        form = ProfileForm(instance=profile)
+
     context = {
         'profile': profile,
         'countries': countries,
         'locations': locations,
+        'form': form,
     }
     return render(request, 'user/edit.html', context)
 
@@ -84,7 +92,3 @@ def edit_user(request):
 #             profile.save()
 #             return redirect('profile')
 #     return render(request, 'user/profile.html', {'user': ProfileForm})
-
-@login_required
-def edit_profile(request):
-    return render(request, "user/edit.html")

@@ -8,55 +8,55 @@
   </head>
   <body>
     <label for="Contact_info"> Contact information</label><br><br>
-    <div class="Contact_Info">
+    <form method="post">
+        {% csrf_token %}
         <label for="picture">Profile Picture</label><br>
-        <img src="{{ user.picture }}" alt="Profile Picture" width="100" height="100"><br><br>
-        <label for="name"><strong>First name</strong></label>
-        <p id="name">{{ user.first_name }}</p>
-        <label for="name"><strong>Last name</strong></label>
-        <p id="name">{{ user.last_name }}</p>
-        <label for="email">Email</label><br />
-        <input
-          type="text"
-          id="email"
-          name="email"
-          value="{{ user.email }}"
-        /><br /><br />
-        <label for="phone">Phone Number</label><br />
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value="{{ user.phone }}"
-        /><br /><br />
-        <label for="address">Street Name</label><br />
-        <input
-          type="text"
-          id="street_name"
-          name="street_name"
-          value="{{ user.street_name }}"
-        /><br /><br />
-        <label for="address">House Number</label><br />
-        <input
-          type="text"
-          id="house_number"
-          name="house_number"
-          value="{{ user.house_number }}"
-          /><br /><br />
-        <label for="dob"><strong>Date of birth</strong></label>
-        <p id="dob"> {{ user.date_of_birth|date:'Y-m-d' }} </p>
+        <img src="{{ profile.picture }}" alt="Profile Picture" width="100" height="100"><br><br>
+        
+        <label for="first_name"><strong>First Name:</strong></label><br />
+        <input type="text" id="first_name" value="{{ user.first_name }}"><br />
+
+        <label for="last_name"><strong>Last name</strong></label><br />
+        <input type="text" id="last_name" value="{{ user.last_name }}"><br />
+        
+        <label for="email">Email:</label><br />
+        <input type="text" id="email" name="email" value="{{ user.email }}"/><br />
+        
+        <label for="phone">Phone Number:</label><br />
+        <input type="tel" id="phone" name="phone" value="{{ profile.phone }}"/><br />
+        
+        <label for="address">Street Name:</label><br />
+        <input type="text" id="street_name" name="street_name" value="{{ profile.street_name }}"/><br />
+        
+        <label for="address">House Number:</label><br />
+        <input type="text" id="house_number" name="house_number" value="{{ profile.house_number }}" /><br />
+        
         <label for="country">Country</label><br>
-        <input
-          type="text"
-          id="country"
-          name="country"
-          value="{{ user.country }}"
-        /><br /><br />
-    </div>
-    <div class="experience box">
-      <h2>Experience</h2>
-    </div>
-  </div>
-</div>
+        <select id="country" name="country">
+            {% if profile.country %}
+                <option value="{{ profile.country }}" selected>{{ profile.country }}</option>
+            {% else %}
+                <option value="" selected disabled>Select Country</option>
+            {% endif %}
+            {% for country in countries %}
+                <option value="{{ country.country }}">{{ country.country }}</option>
+            {% endfor %}
+        </select><br />
+        
+        <label for="location">Location</label><br>
+        <select id="location" name="location">
+            {% if profile.location %}
+                <option value="{{ profile.location }}" selected>{{ profile.location.postcode }} {{ profile.location.city }}</option>
+            {% else %}
+                <option value="" selected disabled>Select Location</option>
+            {% endif %}
+            {% for location in locations %}
+                <option value="{{ location.lid }}">{{ location.postcode }} {{ location.city }}</option>
+            {% endfor %}
+        </select><br />
+        
+        <button type="submit">Save Profile</button>
+      </form>
+
 
 {% endblock %} 
