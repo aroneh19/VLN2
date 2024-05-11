@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
-
-
 class Location(models.Model):
     lid = models.AutoField(primary_key=True)
     postcode = models.IntegerField()
@@ -28,6 +26,9 @@ class Profile(models.Model):
     picture = models.URLField()
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self) -> str:
+        return self.user.username
 
 
 class Experience(models.Model):

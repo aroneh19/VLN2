@@ -30,8 +30,12 @@ def login_view(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user)
-            return redirect('home')
+            profile_exists = Profile.objects.filter(user=user).exists()
+            if profile_exists:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.error(request, 'Profile does not exist!')
         else:
             print(form.errors)
             messages.error(request, 'Login failed!')
