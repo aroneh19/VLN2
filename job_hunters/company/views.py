@@ -51,5 +51,5 @@ def profile_company(request):
 
 
 @login_required
-def edit_comapny(request):
+def edit_company(request):
     return render(request, "company/edit.html")
