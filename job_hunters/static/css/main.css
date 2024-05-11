@@ -15,4 +15,8 @@ body {
     background-color: #93A87E;
     font-size: 100%;
     color: #F0E5D8;
+    margin-left: 150px;
+    margin-right: 150px;
+    /* margin-left: 320px;
+    margin-right: 320px; */
 }

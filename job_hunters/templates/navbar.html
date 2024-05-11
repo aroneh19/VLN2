@@ -1,19 +1,30 @@
-
 <header class="header">
-        <h1><a href="{% url 'home' %}">ZAVANT</a></h1>
-        <nav>
-            <div class="info">
-            <a href="{% url 'jobs' %}">Jobs</a>
-            <a href="{% url 'company_profile' %}">Workplace</a>
-            <a href="">Why Zavant</a>
-            </div>
-            <div class="profile">
-            {% if user.is_authenticated %}
-                <a href="{% url 'user_profile' %}">Profile</a>
-            {% else %}
-                <a href="{% url 'user_login' %}">Login</a>
-                <a href="{% url 'company_login' %}">Company</a>
-            {% endif %}
-            </div>
-        </nav>
-    </header>    
+  <h1><a href="{% url 'home' %}">ZAVANT</a></h1>
+  <nav>
+    <div class="info">
+      <a href="{% url 'jobs' %}">Jobs</a>
+      <a href="{% url 'company_profile' %}">Workplace</a>
+      <a href="">Why Zavant</a>
+    </div>
+    <div class="profile">
+      {% if user.is_authenticated %}
+      <a href="{% url 'user_profile' %}">Profile</a>
+      <div class="dropdown">
+        <button class="dropbtn"></button>
+        <div class="dropdown-content">
+          <a href="{% url 'user_profile' %}">My Profile</a>
+          <a href="#">Application</a>
+          <a href="#">Change Password</a>
+          <form method="post" action="{% url 'user_logout' %}">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+          </form>
+        </div>
+      </div>
+      {% else %}
+      <a href="{% url 'user_login' %}">Login</a>
+      <a href="{% url 'company_login' %}">Company</a>
+      {% endif %}
+    </div>
+  </nav>
+</header>
