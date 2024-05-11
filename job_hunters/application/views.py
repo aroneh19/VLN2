@@ -10,9 +10,9 @@ from user.models import Recommendation, Experience, Country, Profile
 def application_form(request):
     job = request.GET.get('job_jid')
     user_id = 2 # will be changed ino the logged in user from authentication when connecting web app
-    user_profile = Profile.objects.get(user_id=user_id)  # Retrieve the Profile object for the user
-    #user_profile = Profile.objects.get(user=request.user)  # Retrieve the Profile object for the logged-in user
-    recommendations = Recommendation.objects.filter(Profile=user_profile)
+    #user_profile = Profile.objects.get(user_id=user_id)  # Retrieve the Profile object for the user
+    user_profile = Profile.objects.get(user=request.user.id)  # Retrieve the Profile object for the logged-in user
+    recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
     countries = Country.objects.all()
     return render(request, 'application/application.html', {'recommendations': recommendations, 'experiences': experiences, 'countries': countries, 'user_profile': user_profile, 'job': job})
@@ -32,8 +32,7 @@ def submit_application(request):
     return render(request, 'job/jobs.html', {'jobs': jobs})
 
 def user_application(request):
-    user_id = 2
-    user_profile = Profile.objects.get(user= user_id)  # Retrieve the Profile object for the logged-in user
+    user_profile = Profile.objects.get(user = request.user.id)
     applications = Application.objects.filter(user=user_profile.user)
     return render(request, 'application/user_applications.html', {'applications': applications})
 

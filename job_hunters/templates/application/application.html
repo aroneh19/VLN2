@@ -12,28 +12,12 @@
             <input type="hidden" name="user" value="{{ user_profile.user_id }}">
             <fieldset>
                 <legend>Contact Information</legend>
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name" value="{{ user_profile.user.first_name }} {{user_profile.user.last_name}}"><br>
-                
-                <label for="street">Street Name:</label>
-                <input type="text" name="street" id="street" value="{{ user_profile.street_name }}"><br>
-                
-                <label for="House_number">House number:</label>
-                <input type="text" name="house" id="house" value="{{ user_profile.house_number }}"><br>
-                
-                <label for="city">City:</label>
-                <input type="text" name="city" id="city" value="{{ user_profile.location.city }}"><br>
-                
-                <label for="Postal_code">Postal Code:</label>
-                <input type="text" name="postal" id="postal" value="{{ user_profile.location.postcode }}"><br>
-                
-                <label for="country">Country:</label>
-                <select id="country" name="country" required>
-                    <option value="">Select Country</option>
-                    {% for country in countries %}
-                        <option value="{{ country.country }}" {% if country.coid == user_profile.country.coid %}selected{% endif %}>{{ country.country }}</option>
-                    {% endfor %}
-                </select><br>             
+                <p>Name: {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</p>
+                <p>Street Name: {{ user_profile.street_name }}</p>
+                <p>House number: {{ user_profile.house_number }}</p>
+                <p>City: {{ user_profile.location.city }}</p>
+                <p>Postal Code: {{ user_profile.location.postcode }}</p>
+                <p>Country: {{ user_profile.country.country }}</p>          
             </fieldset>
             <label for="cover_letter">Cover Letter:</label>
 
@@ -45,17 +29,10 @@
             {% for recommendation in recommendations %}
             <fieldset>
                 <legend>Recommendation</legend>  
-                <label for="name">Name:</label>
-                <input type="text" id="name" value="{{ recommendation.name }}"><br>
-        
-                <label for="email">Email address:</label>
-                <input type="email" id="email" value="{{ recommendation.email }}"><br>
-        
-                <label for="phone">Phone number:</label>
-                <input type="tel" id="phone" value="{{ recommendation.phone_number}}"><br>
-        
-                <label for="contact">May be contacted:</label>
-                <input type="checkbox" id="contact" {% if recommendation.may_be_contacted %}checked{% endif %}><br>
+                <p>Name: {{ recommendation.name }}</p>
+                <p>Email address: {{ recommendation.email }}</p>
+                <p>Phone Number: {{ recommendation.phone_number }}</p>
+                <p>May be contacted: {% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
             </fieldset>
             {% endfor %}
         </div>
@@ -63,17 +40,10 @@
             {% for experience in experiences %}
             <fieldset>
                 <legend>Experience</legend>  
-                <label for="place_of_work">Place of Work:</label>
-                <input type="text" id="place_of_work" value="{{ experience.place_of_work }}"><br>
-        
-                <label for="role{{ experience.eid }}">Role:</label>
-                <input type="text" id="role" value="{{ experience.role }}"><br>
-        
-                <label for="start_date{{ experience.eid }}">Start Date:</label>
-                <input type="date" id="start_date" value="{{ experience.start_date|date:'Y-m-d' }}"><br>
-        
-                <label for="end_date{{ experience.eid }}">End Date:</label>
-                <input type="date" id="end_date" value="{{ experience.end_date|date:'Y-m-d' }}"><br>
+                <p>Place of Work: {{ experience.place_of_work }}</p>
+                <p>Role: {{ experience.role }}</p>
+                <p>Start Date: {{ experience.start_date|date:'Y-m-d' }}</p>
+                <p>End Date: {{ experience.end_date|date:'Y-m-d' }}</p>
             </fieldset>
             {% endfor %}
         </div>

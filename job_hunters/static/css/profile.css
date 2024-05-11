@@ -1,4 +1,42 @@
-* {
+  .container {
+    margin-left: 2.4%;
+    margin-top: 6%;
+  }
+  
+  .contact-info {
+      background-color: #F0E5D8;
+      border-width: 0.1rem;
+      border-style: solid;
+      border-color: #77654B;
+      border-radius: 1rem;
+      padding-left: 1rem;
+      padding-top: 1rem;
+      display: inline-block;
+      width: 45%;
+  }
+
+  p, label {
+    color: #77654B;
+    margin: 0;
+  }
+
+  p {
+    margin-bottom: 0.8rem;
+    font-size: 1.25rem;
+  }
+
+  .profile-picture {
+    border-radius: 50%;
+    margin: 0;
+    margin-bottom: 0.8rem;
+    border-style: solid;
+    border-color: #77654B;
+  }
+
+  h2 {
+    margin: 0;
+  }
+/* * {
     box-sizing: border-box;
   }
 
@@ -61,4 +99,4 @@
 
   body {
     background-color: #93A87E;
-  }
+  } */

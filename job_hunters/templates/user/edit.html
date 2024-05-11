@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-
+{%load static%}
 {% block title %}Edit Profile{% endblock %}
 
 {% block content %}
 <head>
     <br><title>Contact Form</title>
-  </head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+</head>
   <body>
     <label for="Contact_info"> Contact information</label><br><br>
     <form method="post">
