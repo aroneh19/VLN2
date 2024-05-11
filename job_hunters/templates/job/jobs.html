@@ -45,13 +45,11 @@
     
     {% for job in jobs %}
     <h1>{{ job.title }}</h1>
+    <img src="{{ job.company.logo }}">
     <p>Company: {{ job.company.user.first_name }}</p>
     <p>Location: {{ job.location }}</p>
-    <p>Date Of Offering: {{ job.start_date }}</p>
-    <p>Due Date: {{ job.due_date }}</p>
-    <p>Description: {{ job.description }}</p>
+    <p>Date: {{ job.start_date }} - {{ job.due_date }}</p>
     <p>Job Type: {{ job.jobtype.type }}</p>
-    <p>Category: {{ job.category.name }}</p>
     <p><a href="{% url 'Application_Form' %}?job_jid={{ job.jid }}">Apply for this Job</a></p>
     {% endfor %}
 </body>
