@@ -88,3 +88,7 @@ def edit_user(request):
 @login_required
 def edit_profile(request):
     return render(request, "user/edit.html")
+
+@login_required
+def password_change(request):
+    return render(request, "user/change_password.html")
