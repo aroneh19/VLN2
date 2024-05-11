@@ -11,7 +11,7 @@ def register_company(request):
         form = CustomCompanyCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
-            company = Company.objects.create(user=user, name=user.first_name)
+            company = Company.objects.create(user=user)
             return redirect('company_login')
         else:
             print(form.errors)
