@@ -11,6 +11,7 @@ class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = 'Social Security Number'
+        self.fields['username'].help_text = ''
 
     class Meta:
         model = User

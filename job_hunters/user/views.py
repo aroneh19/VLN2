@@ -20,9 +20,13 @@ def register_user(request):
             return redirect('user_login')
         else:
             print(form.errors)
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'user/register.html', {'form': form, 'countries': countries, 'locations': locations})
+    context = {
+        'form': CustomUserCreationForm(),
+        'countries': countries,
+        'locations': locations,
+    }
+    
+    return render(request, 'user/register.html', context)
 
 
 def login_view(request):
@@ -30,8 +34,12 @@ def login_view(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user)
-            return redirect('home')
+            profile_exists = Profile.objects.filter(user=user).exists()
+            if profile_exists:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.error(request, 'Profile does not exist!')
         else:
             print(form.errors)
             messages.error(request, 'Login failed!')
@@ -41,13 +49,28 @@ def login_view(request):
     }
     return render(request, 'user/login.html', context)
 
+@login_required
+def profile_view(request):
+    profile = Profile.objects.get(user=request.user)
+    recommendation = Recommendation.objects.filter(profile=profile)
+    experience = Experience.objects.filter(profile=profile)
+    context = {
+        'profile': profile,
+        'recommendations': recommendation,
+        'experiences': experience
+    }
+    return render(request, "user/profile.html", context)
+
+@login_required
 def edit_user(request):
     countries = Country.objects.all()
     locations = Location.objects.all()
     user_id = 2
-    user = Profile.objects.get(user=user_id)
+    profile = Profile.objects.get(user=user_id)
     context = {
-        'profile': user
+        'profile': profile,
+        'countries': countries,
+        'locations': locations,
     }
     return render(request, 'user/edit.html', context)
 
@@ -61,19 +84,6 @@ def edit_user(request):
 #             profile.save()
 #             return redirect('profile')
 #     return render(request, 'user/profile.html', {'user': ProfileForm})
-
-
-@login_required
-def profile_view(request):
-    profile = Profile.objects.get(user=request.user)
-    recommendation = Recommendation.objects.filter(profile=profile)
-    experience = Experience.objects.filter(profile=profile)
-    context = {
-        'profile': profile,
-        'recommendations': recommendation,
-        'experiences': experience
-    }
-    return render(request, "user/profile.html", context)
 
 @login_required
 def edit_profile(request):
