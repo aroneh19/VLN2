@@ -3,6 +3,7 @@
 
 
 <body>
+    <h1>Jobs You Might Like</h1>
     <form action="{% url 'filter_job_offerings' %}" method="get">
         <fieldset>
             <legend>Filtering Options</legend>
@@ -44,12 +45,12 @@
     </form>
     
     {% for job in jobs %}
-    <h1>{{ job.title }}</h1>
     <img src="{{ job.company.logo }}">
-    <p>Company: {{ job.company.user.first_name }}</p>
-    <p>Location: {{ job.location }}</p>
-    <p>Date: {{ job.start_date }} - {{ job.due_date }}</p>
-    <p>Job Type: {{ job.jobtype.type }}</p>
+    <p>{{ job.title }}</p>
+    <p>-{{ job.company.user.first_name }}-</p>
+    <p>{{ job.location }}</p>
+    <p>{{ job.start_date }} - {{ job.due_date }}</p>
+    <p>{{ job.jobtype.type }}</p>
     <p><a href="{% url 'Application_Form' %}?job_jid={{ job.jid }}">Apply for this Job</a></p>
     {% endfor %}
 </body>
