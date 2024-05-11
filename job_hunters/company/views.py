@@ -20,7 +20,6 @@ def register_company(request):
     
     return render(request, 'user/register.html', {'form': form})
 
-@login_required
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
@@ -39,7 +38,7 @@ def login_view(request):
     context = {
         'form': AuthenticationForm()
     }
-    return render(request, 'user/login.html', context)
+    return render(request, 'company/login.html', context)
 
 
 @login_required
