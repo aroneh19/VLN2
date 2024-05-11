@@ -4,60 +4,15 @@
 
 {% block content %}
 <head>
-    <br><title>Contact Form</title>
+    <br><title>Edit Profile</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
 </head>
   <body>
-    <label for="Contact_info"> Contact information</label><br><br>
-    <form method="post">
-        {% csrf_token %}
-        <label for="picture">Profile Picture</label><br>
-        <img src="{{ profile.picture }}" alt="Profile Picture" width="100" height="100"><br><br>
-        
-        <label for="first_name"><strong>First Name:</strong></label><br />
-        <input type="text" id="first_name" value="{{ user.first_name }}"><br />
-
-        <label for="last_name"><strong>Last name</strong></label><br />
-        <input type="text" id="last_name" value="{{ user.last_name }}"><br />
-        
-        <label for="email">Email:</label><br />
-        <input type="text" id="email" name="email" value="{{ user.email }}"/><br />
-        
-        <label for="phone">Phone Number:</label><br />
-        <input type="tel" id="phone" name="phone" value="{{ profile.phone }}"/><br />
-        
-        <label for="address">Street Name:</label><br />
-        <input type="text" id="street_name" name="street_name" value="{{ profile.street_name }}"/><br />
-        
-        <label for="address">House Number:</label><br />
-        <input type="text" id="house_number" name="house_number" value="{{ profile.house_number }}" /><br />
-        
-        <label for="country">Country</label><br>
-        <select id="country" name="country">
-            {% if profile.country %}
-                <option value="{{ profile.country }}" selected>{{ profile.country }}</option>
-            {% else %}
-                <option value="" selected disabled>Select Country</option>
-            {% endif %}
-            {% for country in countries %}
-                <option value="{{ country.country }}">{{ country.country }}</option>
-            {% endfor %}
-        </select><br />
-        
-        <label for="location">Location</label><br>
-        <select id="location" name="location">
-            {% if profile.location %}
-                <option value="{{ profile.location }}" selected>{{ profile.location.postcode }} {{ profile.location.city }}</option>
-            {% else %}
-                <option value="" selected disabled>Select Location</option>
-            {% endif %}
-            {% for location in locations %}
-                <option value="{{ location.lid }}">{{ location.postcode }} {{ location.city }}</option>
-            {% endfor %}
-        </select><br />
-        
-        <button type="submit">Save Profile</button>
-      </form>
-
+  <form method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Save Profile</button>
+  </form>
 
 {% endblock %} 

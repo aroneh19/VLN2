@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm as BaseUserChangeForm
 from django.contrib.auth.models import User
 from .models import Profile
 
@@ -17,11 +17,19 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ("username", "first_name", "last_name", "email", "password1", "password2")
 
+class UserChangeForm(BaseUserChangeForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields.pop('password')
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['id', 'user']
-        fields = ['phone', 'street_name', 'house_number',
-                  'date_of_birth', 'picture', 'location', 'country']
+        fields = ['phone', 'country', 'location', 'street_name', 'house_number', 'picture']
 
 

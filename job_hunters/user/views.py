@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
-from .forms import CustomUserCreationForm, ProfileForm
+from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm
+
 
 def register_view(request):    
     if request.method == 'POST':
@@ -58,29 +59,38 @@ def profile_view(request):
 
 @login_required
 def edit_view(request):
-    profile = Profile.objects.get(user=request.user)
+    user = request.user
+    profile = Profile.objects.get(user=user)
     countries = Country.objects.all()
     locations = Location.objects.all()
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
+        user_form = UserChangeForm(request.POST, instance=user)
+        profile_form = ProfileForm(request.POST, instance=profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
             profile.save()
+            messages.success(request, 'Your profile was successfully updated!')
             return redirect('user_profile')
         else:
-            print(form.errors)
+            messages.error(request, 'Please correct the errors below.')
     else:
-        form = ProfileForm(instance=profile)
+        user_form = UserChangeForm(instance=user)
+        profile_form = ProfileForm(instance=profile)
 
     context = {
-        'profile': profile,
+        'user_form': user_form,
+        'profile_form': profile_form,
         'countries': countries,
         'locations': locations,
-        'form': form,
     }
     return render(request, 'user/edit.html', context)
+
+@login_required
+def password_change(request):
+    return render(request, 'user/change_password.html')
 
 # def profile(request):
 #     profile = Profile.objects.filter(user=request.user).first()

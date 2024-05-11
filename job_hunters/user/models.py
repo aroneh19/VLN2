@@ -7,7 +7,7 @@ class Location(models.Model):
     city = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.postcode}"
+        return f"{self.postcode} {self.city}"
 
 class Country(models.Model):
     coid = models.AutoField(primary_key=True)
@@ -27,7 +27,7 @@ class Profile(models.Model):
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
-        return self.user.username
+        return self.user.first_name
 
 
 class Experience(models.Model):
