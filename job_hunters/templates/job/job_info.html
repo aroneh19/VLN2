@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<p id="name">Title:</p>
+<p>{{ job.title }}</p>
+<p id="name">Location:</p>
+<p>{{ job.location }}</p>
+<p id="name">Start Date:</p>
+<p>{{ job.start_date }}</p>
+<p id="name">Due Date:</p>
+<p>{{ job.due_date }}</p>
+<p id="name">Job Type:</p>
+<p>{{ job.jobtype.type }}</p>
+<p id="name">Descriptions:</p>
+<p>{{ job.description}}</p>
+<fieldset>
+    <legend>Company</legend>
+    <p id="name">Name:</p>
+    <p>-{{ job.company.user.first_name }}-</p>
+    <p id="name">Address:</p>
+    <p>-{{ job.company.address }}-</p>
+    <p><a href="{{ job.company.website }}">-Link to company page-</a></p>
+</fieldset>
+{% if applied_date %}
+    <h3>Already applied on: {{applied_date}} </h3>
+    <h3>Status: {{status}}</h3>
+{% else %}
+<form action="{% url 'Application_Form' %}?job_jid={{ job.jid }}" method="post">
+    {% csrf_token %}
+    <button name="next_btn">Apply For Job</button>
+</form>
+{% endif %}
+
+
+{% endblock %}

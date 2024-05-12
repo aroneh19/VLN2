@@ -30,16 +30,27 @@ def filter_job_offerings(request):
                 filtered_jobs = filtered_jobs.exclude(application__in= applied_jobs)
         
         if order_by == 'date_offering':
-            filtered_jobs = filtered_jobs.order_by('start_date')
+            filtered_jobs = filtered_jobs.order_by('date_of_offering')
         elif order_by == 'due_date':
             filtered_jobs = filtered_jobs.order_by('due_date')
-        
-        
         categories = Category.objects.all()
         companies = Company.objects.all()
         return render(request, 'job/jobs.html', {'jobs': filtered_jobs, 'categories': categories, 'companies': companies})
     else:
         # Handle other request methods, e.g., POST
         redirect('jobs')
+
+def job_info(request):
+    job_id = request.GET.get('job_jid')
+    job = Job.objects.get(jid = job_id)
+    
+    current_user = request.user.id
+    application = Application.objects.filter(job=job, user=current_user).first()
+    applied_date = None
+    status = None
+    if application:
+        applied_date = application.date_applied
+        status = application.status.status
+    return render(request,'job/job_info.html', {'job': job, 'applied_date': applied_date, 'status': status})
 
 

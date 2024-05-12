@@ -9,8 +9,6 @@ from user.models import Recommendation, Experience, Country, Profile
 
 def application_form(request):
     job = request.GET.get('job_jid')
-    user_id = 2 # will be changed ino the logged in user from authentication when connecting web app
-    #user_profile = Profile.objects.get(user_id=user_id)  # Retrieve the Profile object for the user
     user_profile = Profile.objects.get(user=request.user.id)  # Retrieve the Profile object for the logged-in user
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
@@ -19,17 +17,15 @@ def application_form(request):
 
 def submit_application(request):
     print(request.POST)
-    jobs = Job.objects.all()
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
         if form.is_valid():
             application = form.save(commit=False)
             application.save()
-            return redirect('jobs')  # Redirect to a success page
         else:
             print(form.errors)
-
-    return render(request, 'job/jobs.html', {'jobs': jobs})
+        return redirect('jobs')
+    return redirect('jobs')
 
 def user_application(request):
     user_profile = Profile.objects.get(user = request.user.id)
