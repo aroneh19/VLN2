@@ -16,7 +16,7 @@ def home(request):
         if is_company:
             photo = Company.objects.get(user=request.user).logo
         else:
-            photo = Profile.objects.get(username=request.user).picture
+            photo = Profile.objects.get(user=request.user).picture
         context = {
             'is_company': is_company,
             'photo': photo,
