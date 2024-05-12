@@ -33,70 +33,28 @@
     border-color: #77654B;
   }
 
+  .xp-list {
+    width: 45%;
+    border: 1px solid #77654B;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: #F0E5D8;
+  }
+
+  .rec-list {
+    width: 45%;
+    border: 1px solid #77654B;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: #F0E5D8;
+  }
+
+  .xp-box,
+  .rec-box {
+      margin: 0;
+      margin-top: 1.2rem;
+  }
+
   h2 {
     margin: 0;
   }
-/* * {
-    box-sizing: border-box;
-  }
-
-  .Contact_Info {
-    display: inline-block;
-  }
-
-  .experience-list {
-    width: 700px;
-    border: 1px solid #ccc;
-    border-radius: 1rem;
-    padding: 1rem;
-  }
-
-  .experience-list .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .experience-list .head button {
-    all: unset;
-    padding: 1rem 2rem;
-    border-radius: 2rem;
-    border: 2px solid blue;
-    cursor: pointer;
-  }
-
-  .experience-list ul {
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    list-style-position: inside;
-    padding: 0;
-    margin: 0;
-  }
-
-  .experience-list ul li {
-    padding: 10px;
-    display: flex;   
-    justify-content: space-between;   
-    align-items: center;
-  }
-
-  .experience-list ul li h1,
-  .experience-list ul li h2 {
-    font-size: 16px;
-  }
-
-  .experience-list ul li h2 {
-    color: #777;
-  }
-
-  .experience-list .job {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  body {
-    background-color: #93A87E;
-  } */
