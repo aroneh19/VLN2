@@ -11,7 +11,7 @@
                 <div class="filter-option">
                     <h1>Filter by Category</h1>
                     <select name="category" id="category">
-                        <option value="">None</option> <!-- Default option -->
+                        <option value="">None</option>
                         {% for category in categories %}
                             <option value="{{ category.name }}">{{ category.name }}</option>
                         {% endfor %}
@@ -20,7 +20,7 @@
                 <div class="filter-option">
                     <h1>Filter by Company</h1>
                     <select name="company" id="company">
-                        <option value="">None</option> <!-- Default option -->
+                        <option value="">None</option>
                         {% for company in companies %}
                             <option value="{{ company.user.first_name }}">{{ company.user.first_name }}</option>
                         {% endfor %}
@@ -57,7 +57,7 @@
 <style>
     .filter-option {
     display: inline-block;
-    margin-right: 20px; /* Adjust as needed */
+    margin-right: 20px;
 }
 </style>
 
