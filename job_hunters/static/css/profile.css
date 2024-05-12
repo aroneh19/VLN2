@@ -1,66 +1,71 @@
-  
-  .container {
-    margin: 0;
-    margin-left: 3%;
-    margin-top: 6%;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .contact-info {
-      background-color: #F0E5D8;
-      border-width: 0.1rem;
-      border-style: solid;
-      border-color: #77654B;
-      border-radius: 1rem;
-      padding-left: 1rem;
-      padding-top: 1rem;
-      width: 45%;
-  }
+.container {
+  margin: 0;
+  margin-left: 3%;
+  margin-top: 6%;
+  display: flex;
+  justify-content: space-between;
+}
 
-  p, label {
-    color: #77654B;
-    margin: 0;
-  }
+.contact-info {
+  background-color: #F0E5D8;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  width: 30rem;
+}
 
-  p {
-    margin-bottom: 0.8rem;
-    font-size: 1.4rem;
-  }
+.other-box {
+  width: 30rem;
+  margin: 0;
+  margin-right: 5rem
+}
 
-  label {
-    font-size: 1.1rem;
-  }
+p, label {
+  color: #77654B;
+  margin: 0;
+}
 
-  .profile-picture {
-    border-radius: 50%;
-    margin: 0;
-    margin-bottom: 0.8rem;
-    border-style: solid;
-    border-color: #77654B;
-  }
+p {
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+}
 
-  .xp-list {
-    width: 45%;
-    border: 1px solid #77654B;
-    border-radius: 1rem;
-    padding: 1rem;
-    background-color: #F0E5D8;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-  }
+label {
+  font-size: 1.1rem;
+}
 
-  .rec-list {
-    width: 45%;
-    border: 1px solid #77654B;
-    border-radius: 1rem;
-    padding: 1rem;
-    background-color: #F0E5D8;
-    margin: 0;
-  }
+.profile-picture {
+  border-radius: 50%;
+  margin: 0;
+  margin-bottom: 0.8rem;
+  border-style: solid;
+  border-color: #77654B;
+}
 
-  h1 {
-    margin: 0;
-    margin-top: 2rem;
-  }
+.xp-list {
+  width: 100%;
+  border: 1px solid #77654B;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #F0E5D8;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rec-list {
+  width: 100%;
+  border: 1px solid #77654B;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #F0E5D8;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  margin-top: 1.2rem;
+}

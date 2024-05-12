@@ -3,45 +3,47 @@
 
 {% block content %}
 <div class="container">
-  <h1>Contact information</h1>
-  <div class="contact-container">
-    <div class="contact-info">
-      <img class="profile-picture" src="{{ profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
-      
-      <div class="name">
-        <label for="first_name"><strong>First Name:</strong></label>
-        <p id="first_name">{{ user.first_name }}</p>
+  <div class="info-box">
+    <h1>Contact information</h1>
+    <div class="contact-container">
+      <div class="contact-info">
+        <img class="profile-picture" src="{{ profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
         
-        <label for="last_name"><strong>Last Name:</strong></label>
-        <p id="last_name">{{ user.last_name }}</p>
+        <div class="name">
+          <label for="first_name"><strong>First Name:</strong></label>
+          <p id="first_name">{{ user.first_name }}</p>
+          
+          <label for="last_name"><strong>Last Name:</strong></label>
+          <p id="last_name">{{ user.last_name }}</p>
+        </div>
+
+        <label for="email"><strong>Email:</strong></label>
+        <p id="email">{{ user.email}}</p>
+        
+        <label for="phone"><strong>Phone Number:</strong></label>
+        <p id="phone">{{ profile.phone }}</p>
+        
+        <label for="street_name"><strong>Street Name:</strong></label>
+        <p id="street_name">{{ profile.street_name }}</p>
+
+        <label for="house_number"><strong>House Number:</strong></label>
+        <p id="house_number">{{ profile.house_number }}</p>
+        
+        <label for="ssn"><strong>Social Security Number:</strong></label>
+        <p id="ssn">{{ user.username }}</p>
+        
+        <label for="dob"><strong>Date of Birth:</strong></label>
+        <p id="dob">{{ profile.date_of_birth|date:'d-m-Y' }}</p>
+        
+        <label for="country"><strong>Country:</strong></label>
+        <p id="country">{{ profile.country.country }}</p>
+
+        <label for="postcode"><strong>Post Code:</strong></label>
+        <p id="postcode">{{ profile.location.postcode }}</p>
+
+        <label for="city"><strong>City:</strong></label>
+        <p id="city">{{ profile.location.city }}</p>
       </div>
-
-      <label for="email"><strong>Email:</strong></label>
-      <p id="email">{{ user.email}}</p>
-      
-      <label for="phone"><strong>Phone Number:</strong></label>
-      <p id="phone">{{ profile.phone }}</p>
-      
-      <label for="street_name"><strong>Street Name:</strong></label>
-      <p id="street_name">{{ profile.street_name }}</p>
-
-      <label for="house_number"><strong>House Number:</strong></label>
-      <p id="house_number">{{ profile.house_number }}</p>
-      
-      <label for="ssn"><strong>Social Security Number:</strong></label>
-      <p id="ssn">{{ user.username }}</p>
-      
-      <label for="dob"><strong>Date of Birth:</strong></label>
-      <p id="dob">{{ profile.date_of_birth|date:'d-m-Y' }}</p>
-      
-      <label for="country"><strong>Country:</strong></label>
-      <p id="country">{{ profile.country.country }}</p>
-
-      <label for="postcode"><strong>Post Code:</strong></label>
-      <p id="postcode">{{ profile.location.postcode }}</p>
-
-      <label for="city"><strong>City:</strong></label>
-      <p id="city">{{ profile.location.city }}</p>
     </div>
   </div>
 
@@ -90,11 +92,10 @@
       </div>
       {% endfor %}
     </div>
+    <a href="{% url 'user_edit' %}">Edit Profile</a>
+    <a href="{% url 'user_edit' %}">Add Experience</a>
+    <a href="{% url 'user_edit' %}">Add Recommendation</a>
   </div>
 </div>
-
-<a href="{% url 'user_edit' %}">Edit Profile</a>
-<a href="{% url 'user_edit' %}">Add Experience</a>
-<a href="{% url 'user_edit' %}">Add Recommendation</a>
 
 {% endblock %}
