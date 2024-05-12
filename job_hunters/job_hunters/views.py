@@ -1,21 +1,25 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from company.models import Company 
-from django.contrib.auth.models import User
+from user.models import Profile
+from company.models import Company
+from job.models import Job
+from random import sample, seed
+from datetime import date
 
 
-def jobs():
-    # Sækja störf sem henta á home page
-    pass
+def random_daily_jobs(num_jobs = 4):
+    date_today = date.today()
+    jobs = list(Job.objects.filter(start_date__lte=date_today, due_date__gte=date_today))
+    seed(str(date.today))
+    sampled_jobs = sample(jobs, num_jobs)
+    return sampled_jobs
 
 
 def home(request):
-    if request.user.is_authenticated:
-        is_company = Company.objects.filter(user=request.user).exists()
-        context = {
-            'is_company': is_company
-        }
-        return render(request, 'index.html', context)
+    jobs = random_daily_jobs()
+    context = {
+        'jobs': jobs,
+    }
     return render(request, 'index.html')
 
 

@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Company
 from  .forms import CustomCompanyCreationForm
 
-def register_company(request):
+def register_view(request):
     if request.method == 'POST':
         form = CustomCompanyCreationForm(data=request.POST)
         if form.is_valid():
@@ -42,7 +42,7 @@ def login_view(request):
 
 
 @login_required
-def profile_company(request):
+def profile_view(request):
     context = {
         'company': Company.objects.get(user=request.user)
     }
@@ -50,9 +50,28 @@ def profile_company(request):
 
 
 @login_required
-def edit_company(request):
+def edit_view(request):
     return render(request, "company/edit.html")
 
 @login_required
-def post_jobs(request):
+def change_password(request):
+    user = request.user
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=user)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Your password was successfully updated!')
+            return redirect('user_profile')
+        else:
+            messages.error(request, 'Password change failed!')
+            messages.error(request, form.errors)
+    else:
+        form = PasswordChangeForm(user=user)
+    context = {
+        'form': form,
+    }
+    return render(request, 'user/change-password.html', context)
+
+@login_required
+def postjobs_view(request):
     return render(request, "company/post_jobs.html")
