@@ -3,11 +3,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
 from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm
-
 
 def register_view(request):    
     if request.method == 'POST':
@@ -21,9 +20,7 @@ def register_view(request):
     context = {
         'form': CustomUserCreationForm(),
     }
-    
     return render(request, 'user/register.html', context)
-
 
 def login_view(request):
     if request.method == "POST":
@@ -89,16 +86,20 @@ def edit_view(request):
     return render(request, 'user/edit.html', context)
 
 @login_required
-def password_change(request):
-    return render(request, 'user/change_password.html')
-
-# def profile(request):
-#     profile = Profile.objects.filter(user=request.user).first()
-#     if request.method == 'POST':
-#         form = ProfileForm(instance=profile, data=request.POST)
-#         if form.is_valid():
-#             profile = form.save(commit=False)
-#             profile.user = request.user
-#             profile.save()
-#             return redirect('profile')
-#     return render(request, 'user/profile.html', {'user': ProfileForm})
+def change_password(request):
+    user = request.user
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=user)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Your password was successfully updated!')
+            return redirect('user_profile')
+        else:
+            messages.error(request, 'Password change failed!')
+            messages.error(request, form.errors)
+    else:
+        form = PasswordChangeForm(user=user)
+    context = {
+        'form': form,
+    }
+    return render(request, 'user/change-password.html', context)
