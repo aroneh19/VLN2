@@ -8,6 +8,7 @@
     </div>
     <div class="profile">
       {% if user.is_authenticated %}
+        {% if not is_company %}
       <a href="{% url 'user_profile' %}">Profile</a>
         <div class="dropdown">
             <button class="dropbtn"></button>
@@ -30,6 +31,7 @@
       <a href="{% url 'user_login' %}">Login</a>
       <a href="{% url 'company_login' %}">Company</a>
       {% endif %}
+    {% endif %}
     </div>
   </nav>
 </header>
