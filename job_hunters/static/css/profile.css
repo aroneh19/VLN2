@@ -1,6 +1,10 @@
+  
   .container {
-    margin-left: 2.4%;
+    margin: 0;
+    margin-left: 3%;
     margin-top: 6%;
+    /* display: flex;
+    justify-content: space-between; */
   }
   
   .contact-info {
@@ -11,7 +15,6 @@
       border-radius: 1rem;
       padding-left: 1rem;
       padding-top: 1rem;
-      display: inline-block;
       width: 45%;
   }
 
@@ -22,7 +25,11 @@
 
   p {
     margin-bottom: 0.8rem;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
+  }
+
+  label {
+    font-size: 1.1rem;
   }
 
   .profile-picture {
@@ -39,6 +46,9 @@
     border-radius: 1rem;
     padding: 1rem;
     background-color: #F0E5D8;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
   }
 
   .rec-list {
@@ -47,14 +57,10 @@
     border-radius: 1rem;
     padding: 1rem;
     background-color: #F0E5D8;
-  }
-
-  .xp-box,
-  .rec-box {
-      margin: 0;
-      margin-top: 1.2rem;
-  }
-
-  h2 {
     margin: 0;
+  }
+
+  h1 {
+    margin: 0;
+    margin-top: 2rem;
   }
