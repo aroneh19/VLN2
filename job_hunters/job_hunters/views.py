@@ -7,8 +7,9 @@ from random import sample, seed
 from datetime import date
 
 
-def random_daily_jobs(num_jobs = 8):
-    jobs = list(Job.objects.filter(start_date__lte=date.today(), end_date__gte=date.today()))
+def random_daily_jobs(num_jobs = 4):
+    date_today = date.today()
+    jobs = list(Job.objects.filter(start_date__lte=date_today, due_date__gte=date_today))
     seed(str(date.today))
     sampled_jobs = sample(jobs, num_jobs)
     return sampled_jobs
