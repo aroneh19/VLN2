@@ -14,20 +14,24 @@
         <img src="{{ company.cover }}" alt="Company Cover" width="100" height="100"><br>
         
         <label for="username"><strong>Social Security Number:</strong></label>
-        <p id="username">{{ company.user.username }}</p>
+        <p id="username">{{ user.username }}</p>
 
         <label for="name"><strong>Company Name:</strong></label>
-        <p id="name">{{ company.user.first_name }}</p>
+        <p id="name">{{ user.first_name }}</p>
         
         <label for="email"><strong>Email:</strong></label>
-        <p id="email">{{ company.user.email}}</p>
+        <p id="email">{{ user.email}}</p>
         
         <label for="address"><strong>Address:</strong></label>
         <p id="address">{{ company.address }}</p>
         
         <label for="website"><strong>Website:</strong></label>
         <p id="website">{{ company.website }}</p>
+
+        <label for="website"><strong>Description:</strong></label>
+        <p id="website">{{ company.description }}</p>
     </div>
+    <a href="{% url 'change_passsword' %}">Change Password</a>
 </div>
 
 {% endblock %} 
