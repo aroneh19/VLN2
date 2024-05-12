@@ -45,13 +45,17 @@
     </form>
     
     {% for job in jobs %}
-    <img src="{{ job.company.logo }}">
-    <p>{{ job.title }}</p>
-    <p>-{{ job.company.user.first_name }}-</p>
-    <p>{{ job.location }}</p>
-    <p>{{ job.start_date }} - {{ job.due_date }}</p>
-    <p>{{ job.jobtype.type }}</p>
-    <p><a href="{% url 'Application_Form' %}?job_jid={{ job.jid }}">Apply for this Job</a></p>
+    <!---<a href="{% url 'Application_Form' %}?job_jid={{ job.jid }}">--->
+    <a href="{% url 'job_info' %}?job_jid={{job.jid}}">
+        <img src="{{ job.company.logo }}">
+        <p>{{ job.title }}</p>
+        <p>-{{ job.company.user.first_name }}-</p>
+        <p>{{ job.location }}</p>
+        <p>{{ job.start_date }}</p>
+        <p>{{ job.due_date }}</p>
+        <p>{{ job.jobtype.type }}</p>
+
+    </a>
     {% endfor %}
 </body>
 <style>

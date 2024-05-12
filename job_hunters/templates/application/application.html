@@ -25,6 +25,11 @@
                 <textarea name="cover_letter" id="" cols="30" rows="10" required></textarea>
             </fieldset>
         </div>
+        
+        <div class="btn">
+            <button type="submit">Submit Application</button>
+        </div>
+
         <div class="recommendations">
             {% for recommendation in recommendations %}
             <fieldset>
@@ -46,9 +51,6 @@
                 <p>End Date: {{ experience.end_date|date:'Y-m-d' }}</p>
             </fieldset>
             {% endfor %}
-        </div>
-        <div class="btn">
-            <button type="submit">APPLY</button>
         </div>
     </form>
 </body>
