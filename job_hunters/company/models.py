@@ -11,4 +11,4 @@ class Company(models.Model):
     website = models.URLField()
 
     def __str__(self):
-        return self.name
+        return self.user.first_name

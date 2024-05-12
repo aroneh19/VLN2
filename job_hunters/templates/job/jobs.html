@@ -3,6 +3,7 @@
 
 
 <body>
+    <h1>Jobs You Might Like</h1>
     <form action="{% url 'filter_job_offerings' %}" method="get">
         <fieldset>
             <legend>Filtering Options</legend>
@@ -10,7 +11,7 @@
                 <div class="filter-option">
                     <h1>Filter by Category</h1>
                     <select name="category" id="category">
-                        <option value="">None</option> <!-- Default option -->
+                        <option value="">None</option>
                         {% for category in categories %}
                             <option value="{{ category.name }}">{{ category.name }}</option>
                         {% endfor %}
@@ -19,7 +20,7 @@
                 <div class="filter-option">
                     <h1>Filter by Company</h1>
                     <select name="company" id="company">
-                        <option value="">None</option> <!-- Default option -->
+                        <option value="">None</option>
                         {% for company in companies %}
                             <option value="{{ company.user.first_name }}">{{ company.user.first_name }}</option>
                         {% endfor %}
@@ -44,21 +45,19 @@
     </form>
     
     {% for job in jobs %}
-    <h1>{{ job.title }}</h1>
-    <p>Company: {{ job.company.user.first_name }}</p>
-    <p>Location: {{ job.location }}</p>
-    <p>Date Of Offering: {{ job.start_date }}</p>
-    <p>Due Date: {{ job.due_date }}</p>
-    <p>Description: {{ job.description }}</p>
-    <p>Job Type: {{ job.jobtype.type }}</p>
-    <p>Category: {{ job.category.name }}</p>
+    <img src="{{ job.company.logo }}">
+    <p>{{ job.title }}</p>
+    <p>-{{ job.company.user.first_name }}-</p>
+    <p>{{ job.location }}</p>
+    <p>{{ job.start_date }} - {{ job.due_date }}</p>
+    <p>{{ job.jobtype.type }}</p>
     <p><a href="{% url 'Application_Form' %}?job_jid={{ job.jid }}">Apply for this Job</a></p>
     {% endfor %}
 </body>
 <style>
     .filter-option {
     display: inline-block;
-    margin-right: 20px; /* Adjust as needed */
+    margin-right: 20px;
 }
 </style>
 
