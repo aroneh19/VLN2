@@ -43,6 +43,11 @@
 
         <label for="city"><strong>City:</strong></label>
         <p id="city">{{ profile.location.city }}</p>
+        <div class="edit-profile-link">
+          <a href="{% url 'user_edit' %}">
+            <img src="edit.svg" alt="Edit Profile Icon" width="24" height="24">
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -59,42 +64,45 @@
           <label for="email"><strong>Email Address:</strong></label>
           <p id="email">{{ recommendation.email }}</p>
 
+          <label for="contact"><strong>May Be Contacted:</strong></label>
+          <p id="contact">{% if recommendation.may_be_contacted %}Yes{% endif %}</p>
+        </div>
+
+        <div>
           <label for="phone"><strong>Phone Number:</strong></label>
           <p id="phone">{{ recommendation.phone_number }}</p>
 
           <label for="role"><strong>Role:</strong></label>
           <p id="role">{{ recommendation.role }}</p>
-
-          <label for="contact"><strong>May Be Contacted:</strong></label>
-          <p id="contact">{% if recommendation.may_be_contacted %}checked{% endif %}</p>
         </div>
         {% endfor %}
       </div>
 
     <div class="xp-box">
       <h1>Experience</h1>
-      {% for experience in experiences %}
-      <div class="xp-list">
-        <div class ="xp_work">
-          <label for="place_of_work"><strong>Place of Work:</strong></label>
-          <p id="place_of_work">{{ experience.place_of_work }}</p>
+      <div class="xp-lists">
+        {% for experience in experiences %}
+        <div class="xp-list">
+          <div class ="xp-work">
+            <label for="place_of_work"><strong>Place of Work:</strong></label>
+            <p id="place_of_work">{{ experience.place_of_work }}</p>
 
-          <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
-          <p id="role">{{ experience.role }}</p>
-        </div>
-        <div class="xp-dates">
-          <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
-          <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
+            <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
+            <p id="role">{{ experience.role }}</p>
+          </div>
+          <div class="xp-dates">
+            <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
+            <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
 
-          <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
-          <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
+            <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
+            <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
+          </div>
         </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
+      </div>  
     </div>
-    <a href="{% url 'user_edit' %}">Edit Profile</a>
-    <a href="{% url 'user_edit' %}">Add Experience</a>
-    <a href="{% url 'user_edit' %}">Add Recommendation</a>
+    <a href="{% url 'experience' %}">Add Experience</a>
+    <a href="{% url 'recomendation' %}">Add Recommendation</a>
   </div>
 </div>
 
