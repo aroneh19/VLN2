@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
-from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm
+from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm, RecommendationForm, ExperienceForm
 
 def register_view(request):    
     if request.method == 'POST':
@@ -103,3 +103,49 @@ def change_password(request):
         'form': form,
     }
     return render(request, 'user/change-password.html', context)
+
+
+def recommen(request):
+    return render(request,'user/recommendation.html')
+
+def add_recommendation(request):
+    if request.method == 'POST':
+        form = RecommendationForm(request.POST)
+        if form.is_valid():
+            recommendation = form.save(commit=False)
+            recommendation.profile = request.user.profile
+            recommendation.save()
+            form.save()
+            return redirect('user_profile')
+        else:
+            print(form.errors)
+            return redirect('user_profile')
+        
+def experience(request):
+    return render(request,'user/experience.html')
+
+def add_experience(request):
+    if request.method == 'POST':
+        form = ExperienceForm(request.POST)
+        if form.is_valid():
+            experience = form.save(commit=False)
+            experience.profile = request.user.profile
+            experience.save()
+            form.save()
+            return redirect('user_profile')
+        else:
+            print(form.errors)
+            return redirect('user_profile')
+    
+def delete_experience(request, eid):
+    experience = Experience.objects.get(eid = eid)
+    if request.method == 'POST':
+        experience.delete()
+    return redirect('user_profile') 
+
+def delete_recommendation(request, rid):
+    recommendation = Recommendation.objects.get(rid = rid)
+    if request.method == 'POST':
+        recommendation.delete()
+    return redirect('user_profile')
+ 

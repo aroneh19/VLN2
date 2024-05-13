@@ -15,12 +15,20 @@
   padding-left: 1rem;
   padding-top: 1rem;
   width: 30rem;
+  position: relative;
+}
+
+.edit-profile-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
 }
 
 .other-box {
   width: 30rem;
   margin: 0;
-  margin-right: 5rem
+  margin-right: 5rem;
 }
 
 p, label {
@@ -46,23 +54,41 @@ label {
 }
 
 .xp-list {
-  width: 100%;
-  border: 1px solid #77654B;
-  border-radius: 1rem;
-  padding: 1rem;
-  background-color: #F0E5D8;
-  margin: 0;
   display: flex;
   justify-content: space-between;
 }
 
-.rec-list {
+.xp-lists {
   width: 100%;
   border: 1px solid #77654B;
   border-radius: 1rem;
   padding: 1rem;
   background-color: #F0E5D8;
   margin: 0;
+}
+
+.rec-lists {
+  width: 100%;
+  border: 1px solid #77654B;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #F0E5D8;
+  margin: 0;
+}
+
+.rec-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.xp-list:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.rec-list:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 }
 
 h1 {

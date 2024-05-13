@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm as BaseUserChangeForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Recommendation, Experience
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -31,5 +31,17 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['id', 'user']
         fields = ['phone', 'country', 'location', 'street_name', 'house_number', 'picture']
+
+class RecommendationForm(forms.ModelForm):
+    class Meta:
+        model = Recommendation
+        fields = ['name', 'email', 'phone_number', 'role', 'may_be_contacted']
+
+
+class ExperienceForm(forms.ModelForm):
+    class Meta:
+        model = Experience
+        fields = ['place_of_work', 'role', 'start_date', 'end_date']
+
 
 
