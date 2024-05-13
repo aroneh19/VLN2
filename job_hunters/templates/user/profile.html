@@ -55,33 +55,36 @@
   <div class="other-box">
     <div class="rec-box">
       <h1>Recommendation</h1>
-      <div class="rec-list">
+      <div class="rec-lists">
         {% for recommendation in recommendations %}
-        <div>
-          <label for="name"><strong>Name:</strong></label>
-          <p id="name">{{ recommendation.name }}</p>
-
-          <label for="email"><strong>Email Address:</strong></label>
-          <p id="email">{{ recommendation.email }}</p>
-
-          <label for="contact"><strong>May Be Contacted:</strong></label>
-          <p id="contact">{% if recommendation.may_be_contacted %}Yes{% endif %}</p>
-        </div>
-
-        <div>
-          <label for="phone"><strong>Phone Number:</strong></label>
-          <p id="phone">{{ recommendation.phone_number }}</p>
-
-          <label for="role"><strong>Role:</strong></label>
-          <p id="role">{{ recommendation.role }}</p>
-
-          <form action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Delete</button>
-          </form>
-        </div>
+          <div class="rec-list">
+            <div>
+              <label for="name"><strong>Name:</strong></label>
+              <p id="name">{{ recommendation.name }}</p>
+      
+              <label for="email"><strong>Email Address:</strong></label>
+              <p id="email">{{ recommendation.email }}</p>
+      
+              <label for="contact"><strong>May Be Contacted:</strong></label>
+              <p id="contact">{% if recommendation.may_be_contacted %}Yes{% endif %}</p>
+            </div>
+      
+            <div>
+              <label for="phone"><strong>Phone Number:</strong></label>
+              <p id="phone">{{ recommendation.phone_number }}</p>
+      
+              <label for="role"><strong>Role:</strong></label>
+              <p id="role">{{ recommendation.role }}</p>
+      
+              <form action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+          </div>
         {% endfor %}
       </div>
+    </div>
 
     <div class="xp-box">
       <h1>Experience</h1>

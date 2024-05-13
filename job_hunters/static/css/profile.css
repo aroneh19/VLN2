@@ -67,23 +67,31 @@ label {
   margin: 0;
 }
 
-.rec-list {
+.rec-lists {
   width: 100%;
   border: 1px solid #77654B;
   border-radius: 1rem;
   padding: 1rem;
   background-color: #F0E5D8;
   margin: 0;
-  display: flex;
-  justify-content: space-between;
 }
 
-h1 {
-  margin: 0;
-  margin-top: 1.2rem;
+.rec-list {
+  display: flex;
+  justify-content: space-between;
 }
 
 .xp-list:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
+}
+
+.rec-list:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin: 0;
+  margin-top: 1.2rem;
 }
