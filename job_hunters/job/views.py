@@ -15,7 +15,7 @@ def filter_job_offerings(request):
         category_name = request.GET.get('category')  # Get the selected category from the request
         applied_jobs = request.GET.get('checkbox')
         order_by = request.GET.get('order_by')  # Get the selected ordering from the request
-
+        search_query = request.GET.get('search_bar')
         filtered_jobs = Job.objects.all() 
         if category_name:
             filtered_jobs = filtered_jobs.filter(category__name = category_name)
@@ -28,6 +28,9 @@ def filter_job_offerings(request):
             if logged_user.is_authenticated:
                 applied_jobs = Application.objects.filter(user = logged_user.id)
                 filtered_jobs = filtered_jobs.exclude(application__in= applied_jobs)
+        
+        if search_query:
+            filtered_jobs = filtered_jobs.filter(title__icontains=search_query)
         
         if order_by == 'date_offering':
             filtered_jobs = filtered_jobs.order_by('date_of_offering')
