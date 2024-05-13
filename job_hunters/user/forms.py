@@ -32,7 +32,7 @@ class ProfileForm(forms.ModelForm):
         exclude = ['id', 'user']
         fields = ['phone', 'country', 'location', 'street_name', 'house_number', 'picture']
 
-class RecomendationForm(forms.ModelForm):
+class RecommendationForm(forms.ModelForm):
     class Meta:
         model = Recommendation
         fields = ['name', 'email', 'phone_number', 'role', 'may_be_contacted']

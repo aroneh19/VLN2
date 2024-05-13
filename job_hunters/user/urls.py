@@ -9,8 +9,10 @@ urlpatterns = [
     path('profile/', views.profile_view, name='user_profile'),
     path('edit/', views.edit_view, name='user_edit'),
     path('change-passsword/', views.change_password, name='change_passsword'),
-    path('recomendation/', views.recomen, name= 'recomendation'),
-    path('add_recomendation/', views.add_recomendation, name='add_recomendation'),
+    path('recommendation/', views.recommen, name= 'recommendation'),
+    path('add_recommendation/', views.add_recommendation, name='add_recommendation'),
     path('experience/', views.experience, name='experience'),
     path('add_experience/', views.add_experience, name='add_experience'),
+    path('delete/experience/<int:eid>/', views.delete_experience, name='delete_experience'),
+    path('delete/recommendation/<int:rid>/', views.delete_recommendation, name='delete_recommendation')
 ]

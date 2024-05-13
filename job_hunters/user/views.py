@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
-from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm, RecomendationForm, ExperienceForm
+from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm, RecommendationForm, ExperienceForm
 
 def register_view(request):    
     if request.method == 'POST':
@@ -105,12 +105,12 @@ def change_password(request):
     return render(request, 'user/change-password.html', context)
 
 
-def recomen(request):
-    return render(request,'user/recomendation.html')
+def recommen(request):
+    return render(request,'user/recommendation.html')
 
-def add_recomendation(request):
+def add_recommendation(request):
     if request.method == 'POST':
-        form = RecomendationForm(request.POST)
+        form = RecommendationForm(request.POST)
         if form.is_valid():
             recommendation = form.save(commit=False)
             recommendation.profile = request.user.profile
@@ -136,3 +136,16 @@ def add_experience(request):
         else:
             print(form.errors)
             return redirect('user_profile')
+    
+def delete_experience(request, eid):
+    experience = Experience.objects.get(eid = eid)
+    if request.method == 'POST':
+        experience.delete()
+    return redirect('user_profile') 
+
+def delete_recommendation(request, rid):
+    recommendation = Recommendation.objects.get(rid = rid)
+    if request.method == 'POST':
+        recommendation.delete()
+    return redirect('user_profile')
+ 

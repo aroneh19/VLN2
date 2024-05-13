@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Add Recommendation{% endblock %}
 {% block content %}
-<form action="{% url 'add_recomendation' %}" method="post">
+<form action="{% url 'add_recommendation' %}" method="post">
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Name:</label>
