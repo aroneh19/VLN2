@@ -74,6 +74,11 @@
 
           <label for="role"><strong>Role:</strong></label>
           <p id="role">{{ recommendation.role }}</p>
+
+          <form action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+          </form>
         </div>
         {% endfor %}
       </div>
