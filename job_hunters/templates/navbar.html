@@ -21,7 +21,7 @@
                 <a href="{% url 'User_Applications' %}">Application</a>
             {% else %}
                <a href="{% url 'company_profile' %}">My Profile</a>
-               <a href="{% url 'post_jobs' %}">Application</a>
+               <a href="{% url 'post_job' %}">Application</a>
             {% endif %}
             <a href="{% url 'change_passsword' %}">Change Password</a>
             <form method="post" action="{% url 'user_logout' %}">

@@ -20,7 +20,7 @@ def home(request):
     context = {
         'jobs': jobs,
     }
-    return render(request, 'index.html')
+    return render(request, 'index.html', context)
 
 
 def handler404(request, *args, **argv):

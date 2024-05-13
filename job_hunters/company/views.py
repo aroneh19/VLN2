@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Company
-from  .forms import CustomCompanyCreationForm
+from .forms import CustomCompanyCreationForm
 
 def register_view(request):
     if request.method == 'POST':
@@ -71,7 +71,3 @@ def change_password(request):
         'form': form,
     }
     return render(request, 'user/change-password.html', context)
-
-@login_required
-def postjobs_view(request):
-    return render(request, "company/post_jobs.html")

@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Job, Category, Company
 from user.models import User
 from application.models import Application
+from .forms import JobForm
 
 def job(request):
     jobs = Job.objects.all()
@@ -54,3 +56,14 @@ def job_info(request):
     return render(request,'job/job_info.html', {'job': job, 'applied_date': applied_date, 'status': status})
 
 
+@login_required
+def postjob_view(request):
+    user = request.user
+    if request.method == 'POST':
+        form = JobForm(data=request.POST)
+        if form.is_valid():
+            job = form.save(commit=False)
+            job.company = Company.objects.get(user=user)
+            job.save()
+            return redirect('company_profile')
+    return render(request, "job/post-job.html")
