@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
-from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm
+from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm, RecomendationForm, ExperienceForm
 
 def register_view(request):    
     if request.method == 'POST':
@@ -103,3 +103,36 @@ def change_password(request):
         'form': form,
     }
     return render(request, 'user/change-password.html', context)
+
+
+def recomen(request):
+    return render(request,'user/recomendation.html')
+
+def add_recomendation(request):
+    if request.method == 'POST':
+        form = RecomendationForm(request.POST)
+        if form.is_valid():
+            recommendation = form.save(commit=False)
+            recommendation.profile = request.user.profile
+            recommendation.save()
+            form.save()
+            return redirect('user_profile')
+        else:
+            print(form.errors)
+            return redirect('user_profile')
+        
+def experience(request):
+    return render(request,'user/experience.html')
+
+def add_experience(request):
+    if request.method == 'POST':
+        form = ExperienceForm(request.POST)
+        if form.is_valid():
+            experience = form.save(commit=False)
+            experience.profile = request.user.profile
+            experience.save()
+            form.save()
+            return redirect('user_profile')
+        else:
+            print(form.errors)
+            return redirect('user_profile')
