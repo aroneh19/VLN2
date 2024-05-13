@@ -97,17 +97,17 @@
 
     .dropdown-content a:hover {
         background-color: #f1f1f1;
-        background-image: url('../svg/caret_up.svg');
+        /* background-image: url('../svg/caret_up.svg'); */
     }
 
     .dropdown:hover .dropdown-content {
         display: block;
-        background-image: url('../svg/caret_up.svg');
+        /* background-image: url('../svg/caret_up.svg'); */
     }
 
-    .dropdown:hover {
+    /* .dropdown:hover {
     background-image: url('../svg/caret_up.svg');
-    }
+    } */
 
     .dropbtn {
         background-color: transparent;
@@ -118,7 +118,14 @@
         cursor: pointer;
     }
 
+    .dropbtn:active {
+        background-image: url('../svg/caret_up.svg');
+    }
+
     .logout-button {
         color: #F0E5D8;
-        
+    }
+
+    .logout-button:active {
+        color: pink;
     }
