@@ -7,9 +7,15 @@ class Category(models.Model):
     caid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class JobType(models.Model):
     joid = models.AutoField(primary_key=True)
     type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type
 
 class Job(models.Model):
     jid = models.AutoField(primary_key=True)
@@ -22,4 +28,7 @@ class Job(models.Model):
     due_date = models.DateField()
     start_date = models.DateField()
     description = models.TextField()
+
+    def __str__(self):
+        return self.title
     

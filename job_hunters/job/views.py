@@ -9,7 +9,12 @@ def job(request):
     jobs = Job.objects.all()
     categories = Category.objects.all()
     companies = Company.objects.all()
-    return render(request, 'job/jobs.html', {'jobs': jobs, 'categories': categories, 'companies': companies})
+    context = {
+        'jobs': jobs,
+        'categories': categories,
+        'companies': companies
+    }
+    return render(request, 'job/jobs.html', context)
 
 def filter_job_offerings(request):
     if request.method == 'GET':
@@ -69,4 +74,4 @@ def postjob_view(request):
             job.company = Company.objects.get(user=user)
             job.save()
             return redirect('company_profile')
-    return render(request, "job/post-job.html")
+    return render(request, "job/post-job.html", {'form': JobForm()})
