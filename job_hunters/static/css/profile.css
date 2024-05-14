@@ -95,3 +95,13 @@ h1 {
   margin: 0;
   margin-top: 1.2rem;
 }
+
+.delete_button {
+    background: url('../svg/delete.svg');
+    /* background: url('../svg/delete.svg') no-repeat; */
+    border: none;
+    width: 18px;
+    height: 20px;
+    cursor: pointer;
+    background-size: cover;
+}
