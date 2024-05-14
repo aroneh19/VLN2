@@ -18,7 +18,7 @@
         </div>
 
         <label for="email"><strong>Email:</strong></label>
-        <p id="email">{{ user.email}}</p>
+        <p id="email">{{ user.email }}</p>
         
         <label for="phone"><strong>Phone Number:</strong></label>
         <p id="phone">{{ profile.phone }}</p>
@@ -60,38 +60,42 @@
         </div>
         <div class="rec-add">
           <form action="{% url 'recommendation' %}" method="get">
-            <button type="submit" class="add-button">Add</button>
+            <button type="submit" class="add-button"></button>
           </form>
         </div>
       </div>
       <div class="rec-lists">
-        {% for recommendation in recommendations %}
-          <div class="rec-list">
-            <div>
-              <label for="name"><strong>Name:</strong></label>
-              <p id="name">{{ recommendation.name }}</p>
-      
-              <label for="email"><strong>Email Address:</strong></label>
-              <p id="email">{{ recommendation.email }}</p>
-      
-              <label for="contact"><strong>May Be Contacted:</strong></label>
-              <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+        {% if recommendations %}
+          {% for recommendation in recommendations %}
+            <div class="rec-list">
+              <div>
+                <label for="name"><strong>Name:</strong></label>
+                <p id="name">{{ recommendation.name }}</p>
+        
+                <label for="email"><strong>Email Address:</strong></label>
+                <p id="email">{{ recommendation.email }}</p>
+        
+                <label for="contact"><strong>May Be Contacted:</strong></label>
+                <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+              </div>
+        
+              <div>
+                <label for="phone"><strong>Phone Number:</strong></label>
+                <p id="phone">{{ recommendation.phone_number }}</p>
+        
+                <label for="role"><strong>Role:</strong></label>
+                <p id="role">{{ recommendation.role }}</p>
+        
+                <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="delete_button"></button>
+                </form>
+              </div>
             </div>
-      
-            <div>
-              <label for="phone"><strong>Phone Number:</strong></label>
-              <p id="phone">{{ recommendation.phone_number }}</p>
-      
-              <label for="role"><strong>Role:</strong></label>
-              <p id="role">{{ recommendation.role }}</p>
-      
-              <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="delete_button"></button>
-              </form>
-            </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        {% else %}
+          <p id="nothing-added">You haven't added any recommendations yet</p>
+        {% endif %}
       </div>
     </div>
 
@@ -102,35 +106,39 @@
         </div>
         <div class="xp-add">
           <form action="{% url 'experience' %}" method="get">
-            <button type="submit" class="add-button">Add</button>
+            <button type="submit" class="add-button"></button>
           </form>
         </div>
       </div>
       <div class="xp-lists">
-        {% for experience in experiences %}
-        <div class="xp-list">
-          <div class ="xp-work">
-            <label for="place_of_work"><strong>Place of Work:</strong></label>
-            <p id="place_of_work">{{ experience.place_of_work }}</p>
+        {% if experiences %}
+          {% for experience in experiences %}
+            <div class="xp-list">
+              <div class ="xp-work">
+                <label for="place_of_work"><strong>Place of Work:</strong></label>
+                <p id="place_of_work">{{ experience.place_of_work }}</p>
 
-            <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
-            <p id="role">{{ experience.role }}</p>
-          </div>
-          <div class="xp-dates">
-            <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
-            <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
+                <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
+                <p id="role">{{ experience.role }}</p>
+              </div>
+              <div class="xp-dates">
+                <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
+                <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
 
-            <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
-            <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
-          
-            <form class="delete-xp" action="{% url 'delete_experience' experience.eid %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="delete_button">
-              </button>
-            </form>
-          </div>
-        </div>
-        {% endfor %}
+                <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
+                <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
+              
+                <form class="delete-xp" action="{% url 'delete_experience' experience.eid %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="delete_button">
+                  </button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p id="nothing-added">You haven't added any experiences yet</p>
+        {% endif %}
       </div>  
     </div>
   </div>
