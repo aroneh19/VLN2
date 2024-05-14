@@ -76,9 +76,11 @@
               <label for="role"><strong>Role:</strong></label>
               <p id="role">{{ recommendation.role }}</p>
       
-              <form action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
+              <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
                 {% csrf_token %}
-                <button type="submit">Delete</button>
+                <button type="submit">
+                  <img src="svg/delete.svg" alt="Delete" />
+                </button>
               </form>
             </div>
           </div>
@@ -105,9 +107,11 @@
             <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
             <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
 
-            <form action="{% url 'delete_experience' experience.eid %}" method="post">
+            <form class="delete-xp" action="{% url 'delete_experience' experience.eid %}" method="post">
               {% csrf_token %}
-              <button type="submit">Delete</button>
+              <button type="submit">
+                <img src="svg/delete.svg" alt="Delete" />
+              </button>
             </form>
           </div>
         </div>
