@@ -1,7 +1,6 @@
 .header {
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     color: #F0E5D8;
 }
@@ -18,30 +17,26 @@
 
 .header nav {
     display: flex;
-    align-items: center;
     width: 100%;
 }
 
 .header nav .info {
-    display: flex;
     justify-content: center;
     flex: 1;
 }
 
 .header nav .info a {
     text-decoration: none;
-    margin: 0 10px;
 }
 
-.header nav .profile {
-    display: flex;
-    align-items: center;
-}
+/* .header nav .profile {
+} */
 
-.header nav .profile a {
+/* .header nav .profile a {
     text-decoration: none;
     margin-left: 30px;
 }
+ */
 
 .header nav .info, .header nav .profile {
     display: flex;
@@ -49,83 +44,82 @@
 }
 
 .header nav a {
-    font-size: 14px;
-    text-decoration: none;
     color: #F0E5D8;
     margin: 0 10px;
-    font-size: 16px;
 }
 
 .header nav .profile a {
     margin-left: 20px;
 }
 
-.header nav a:hover {
+/* .header nav a:hover {
     color: #77654B;
-}
+} */
 
 .header a:hover {
     color: #77654B;
 }
 
 /* @media (max-width: 0px) {
-} */
+} 
+*/
 
- .dropdown {
-        position: relative;
-        display: inline-block;
-        color: #77654B;
-        height: 24px;
-        width: 24x;
-        background-image: url('../svg/caret.svg');
-        background-size: cover;
-    }
+.dropdown {
+    position: relative;
+    display: inline-block;
+    color: #77654B;
+    height: 24px;
+    width: 24px;
+    background-size: cover;
+}
 
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        z-index: 1;
-    }
+.dropbtn {
+    background-color: transparent;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-image: url('../svg/caret.svg'); /* Added background image for initial state */
+    background-size: cover;
+    display: block;
+    width: 28px; /* Ensure the label size matches the icon size */
+    height: 24px;
+}
 
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    z-index: 1;
+}
 
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-        /* background-image: url('../svg/caret_up.svg'); */
-    }
+.dropdown-content a {
+    color: pink;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
 
-    .dropdown:hover .dropdown-content {
-        display: block;
-        /* background-image: url('../svg/caret_up.svg'); */
-    }
+input[type="checkbox"] {
+    display: none; 
+}
 
-    /* .dropdown:hover {
+/* Adjust the background image based on the checkbox state */
+input[type="checkbox"]:checked + label.dropbtn {
     background-image: url('../svg/caret_up.svg');
-    } */
+    /* background-image: url('/images/caret_up.svg');  */
+}
 
-    .dropbtn {
-        background-color: transparent;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
+input[type="checkbox"]:checked + label.dropbtn + .dropdown-content {
+    display: block;
+}
 
-    .dropbtn:active {
-        background-image: url('../svg/caret_up.svg');
-    }
+/* Remove default styling for checkbox */
+input[type="checkbox"] + label.dropbtn::before {
+    content: '';
+    display: none;
+}
 
-    .logout-button {
-        color: #F0E5D8;
-    }
-
-    .logout-button:active {
-        color: pink;
-    }
+.logout-button {
+    color: #F0E5D8;
+}
