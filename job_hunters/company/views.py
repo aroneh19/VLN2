@@ -41,6 +41,18 @@ def login_view(request):
     return render(request, 'company/login.html', context)
 
 
+
+def companies_view(request):
+    companies = Company.objects.all()
+    context = {
+        'companies': companies
+    }
+    return render(request, 'company/companies.html', context)
+
+
+def company_view(request):
+    return render(request, 'company/company.html')
+
 @login_required
 def profile_view(request):
     context = {

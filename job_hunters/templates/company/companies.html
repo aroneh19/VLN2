@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    {% for company in companies %}
+    <a href="{% url 'company_info' %}">
+        <img src="{{ company.logo }}">
+        <p>{{ company.user.first_name }}</p>
+        <p>-{{ company.user.username }}-</p>
+        <p>{{ company.user.email }}</p>
+        <p>{{ company.address }}</p>
+        <p>{{ company.website }}</p>
+    </a>
+    {% endfor %}
+</body>
+
+{% endblock %}

@@ -11,7 +11,7 @@
       {% if not is_company %}
       <a href="{% url 'user_profile' %}"><img src="{{ photo }}" width="50" height="50"/></a>
       {% else %}
-      <a href="{% url 'company_profile' %}"><img src="{{ photo }}" width="50" height="50"/></a>
+      <a href="{% url 'companies' %}"><img src="{{ photo }}" width="50" height="50"/></a>
       {% endif %}
         <div class="dropdown">
           <input type="checkbox" id="dropdown-toggle" style="display: none;">
