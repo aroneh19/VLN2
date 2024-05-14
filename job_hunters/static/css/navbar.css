@@ -97,8 +97,8 @@
 }
 
 .header nav .dropdown-content a:hover {
-    color: white; 
-    background-color: #77654B; 
+    color: black; 
+    background-color: #F0E5D8; 
 }
 
 input[type="checkbox"] {
@@ -134,8 +134,8 @@ input[type="checkbox"] + label.dropbtn::before {
 
 .dropdown-content a:hover,
 .logout-button:hover {
-    color: white; 
-    background-color: #595245; 
+    color: #F0E5D8; 
+    background-color: #F0E5D8; 
 }
 
 /* .dropdown-content li {
@@ -164,8 +164,8 @@ input[type="checkbox"] + label.dropbtn::before {
 
 .dropdown-content a:hover,
 .logout-button:hover {
-    background-color: #595245;
-    color: white;
+    color: black;
+    background-color: #F0E5D8;
 }
 
 .dropdown-content form {
