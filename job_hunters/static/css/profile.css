@@ -62,6 +62,7 @@ label {
 .xp-list {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .xp-lists {
@@ -71,6 +72,7 @@ label {
   padding: 1rem;
   background-color: #F0E5D8;
   margin: 0;
+  transition: padding-bottom 0.3s ease;
 }
 
 .rec-lists {
@@ -103,31 +105,76 @@ h1 {
   margin-top: 1.2rem;
 }
 
-.delete-xp button,
-.delete-rec button {
+.delete-xp .delete_button,
+.delete-rec .delete_button {
   opacity: 0;
   transition: opacity 0s;
 }
 
-.xp-list:hover .delete-xp button,
-.rec-list:hover .delete-rec button {
+.xp-list:hover .delete-xp .delete_button,
+.rec-list:hover .delete-rec .delete_button {
   opacity: 1;
 }
+
 .xp-list:hover {
-  padding-bottom: 0.8rem;;
+  padding-right: 4.2rem;;
 }
 
 .delete_button {
     background: url('../svg/delete.svg');
     border: none;
-    width: 21.6px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     background-size: cover;
 }
 
 .delete-rec {
   position: absolute;
-  bottom: 0;
+  top: 150px;
+  right: -2px;
+}
+
+.delete-xp {
+  position: absolute;
+  top: 38px;
   right: 0;
+}
+
+.xp-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.xp-add {
+  align-self: flex-end;
+  margin: 0;
+  padding: 0;
+  transform: translate(34px, -2px);
+}
+
+.rec-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rec-add {
+  align-self: flex-end;
+  margin: 0;
+  padding: 0;
+  transform: translate(34px, -2px);
+}
+
+.add-button {
+  background-color: #F0E5D8;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 0.8rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-right: 0.6rem;
+  padding-left: 0.6rem;
+  color: #77654B;
+  font-size: 1.1rem
 }
