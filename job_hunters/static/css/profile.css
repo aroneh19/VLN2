@@ -18,11 +18,17 @@
   position: relative;
 }
 
-.edit-profile-link {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
+.edit-profile-link a {
+    background: url('../svg/edit.svg');
+    border: none;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    background-size: cover;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 1rem; 
 }
 
 .other-box {
