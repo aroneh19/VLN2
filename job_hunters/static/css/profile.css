@@ -77,6 +77,7 @@ label {
 }
 
 .rec-list {
+  position: relative;
   display: flex;
   justify-content: space-between;
 }
@@ -96,11 +97,31 @@ h1 {
   margin-top: 1.2rem;
 }
 
+.delete-xp button,
+.delete-rec button {
+  opacity: 0;
+  transition: opacity 0s;
+}
+
+.xp-list:hover .delete-xp button,
+.rec-list:hover .delete-rec button {
+  opacity: 1;
+}
+.xp-list:hover {
+  padding-bottom: 0.8rem;;
+}
+
 .delete_button {
     background: url('../svg/delete.svg');
     border: none;
-    width: 18px;
-    height: 20px;
+    width: 21.6px;
+    height: 24px;
     cursor: pointer;
     background-size: cover;
+}
+
+.delete-rec {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
