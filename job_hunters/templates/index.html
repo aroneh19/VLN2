@@ -18,11 +18,8 @@
     <p>{{ job.location }}</p>
     <p>{{ job.start_date }} - {{ job.due_date }}</p>
     <p>{{ job.jobtype.type }}</p>
-    <p><a href="{% url 'Application_Form' %}?job_jid={{ job.jid }}">See More</a></p>
+    <p><a href="{% url 'job_info' %}?job_jid={{ job.jid }}">See More</a></p>
     {% endfor %}
-  <!---<a href="application/application.html">Applications</a><br />--->
-  <a href="application/user_applications.html">User Applications</a><br />
-  <a href="user/edit.html">Edit Profile</a><br />
 </body>
 
 {% endblock %}

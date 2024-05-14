@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    {% for company in companies %}
+    <a href="{% url 'company_info' %}?company_id={{ company.id }}">
+        <img src="{{ company.cover }}" width="100" height=""><br>
+        <img src="{{ company.logo }}"  width="50" height="50"><br>
+        <p>{{ company.user.first_name }}</p>
+        <p>{{ company.address }}</p>
+    </a>
+    {% endfor %}
+</body>
+
+{% endblock %}
