@@ -78,9 +78,7 @@
       
               <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
                 {% csrf_token %}
-                <button type="submit">
-                  <img src="svg/delete.svg" alt="Delete" />
-                </button>
+                <button type="submit" class="delete_button"></button>
               </form>
             </div>
           </div>
@@ -109,8 +107,7 @@
 
             <form class="delete-xp" action="{% url 'delete_experience' experience.eid %}" method="post">
               {% csrf_token %}
-              <button type="submit">
-                <img src="svg/delete.svg" alt="Delete" />
+              <button type="submit" class="delete_button">
               </button>
             </form>
           </div>

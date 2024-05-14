@@ -94,21 +94,13 @@ label {
 h1 {
   margin: 0;
   margin-top: 1.2rem;
-  margin-bottom: 0.2rem;
 }
 
-.delete-xp button,
-.delete-rec button {
-  opacity: 0;
-  transition: opacity 0s;
+.delete_button {
+    background: url('../svg/delete.svg');
+    /* background: url('../svg/delete.svg') no-repeat; */
+    border: none;
+    width: 18px;
+    height: 20px;
+    background-size: cover;
 }
-
-.xp-list:hover .delete-xp button,
-.rec-list:hover .delete-rec button {
-  opacity: 1;
-}
-
-.xp-list:hover {
-  padding-bottom: 1rem;
-}
-
