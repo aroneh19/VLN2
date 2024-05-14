@@ -10,5 +10,8 @@ class Company(models.Model):
     description = models.TextField()
     website = models.URLField()
 
+    # def available_jobs(self):
+    #     return self.jobs.filter(is_available=True).count()
+
     def __str__(self):
         return self.user.first_name

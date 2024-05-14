@@ -3,13 +3,11 @@
 
 <body>
     {% for company in companies %}
-    <a href="{% url 'company_info' %}">
-        <img src="{{ company.logo }}">
+    <a href="{% url 'company_info' %}?company_id={{ company.id }}">
+        <img src="{{ company.cover }}" width="100" height=""><br>
+        <img src="{{ company.logo }}"  width="50" height="50"><br>
         <p>{{ company.user.first_name }}</p>
-        <p>-{{ company.user.username }}-</p>
-        <p>{{ company.user.email }}</p>
         <p>{{ company.address }}</p>
-        <p>{{ company.website }}</p>
     </a>
     {% endfor %}
 </body>

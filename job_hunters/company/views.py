@@ -51,7 +51,10 @@ def companies_view(request):
 
 
 def company_view(request):
-    return render(request, 'company/company.html')
+    company_id = request.GET.get('company_id')
+    company = Company.objects.get(user=company_id)
+
+    return render(request, 'company/company_info.html', {'company': company})
 
 @login_required
 def profile_view(request):
