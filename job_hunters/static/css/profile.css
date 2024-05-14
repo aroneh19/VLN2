@@ -98,7 +98,6 @@ h1 {
 
 .delete_button {
     background: url('../svg/delete.svg');
-    /* background: url('../svg/delete.svg') no-repeat; */
     border: none;
     width: 18px;
     height: 20px;
