@@ -109,7 +109,7 @@ section {
 }
 
 .footer-distributed .footer-center p a{
-  color:  #A4BA8E;
+  color:  #77654B;
   text-decoration: none;;
 }
 
@@ -140,7 +140,6 @@ section {
 
 .footer-distributed .footer-company-about span{
   display: block;
-  /* color:  #ffffff; */
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 20px;
@@ -165,6 +164,11 @@ section {
 
   margin-right: 3px;
   margin-bottom: 5px;
+}
+
+.footer-distributed a:hover,
+.footer-distributed p:hover {
+  color: #77654B;
 }
 
 @media (max-width: 880px) {
