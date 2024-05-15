@@ -1,28 +1,31 @@
-<!-- experience_form.html -->
-
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Add Experience{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
 
 <body>
     <form action="{% url 'add_experience' %}" method="post">
         {% csrf_token %}
-        <fieldset>
-            <legend>Experience Information</legend>
-            <label for="place_of_work">Place of Work:</label>
-            <input type="text" id="place_of_work" name="place_of_work" required><br>
-    
-            <label for="role">Role:</label>
-            <input type="text" id="role" name="role" required><br>
-    
-            <label for="start_date">Start Date:</label>
-            <input type="date" id="start_date" name="start_date" required><br>
-    
-            <label for="end_date">End Date:</label>
-            <input type="date" id="end_date" name="end_date" required><br>
-        </fieldset>
-        <div class="btn">
-            <button type="submit">Add Experience</button>
+        <div class="rec">
+            <div class="rec_name">
+                <label for="place_of_work">Place of Work</label>
+                <input type="text" id="place_of_work" name="place_of_work" required>
+            </div>
+            <div class="rec_role">
+                <label for="role">Role</label>
+                <input type="text" id="role" name="role" required>
+            </div>
+            <div class="rec_start_date">
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class="rec_end_date">
+                <label for="end_date">End Date</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
+
+            <button class="submit">Add</button>
         </div>
     </form>
 </body>

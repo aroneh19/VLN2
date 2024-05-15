@@ -2,6 +2,7 @@
   margin: 0;
   margin-left: 3%;
   margin-top: 6%;
+  margin-bottom: 15%;
   display: flex;
   justify-content: space-between;
 }
@@ -103,6 +104,8 @@ label {
 h1 {
   margin: 0;
   margin-top: 1.2rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .delete-xp .delete_button,
