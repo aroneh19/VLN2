@@ -22,6 +22,9 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
+def zavant(request):
+    return render(request, 'why_zavant.html')
+
 
 def handler404(request, *args, **argv):
     messages.error(request, 'The page you were looking does not exist.')

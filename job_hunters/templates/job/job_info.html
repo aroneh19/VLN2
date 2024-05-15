@@ -1,25 +1,41 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<p id="name">Title:</p>
-<p>{{ job.title }}</p>
-<p id="name">Location:</p>
-<p>{{ job.location }}</p>
-<p id="name">Start Date:</p>
-<p>{{ job.start_date }}</p>
-<p id="name">Due Date:</p>
-<p>{{ job.due_date }}</p>
-<p id="name">Job Type:</p>
-<p>{{ job.jobtype.type }}</p>
-<p id="name">Descriptions:</p>
-<p>{{ job.description}}</p>
-<fieldset>
-    <legend>Company</legend>
-    <p id="name">Name:</p>
-    <p>-{{ job.company.user.first_name }}-</p>
-    <p id="name">Address:</p>
-    <p>-{{ job.company.address }}-</p>
-    <p><a href="{{ job.company.website }}">-Link to company page-</a></p>
-</fieldset>
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>-->
+<link rel="stylesheet" href="{% static 'css/job_info.css' %}">
+
+<div class="container">
+    <div class="job-container">
+        <div class="job">
+            <p id="name">Job Title:</p>
+            <p id="val">{{ job.title }}</p>
+            <p id="name">Location:</p>
+            <p id="val">{{ job.location }}</p>
+            <p id="name">Start Date:</p>
+            <p id="val">{{ job.start_date }}</p>
+            <p id="name">Due Date:</p>
+            <p id="val">{{ job.due_date }}</p>
+            <p id="name">Job Type:</p>
+            <p id="val">{{ job.jobtype.type }}</p>
+            <p id="name">Descriptions:</p>
+            <p id="val">{{ job.description}}</p>
+        </div>
+    </div>
+    <div class="company-container">
+        <h2>Company</h2>
+        <div class="logo">
+            <img src={{job.company.logo}} alt="Logo">
+        </div>
+        <div class="company">
+            <p id="name">Name:</p>
+            <p id="val">{{ job.company.user.first_name }}</p>
+            <p id="name">Address:</p>
+            <p id="val">{{ job.company.address }}</p>
+            <p id="name"><a href="{{ job.company.website }}">-Link to company page-</a></p>
+        </div>
+    </div>
+</div>
+<div class="apply">
 {% if applied_date %}
     <h3>Already applied on: {{applied_date}} </h3>
     <h3>Status: {{status}}</h3>
@@ -29,6 +45,6 @@
     <button name="next_btn">Apply For Job</button>
 </form>
 {% endif %}
-
+</div>
 
 {% endblock %}
