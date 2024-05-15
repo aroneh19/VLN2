@@ -28,7 +28,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    padding: 1rem; 
+    padding: 1rem;
 }
 
 .other-box {
@@ -141,40 +141,29 @@ h1 {
   right: 0;
 }
 
-.xp-header {
+.xp-header, .rec-header {
   display: flex;
   justify-content: space-between;
 }
 
-.xp-add {
+.xp-add, .rec-add {
   align-self: flex-end;
   margin: 0;
   padding: 0;
-  transform: translate(34px, -2px);
-}
-
-.rec-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.rec-add {
-  align-self: flex-end;
-  margin: 0;
-  padding: 0;
-  transform: translate(34px, -2px);
+  transform: translate(34px);
 }
 
 .add-button {
-  background-color: #F0E5D8;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-color: #77654B;
-  border-radius: 0.8rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-right: 0.6rem;
-  padding-left: 0.6rem;
-  color: #77654B;
-  font-size: 1.1rem
+  background: url('../svg/add.svg');
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background-size: cover;
+}
+
+#nothing-added {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
 }
