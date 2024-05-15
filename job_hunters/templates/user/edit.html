@@ -3,6 +3,7 @@
 {% block title %}Edit Profile{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/edit.css' %}">
   {% comment %} <form method="post">
     {% csrf_token %}
     {{ user_form.as_p }}
