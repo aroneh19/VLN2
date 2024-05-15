@@ -1,0 +1,75 @@
+.container {
+  margin: 0;
+  margin-left: 3%;
+  margin-top: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: #77654B;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.form-section {
+  background-color: #F0E5D8;
+  border: 0.1rem solid #77654B;
+  border-radius: 1rem;
+  padding: 1rem 4rem 0 4rem;
+  max-width: 50rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-section h2 {
+  color: #77654B;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  color: #77654B;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  border: 0.1rem solid #77654B;
+  border-radius: 0.5rem;
+  background-color: #FFFFFF;
+  color: #77654B;
+}
+
+button.btn.btn-primary {
+  background-color: #77654B;
+  color: #F0E5D8;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+button.btn.btn-primary:hover {
+  background-color: #594d3c;
+}
+
+button.btn.btn-primary:active {
+  background-color: #42392e;
+}
+

@@ -1,0 +1,43 @@
+.rec {
+  background-color: #F0E5D8;
+  border: 0.1rem solid #77654B;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 14rem;
+  margin: 6% auto 10%;
+  text-align: center;
+}
+
+.rec label {
+  display: block;
+  margin-top: 0.3rem;
+  color: #77654B;
+  font-size: 1.3rem;
+  font-weight:500;
+}
+
+.rec input {
+  border: 0.1rem solid #77654B;
+  border-radius: 0.5rem;
+  background-color: #F0E5D8;
+  padding: 0.2rem;
+  width: 80%;
+  margin: 0.1rem auto;
+}
+
+.submit {
+  background-color: #77654B;
+  color: #F0E5D8;
+  border: none;
+  border-radius: 0.8rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  font-size: 1rem;
+  margin-top: 0.8rem;
+}
+
+.input_contacted input[type="checkbox"] {
+  display: inline-block;
+}

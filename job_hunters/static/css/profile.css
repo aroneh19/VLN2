@@ -2,6 +2,7 @@
   margin: 0;
   margin-left: 3%;
   margin-top: 6%;
+  margin-bottom: 15%;
   display: flex;
   justify-content: space-between;
 }
@@ -28,7 +29,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    padding: 1rem; 
+    padding: 1rem;
 }
 
 .other-box {
@@ -62,6 +63,7 @@ label {
 .xp-list {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .xp-lists {
@@ -71,6 +73,7 @@ label {
   padding: 1rem;
   background-color: #F0E5D8;
   margin: 0;
+  transition: padding-bottom 0.3s ease;
 }
 
 .rec-lists {
@@ -101,33 +104,69 @@ label {
 h1 {
   margin: 0;
   margin-top: 1.2rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-.delete-xp button,
-.delete-rec button {
+.delete-xp .delete_button,
+.delete-rec .delete_button {
   opacity: 0;
   transition: opacity 0s;
 }
 
-.xp-list:hover .delete-xp button,
-.rec-list:hover .delete-rec button {
+.xp-list:hover .delete-xp .delete_button,
+.rec-list:hover .delete-rec .delete_button {
   opacity: 1;
 }
+
 .xp-list:hover {
-  padding-bottom: 0.8rem;;
+  padding-right: 4.2rem;
 }
 
 .delete_button {
     background: url('../svg/delete.svg');
     border: none;
-    width: 21.6px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     background-size: cover;
 }
 
 .delete-rec {
   position: absolute;
-  bottom: 0;
+  top: 150px;
+  right: -2px;
+}
+
+.delete-xp {
+  position: absolute;
+  top: 38px;
   right: 0;
+}
+
+.xp-header, .rec-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.xp-add, .rec-add {
+  align-self: flex-end;
+  margin: 0;
+  padding: 0;
+  transform: translate(34px);
+}
+
+.add-button {
+  background: url('../svg/add.svg');
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background-size: cover;
+}
+
+#nothing-added {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
 }

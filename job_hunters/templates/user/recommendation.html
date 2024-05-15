@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Add Recommendation{% endblock %}
 {% block content %}
-<form action="{% url 'add_recommendation' %}" method="post">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="phone_number">Phone Number:</label>
-    <input type="tel" id="phone_number" name="phone_number" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="role">Role:</label>
-    <input type="text" id="role" name="role" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <input type="checkbox" id="may_be_contacted" name="may_be_contacted" class="form-check-input">
-    <label for="may_be_contacted" class="form-check-label">May be Contacted</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
+
+<div class="rec">
+  <form action="{% url 'add_recommendation' %}" method="post">
+    {% csrf_token %}
+
+    <div class="input_name">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+
+    <div class="input_email">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="input_phone">
+      <label for="phone_number">Phone Number</label>
+      <input type="tel" id="phone_number" name="phone_number" class="form-control" required>
+    </div>
+
+    <div class="input_role">
+      <label for="role">Role</label>
+      <input type="text" id="role" name="role" class="form-control" required>
+    </div>
+
+    <div class="input_contacted">
+      <label for="may_be_contacted" class="form-check-label">May be Contacted</label>
+      <input name="checkbox" type="checkbox" required>
+    </div>
+    
+    <button type="submit" class="submit">Add</button>
+  </form>
+</div>
 {% endblock %}
