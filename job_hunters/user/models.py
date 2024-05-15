@@ -21,7 +21,7 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20)
     street_name = models.CharField(max_length=255)
     house_number = models.CharField(max_length=10)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True, blank=True)
     picture = models.URLField()
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
