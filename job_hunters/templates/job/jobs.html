@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-
+<link rel="stylesheet" href="{% static 'css/jobs.css' %}">
 <body>
     <h1>Jobs You Might Like</h1>
-    <form action="{% url 'filter_job_offerings' %}" method="get">
-        <fieldset>
-            <legend>Filtering Options</legend>
-            <div class="filter-options">
-                <div class="filter-option">
-                    <h1>Filter by Category</h1>
+    <div class="filter-container">
+        <div class="filter-logo">
+            <a href="#filter-options" id="filter-logo" class="filter-logo"></a>
+        </div>
+        <div id="filter-options" class="filter-options">
+            <!-- Your filtering options content here -->
+            <form action="{% url 'filter_job_offerings' %}" method="get">
+                <div class="filter-section">
+                    <label for="category ">Filter by Category</label>
                     <select name="category" id="category">
                         <option value="">None</option>
                         {% for category in categories %}
@@ -17,8 +21,8 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="filter-option">
-                    <h1>Filter by Company</h1>
+                <div class="filter-section">
+                    <label>Filter by Company</label>
                     <select name="company" id="company">
                         <option value="">None</option>
                         {% for company in companies %}
@@ -26,12 +30,12 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="filter-option">
-                    <h1>Filter by apllied jobs</h1>
-                    <input name="checkbox" type="checkbox">
+                <div class="filter-section">
+                    <label>Filter by applied jobs</label>
+                    <input name="checkbox" type="checkbox" id="checkbox">
                 </div>
-                <div class="filter-option">
-                    <h1>Order by dates</h1>
+                <div class="filter-section">
+                    <label>Order by dates</label>
                     <label for="order_by">Order by:</label>
                     <select name="order_by" id="order_by">
                         <option value="None">None</option>
@@ -39,34 +43,49 @@
                         <option value="due_date">Due Date</option>
                     </select>
                 </div>
-                <div class="filter-option">
-                    <h1>Search</h1>
+                <div class="filter-section">
+                    <label>Search</label>
                     <input name="search_bar" type="text">
-                    <button type="submit">Apply Filters</button>
                 </div>
-            </div>
-        </fieldset>
-    </form>
-    
+                <button type="submit">Apply Filters</button>
+            </form>
+        </div>
+    </div>  
+    <div class="job-container">
     {% for job in jobs %}
-    <!---<a href="{% url 'Application_Form' %}?job_jid={{ job.jid }}">--->
-    <a href="{% url 'job_info' %}?job_jid={{job.jid}}">
-        <img src="{{ job.company.logo }}">
-        <p>{{ job.title }}</p>
-        <p>-{{ job.company.user.first_name }}-</p>
-        <p>{{ job.location }}</p>
-        <p>{{ job.start_date }}</p>
-        <p>{{ job.due_date }}</p>
-        <p>{{ job.jobtype.type }}</p>
-
-    </a>
+        <div class="job">
+            <a href="{% url 'job_info' %}?job_jid={{job.jid}}">
+                <div class="image-container">
+                    <img src="{{ job.company.logo }}">
+                </div>
+                <div class="text-container">
+                    <p id="title">{{ job.title }}</p>
+                    <p id="company">-{{ job.company.user.first_name }}-</p>
+                    <!--<p>{{ job.start_date }}</p>-->
+                    <p id="due_date">{{ job.due_date }}</p>
+                    <div class="svg-container">
+                        <div class="location">
+                            <p>{{ job.location }}</p>
+                        </div>
+                        <div class="type">
+                            <p>{{ job.jobtype.type }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     {% endfor %}
+    </div>
 </body>
-<style>
-    .filter-option {
-    display: inline-block;
-    margin-right: 20px;
-}
-</style>
-
+<script>
+    document.querySelector(".filter-logo").addEventListener("click", ()=> {
+        let filterOptions = document.querySelector(".filter-options");
+        if (filterOptions.style.display === "block") {
+            filterOptions.style.display = "none";
+        }
+        else{
+            filterOptions.style.display = 'block'
+        }
+    });
+</script>
 {% endblock %}
