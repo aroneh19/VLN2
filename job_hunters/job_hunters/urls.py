@@ -26,5 +26,6 @@ urlpatterns = [
     path('company/', include('company.urls')),
     path('job/', include('job.urls')),
     path('application/', include('application.urls')),
+    path('why_zavant/', views.zavant, name="why_zavant"),
     path('admin/', admin.site.urls),
 ]
