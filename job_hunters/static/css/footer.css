@@ -166,8 +166,7 @@ section {
   margin-bottom: 5px;
 }
 
-.footer-distributed a:hover,
-.footer-distributed p:hover {
+.footer-distributed a:hover {
   color: #77654B;
 }
 
