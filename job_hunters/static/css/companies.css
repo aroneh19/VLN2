@@ -39,13 +39,13 @@
 }
 
 .image-container img.cover {
-    width: 100px;
+    width: auto;
     height: 50px; /* Fixed height for cover image */
     margin-bottom: 0.5rem;
 }
 
 .image-container img.logo {
-    width: 50px;
+    width: auto;
     height: 50px;
 }
 
