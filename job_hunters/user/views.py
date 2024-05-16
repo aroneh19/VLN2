@@ -16,7 +16,7 @@ def register_view(request):
             profile = Profile.objects.create(user=user)
             return redirect('user_login')
         else:
-            print(form.errors)
+            messages.error(request, 'Registration failed. Please correct the errors below.')
     context = {
         'form': CustomUserCreationForm(),
     }
@@ -34,9 +34,7 @@ def login_view(request):
             else:
                 messages.error(request, 'Profile does not exist!')
         else:
-            print(form.errors)
             messages.error(request, 'Login failed!')
-            messages.error(request, form.errors)
     context = {
         'form': AuthenticationForm()
     }
@@ -96,17 +94,12 @@ def change_password(request):
             return redirect('user_profile')
         else:
             messages.error(request, 'Password change failed!')
-            messages.error(request, form.errors)
     else:
         form = PasswordChangeForm(user=user)
     context = {
         'form': form,
     }
     return render(request, 'user/change-password.html', context)
-
-
-def recommen(request):
-    return render(request,'user/recommendation.html')
 
 def add_recommendation(request):
     if request.method == 'POST':
@@ -115,15 +108,12 @@ def add_recommendation(request):
             recommendation = form.save(commit=False)
             recommendation.profile = request.user.profile
             recommendation.save()
-            form.save()
+            messages.success(request, 'Recommendation added successfully!')
             return redirect('user_profile')
         else:
-            print(form.errors)
-            return redirect('user_profile')
+            messages.error(request, 'Failed to add recommendation. Please correct the errors below.')
+    return render(request,'user/recommendation.html')
         
-def experience(request):
-    return render(request,'user/experience.html')
-
 def add_experience(request):
     if request.method == 'POST':
         form = ExperienceForm(request.POST)
@@ -131,21 +121,19 @@ def add_experience(request):
             experience = form.save(commit=False)
             experience.profile = request.user.profile
             experience.save()
-            form.save()
+            messages.success(request, 'Experience added successfully!')
             return redirect('user_profile')
         else:
-            print(form.errors)
-            return redirect('user_profile')
+            messages.error(request, 'Failed to add experience. Please correct the errors below.')
+    return render(request,'user/experience.html')
     
 def delete_experience(request, eid):
     experience = Experience.objects.get(eid = eid)
-    if request.method == 'POST':
-        experience.delete()
+    experience.delete()
     return redirect('user_profile') 
 
 def delete_recommendation(request, rid):
     recommendation = Recommendation.objects.get(rid = rid)
-    if request.method == 'POST':
-        recommendation.delete()
+    recommendation.delete()
     return redirect('user_profile')
  
