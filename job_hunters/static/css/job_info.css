@@ -1,72 +1,97 @@
-.container {
-    display: flex;
-    justify-content: space-between; /* Adjust spacing between containers */
-    margin: 0 auto;
-    width: 60%; /* Adjust container width as needed */
+.job_container, .job_description {
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 6%;
+  margin-bottom: 15%;
+  background-color: #F0E5D8;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 30rem;
+  justify-content: space-between;
 }
 
-.job-container, .company-container {
-    background-color: #F0E5D8;
-    border-width: 0.1rem;
-    border-style: solid;
-    border-color: #77654B;
-    border-radius: 1rem;
-    padding: 1rem;
-    flex: 1; /* Make both containers flexible */
-    margin-right: 1rem; /* Adjust spacing between containers */
+.job_description {
+  text-align: center;
+  display: inline-block;
+  height: fit-content;
+}
+
+.job_description p {
+  color: #77654B;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.job_description label {
+  display: inline-block;
+  color: #77654B;
+  margin-bottom: 0.4rem;
+  font-size: 1.55rem;
+  font-weight: 400;
+}
+
+.job_box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job_info > div {
+  margin: 0 11%;
+}
+
+.job_info {
+  display: flex;
+  justify-content: space-between;
+  margin: 8% 2% 8% 2%;
+  width: 100%;
+}
+
+.job_container p,
+.job_container label {
+  color: #77654B;
+  margin: 0;
+}
+
+.job_container p {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.job_container label {
+  font-size: 1.55rem;
+  font-weight: 400;
+}
+
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin:0;
+  margin-top: 3%;
 }
 
 .apply {
-    text-align: center; /* Align the content (button) in the center horizontally */
-    margin-top: 20px; /* Adjust the top margin as needed */
+  display: flex;
+  justify-content: center;
+  margin:0;
+  margin-bottom: 6%;
 }
 
 .apply button {
-    background-color: #edeeed; /* Green background */
-    color: black; /* White text color */
-    padding: 10px 20px; /* Padding */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Cursor style */
-    font-size: 16px; /* Font size */
+  background-color: #77654B;
+  color: #F0E5D8;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-size: 1.55rem;
 }
 
-.apply button:hover {
-    background-color: #45a049; /* Darker green color on hover */
-}
-.company{
-    padding-top: 0%;
-}
-
-p, h2{
-    text-decoration: none;
-    color: #77654B;
-}
-
-h2{
-    text-align: center;
-}
-
-#name {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 0.2rem; /* Adjust margin-bottom to bring #val closer */
-    margin-right: 0.5rem; /* Adjust margin-right to create space between #name and #val */
-}
-
-#val {
-    color: #77654B;
-    margin: 0;
-}
-
-
-.logo{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo img{
-    max-width: 50%;
-    max-height: 50%;
-    border-radius: 15;
+a {
+  color: #77654B;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
 }

@@ -170,3 +170,27 @@ h1 {
   padding: 0;
   font-size: 1.2rem;
 }
+
+.comp_contact-info {
+  background-color: #F0E5D8;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  width: 25rem;
+  position: relative;
+}
+
+h2 {
+  margin: 0;
+  margin-top: 1.2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.comp_container {
+  margin: 6% auto 15%; /* Adjust the top and bottom margins as needed */
+  width: 35%; /* Adjust the width as needed */
+}
