@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/edit.css' %}">
+
+  <div class="container">
+    <h1>Edit Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-section">
+            <h2>Company Information</h2>
+            <div class="form-group">
+                <label for="id_address">Address:</label>
+                {{ form.address }}
+            </div>
+            <div class="form-group">
+                <label for="id_logo">Logo:</label>
+                {{ form.logo }}
+            </div>
+            <div class="form-group">
+                <label for="id_cover">Cover:</label>
+                {{ form.cover }}
+            </div>
+            <div class="form-group">
+                <label for="id_description">Description:</label>
+                {{ form.description }}
+            </div>
+            <div class="form-group">
+                <label for="id_website">Website:</label>
+                {{ form.website }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+    </form>
+</div>
+
+{% endblock %} 
