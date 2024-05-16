@@ -1,7 +1,15 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm as BaseUserChangeForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm as BaseUserChangeForm
 from django.contrib.auth.models import User
 from .models import Profile, Recommendation, Experience
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Type in username', 'class': 'form-control'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Type in password', 'class': 'form-control'})
+    )
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
