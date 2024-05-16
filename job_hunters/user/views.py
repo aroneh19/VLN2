@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
-from .forms import CustomUserCreationForm, ProfileForm, UserChangeForm, RecommendationForm, ExperienceForm
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, ProfileForm, UserChangeForm, RecommendationForm, ExperienceForm
 
 def register_view(request):    
     if request.method == 'POST':
@@ -23,7 +23,7 @@ def register_view(request):
 
 def login_view(request):
     if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
+        form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             profile_exists = Profile.objects.filter(user=user).exists()
@@ -36,7 +36,7 @@ def login_view(request):
         else:
             messages.error(request, 'Login failed!')
     context = {
-        'form': AuthenticationForm()
+        'form': CustomAuthenticationForm()
     }
     return render(request, 'user/login.html', context)
 
