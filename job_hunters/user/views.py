@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
@@ -14,6 +12,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             profile = Profile.objects.create(user=user)
+            messages.success(request, 'Registration successful! You can now log in.')
             return redirect('user_login')
         else:
             messages.error(request, 'Registration failed. Please correct the errors below.')
@@ -30,6 +29,7 @@ def login_view(request):
             profile_exists = Profile.objects.filter(user=user).exists()
             if profile_exists:
                 login(request, user)
+                messages.success(request, 'Login successful! Welcome back.')
                 return redirect('home')
             else:
                 messages.error(request, 'Profile does not exist!')
@@ -90,7 +90,7 @@ def change_password(request):
         form = PasswordChangeForm(data=request.POST, user=user)
         if form.is_valid():
             form.save()
-            messages.info(request, 'Your password was successfully updated!')
+            messages.success(request, 'Your password was successfully updated!')
             return redirect('user_profile')
         else:
             messages.error(request, 'Password change failed!')
@@ -130,10 +130,12 @@ def add_experience(request):
 def delete_experience(request, eid):
     experience = Experience.objects.get(eid = eid)
     experience.delete()
+    messages.success(request, 'Item deleted successfully!')
     return redirect('user_profile') 
 
 def delete_recommendation(request, rid):
     recommendation = Recommendation.objects.get(rid = rid)
     recommendation.delete()
+    messages.success(request, 'Item deleted successfully!')
     return redirect('user_profile')
  
