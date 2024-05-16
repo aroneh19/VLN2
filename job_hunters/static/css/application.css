@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    justify-content: center; /* Center the form within the container */
+    margin: 0 auto;
+    width: 80%; /* Adjust container width as needed */
+    padding: 20px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between; /* Space between left and right containers */
+    align-items: flex-start; /* Align items to the start */
+    width: 100%;
+}
+
+.contact-container {
+    background-color: #F0E5D8;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: #77654B;
+    border-radius: 1rem;
+    padding: 1rem;
+    flex: 1;
+    margin-right: 1rem; /* Space between left and right containers */
+}
+
+.extra-container {
+    display: flex;
+    flex-direction: column; /* Stack the recommendation and experience containers vertically */
+    flex: 1;
+}
+
+.recommendation-container, .experience-container {
+    background-color: #F0E5D8;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: #77654B;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem; /* Space between sections */
+}
+
+.recommendations, .experiences {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #77654B; /* Line separating items */
+}
+
+.recommendations:last-child, .experiences:last-child {
+    border-bottom: none; /* Remove line for last item */
+}
+p, h2, h3 {
+    text-decoration: none;
+    color: #77654B;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.btn {
+    text-align: center; /* Center the button horizontally */
+    margin-top: 1rem; /* Space above the button */
+}
+
+.btn button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth color transition */
+}
+
+.btn button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
