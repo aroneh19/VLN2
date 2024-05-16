@@ -65,12 +65,18 @@
   font-weight: 400;
 }
 
-
 .logo {
   display: flex;
   justify-content: center;
   margin:0;
   margin-top: 3%;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: 100px; /* Adjust this value as needed */
+  height: auto;
+  width: auto;
 }
 
 .apply {
