@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{%load static%}
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/why_zavant.css' %}">
+
+<div class="container">
+    <h1>Why Zavant</h1>
+    <div class="content-section">
+        <h2>Our Mission</h2>
+        <p>Zavant aims to connect job seekers with their dream jobs by providing a platform that caters to their needs. We are committed to offering personalized job recommendations, comprehensive career resources, and a seamless job application process.</p>
+    </div>
+    <div class="content-section">
+        <h2>Our Values</h2>
+        <p>At Zavant, we believe in integrity, transparency, and innovation. We strive to create a community where job seekers feel supported and employers find the best talent efficiently.</p>
+    </div>
+    <div class="content-section">
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Extensive job listings from reputable companies</li>
+            <li>Personalized job recommendations</li>
+            <li>Easy-to-use platform with powerful search features</li>
+            <li>Career resources and support</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
