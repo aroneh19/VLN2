@@ -8,11 +8,8 @@
 <div class="comp_container">
     <h2>Contact information</h2>
     <div class="comp_contact-info">
-        <label for="picture">Company Logo:</label><br>
-        <img src="{{ company.logo }}" alt="Company Logo" width="100" height="100"><br>
-
-        <label for="picture">Company Cover:</label><br>
         <img src="{{ company.cover }}" alt="Company Cover" width="100" height="100"><br>
+        <img src="{{ company.logo }}" alt="Company Logo" width="100" height="100"><br>
 
         <label for="name"><strong>Company Name:</strong></label>
         <p id="name">{{ company.user.first_name }}</p>
