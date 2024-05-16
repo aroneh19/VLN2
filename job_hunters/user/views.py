@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Country, Location, Experience, Recommendation
@@ -14,9 +12,10 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             profile = Profile.objects.create(user=user)
+            messages.success(request, 'Registration successful! You can now log in.')
             return redirect('user_login')
         else:
-            print(form.errors)
+            messages.error(request, 'Registration failed. Please correct the errors below.')
     context = {
         'form': CustomUserCreationForm(),
     }
@@ -30,13 +29,12 @@ def login_view(request):
             profile_exists = Profile.objects.filter(user=user).exists()
             if profile_exists:
                 login(request, user)
+                messages.success(request, 'Login successful! Welcome back.')
                 return redirect('home')
             else:
                 messages.error(request, 'Profile does not exist!')
         else:
-            print(form.errors)
             messages.error(request, 'Login failed!')
-            messages.error(request, form.errors)
     context = {
         'form': AuthenticationForm()
     }
@@ -92,11 +90,10 @@ def change_password(request):
         form = PasswordChangeForm(data=request.POST, user=user)
         if form.is_valid():
             form.save()
-            messages.info(request, 'Your password was successfully updated!')
+            messages.success(request, 'Your password was successfully updated!')
             return redirect('user_profile')
         else:
             messages.error(request, 'Password change failed!')
-            messages.error(request, form.errors)
     else:
         form = PasswordChangeForm(user=user)
     context = {
@@ -104,26 +101,21 @@ def change_password(request):
     }
     return render(request, 'user/change-password.html', context)
 
-
-def recommen(request):
-    return render(request,'user/recommendation.html')
-
 def add_recommendation(request):
     if request.method == 'POST':
         form = RecommendationForm(request.POST)
         if form.is_valid():
             recommendation = form.save(commit=False)
             recommendation.profile = request.user.profile
+            may_be_contacted = request.POST.get('checkbox', False)
+            recommendation.may_be_contacted = may_be_contacted == "True"
             recommendation.save()
-            form.save()
+            messages.success(request, 'Recommendation added successfully!')
             return redirect('user_profile')
         else:
-            print(form.errors)
-            return redirect('user_profile')
+            messages.error(request, 'Failed to add recommendation. Please correct the errors below.')
+    return render(request,'user/recommendation.html')
         
-def experience(request):
-    return render(request,'user/experience.html')
-
 def add_experience(request):
     if request.method == 'POST':
         form = ExperienceForm(request.POST)
@@ -131,21 +123,21 @@ def add_experience(request):
             experience = form.save(commit=False)
             experience.profile = request.user.profile
             experience.save()
-            form.save()
+            messages.success(request, 'Experience added successfully!')
             return redirect('user_profile')
         else:
-            print(form.errors)
-            return redirect('user_profile')
+            messages.error(request, 'Failed to add experience. Please correct the errors below.')
+    return render(request,'user/experience.html')
     
 def delete_experience(request, eid):
     experience = Experience.objects.get(eid = eid)
-    if request.method == 'POST':
-        experience.delete()
+    experience.delete()
+    messages.success(request, 'Item deleted successfully!')
     return redirect('user_profile') 
 
 def delete_recommendation(request, rid):
     recommendation = Recommendation.objects.get(rid = rid)
-    if request.method == 'POST':
-        recommendation.delete()
+    recommendation.delete()
+    messages.success(request, 'Item deleted successfully!')
     return redirect('user_profile')
  

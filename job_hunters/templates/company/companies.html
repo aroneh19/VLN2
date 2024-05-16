@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<body>
+<link rel="stylesheet" href="{% static 'css/companies.css' %}">
+<h1>Companies</h1>
+<div class="container">
     {% for company in companies %}
-    <a href="{% url 'company_info' %}?company_id={{ company.user.id }}">
-        <img src="{{ company.cover }}" width="100" height=""><br>
-        <img src="{{ company.logo }}"  width="50" height="50"><br>
-        <p>{{ company.user.first_name }}</p>
-        <p>{{ company.address }}</p>
-    </a>
+    <div class="company-container">
+        <a href="{% url 'company_info' %}?company_id={{ company.user.id }}">
+            <div class="image-container">
+                <img src="{{ company.cover }}" class="cover" alt="Cover Image">
+                <img src="{{ company.logo }}" class="logo" alt="Logo">
+            </div>
+            <div class="text-container">
+                <p class="name">{{ company.user.first_name }}</p>
+                <p class="address">{{ company.address }}</p>
+            </div>
+        </a>
+    </div>
     {% endfor %}
-</body>
+</div>
 
 {% endblock %}

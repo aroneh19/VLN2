@@ -1,25 +1,36 @@
 {% extends 'base.html' %}
-
-{% block title %}Login{% endblock %}
+{% load static %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-<body>
-  <h1>Welcome to Zavant</h1>
-  <p class="landing-description">
-    Join thousands of people in finding their next career opportunity! Sign up
-    now to begin your journey towards a fulfilling career path.
-  </p>
-  <h2>Random Daily Jobs</h2>
+<h1>Welcome To Zavant</h1>
+<p class="landing-description">
+  Join thousands of people in finding their next career opportunity! Sign up
+  now to begin your journey towards a fulfilling career path.
+</p>
+<h2>Featured Jobs Of The Day</h2>
+
+<div class="job-container">
   {% for job in jobs %}
-    <img src="{{ job.company.logo }}">
-    <p>{{ job.title }}</p>
-    <p>-{{ job.company.user.first_name }}-</p>
-    <p>{{ job.location }}</p>
-    <p>{{ job.start_date }} - {{ job.due_date }}</p>
-    <p>{{ job.jobtype.type }}</p>
-    <p><a href="{% url 'job_info' %}?job_jid={{ job.jid }}">See More</a></p>
-    {% endfor %}
-</body>
+  <a href="{% url 'job_info' %}?job_jid={{ job.jid }}" class="job-card-link">
+    <div class="job-card">
+      <div class="job-logo">
+        <img src="{{ job.company.logo }}" alt="{{ job.company.user.first_name }} logo">
+      </div>
+      <div class="job-info">
+        <h3 class="job-title">{{ job.title }}</h3>
+        <p class="company-name">-{{ job.company.user.first_name }}-</p>
+        <p class="job-time">{{ job.date_of_offering|timesince }} ago</p>
+      </div>
+      <div class="job-location-type">
+        <p class="job-location">{{ job.location }}</p>
+        <p class="job-type">{{ job.jobtype.type }}</p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
 
 {% endblock %}

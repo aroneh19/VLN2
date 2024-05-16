@@ -10,7 +10,6 @@ class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].label = 'Social Security Number'
         self.fields['username'].help_text = ''
 
     class Meta:
@@ -30,7 +29,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['id', 'user']
-        fields = ['phone', 'country', 'location', 'street_name', 'house_number', 'picture']
+        fields = ['phone', 'date_of_birth', 'country', 'location', 'street_name', 'house_number', 'picture']
 
 class RecommendationForm(forms.ModelForm):
     class Meta:

@@ -1,58 +1,63 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Application{% endblock %}
 
 {% block content %}
 
-<body>
+<link rel="stylesheet" href="{% static 'css/application.css' %}">
+
+<div class="container">
     <form action="{% url 'submit_application' %}?job_jid={{ job_id }}" method="post">
         {% csrf_token %}
-        <div class="Contact_Info">
-            <input type="hidden" name="job" value="{{ job }}">
-            <input type="hidden" name="user" value="{{ user_profile.user_id }}">
-            <fieldset>
-                <legend>Contact Information</legend>
-                <p>Name: {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</p>
-                <p>Street Name: {{ user_profile.street_name }}</p>
-                <p>House number: {{ user_profile.house_number }}</p>
-                <p>City: {{ user_profile.location.city }}</p>
-                <p>Postal Code: {{ user_profile.location.postcode }}</p>
-                <p>Country: {{ user_profile.country.country }}</p>          
-            </fieldset>
-            <label for="cover_letter">Cover Letter:</label>
+        <div class="main-content">
+            <div class="contact-container">
+                <input type="hidden" name="job" value="{{ job }}">
+                <input type="hidden" name="user" value="{{ user_profile.user_id }}">
+                <h2>Contact Information</h2>
+                <div class="contact-info">
+                    <p><span class="label">Name:</span> {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</p>
+                    <p><span class="label">Street Name:</span> {{ user_profile.street_name }}</p>
+                    <p><span class="label">House number:</span> {{ user_profile.house_number }}</p>
+                    <p><span class="label">City:</span> {{ user_profile.location.city }}</p>
+                    <p><span class="label">Postal Code:</span> {{ user_profile.location.postcode }}</p>
+                    <p><span class="label">Country:</span> {{ user_profile.country.country }}</p>
+                </div>
 
-            <fieldset>
-                <textarea name="cover_letter" id="" cols="30" rows="10" required></textarea>
-            </fieldset>
-        </div>
-        
-        <div class="btn">
-            <button type="submit">Submit Application</button>
-        </div>
-
-        <div class="recommendations">
-            {% for recommendation in recommendations %}
-            <fieldset>
-                <legend>Recommendation</legend>  
-                <p>Name: {{ recommendation.name }}</p>
-                <p>Email address: {{ recommendation.email }}</p>
-                <p>Phone Number: {{ recommendation.phone_number }}</p>
-                <p>May be contacted: {% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
-            </fieldset>
-            {% endfor %}
-        </div>
-        <div class="experiences">
-            {% for experience in experiences %}
-            <fieldset>
-                <legend>Experience</legend>  
-                <p>Place of Work: {{ experience.place_of_work }}</p>
-                <p>Role: {{ experience.role }}</p>
-                <p>Start Date: {{ experience.start_date|date:'Y-m-d' }}</p>
-                <p>End Date: {{ experience.end_date|date:'Y-m-d' }}</p>
-            </fieldset>
-            {% endfor %}
+                <h3 for="cover_letter">Cover Letter:</h3>
+                <div class="cover-letter">
+                    <textarea name="cover_letter" id="" cols="30" rows="10" required></textarea>
+                </div>
+                <div class="btn">
+                    <button type="submit">Submit Application</button>
+                </div>
+            </div>
+            
+            <div class="extra-container">
+                <div class="recommendation-container">
+                    <h2>Recommendations</h2>
+                    {% for recommendation in recommendations %}
+                    <div class="recommendations">
+                        <p><span class="label">Name:</span> {{ recommendation.name }}</p>
+                        <p><span class="label">Email address:</span> {{ recommendation.email }}</p>
+                        <p><span class="label">Phone Number:</span> {{ recommendation.phone_number }}</p>
+                        <p><span class="label">May be contacted:</span> {% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="experience-container">
+                    <h2>Experiences</h2>
+                    {% for experience in experiences %}
+                    <div class="experiences">
+                        <p><span class="label">Place of Work:</span> {{ experience.place_of_work }}</p>
+                        <p><span class="label">Role:</span> {{ experience.role }}</p>
+                        <p><span class="label">Start Date:</span> {{ experience.start_date|date:'Y-m-d' }}</p>
+                        <p><span class="label">End Date:</span> {{ experience.end_date|date:'Y-m-d' }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </form>
-</body>
+</div>
 
 {% endblock %}

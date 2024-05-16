@@ -54,7 +54,7 @@ def company_view(request):
     company_id = request.GET.get('company_id')
     company = Company.objects.get(user=company_id)
 
-    return render(request, 'company/company_info.html', {'company': company})
+    return render(request, 'company/company-info.html', {'company': company})
 
 @login_required
 def profile_view(request):
@@ -86,7 +86,7 @@ def change_password(request):
         if form.is_valid():
             form.save()
             messages.info(request, 'Your password was successfully updated!')
-            return redirect('user_profile')
+            return redirect('company_profile')
         else:
             messages.error(request, 'Password change failed!')
             messages.error(request, form.errors)
