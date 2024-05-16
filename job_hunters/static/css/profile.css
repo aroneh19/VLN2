@@ -177,10 +177,9 @@ h1 {
   border-style: solid;
   border-color: #77654B;
   border-radius: 1rem;
-  padding-left: 1rem;
-  padding-top: 1rem;
   width: 25rem;
   position: relative;
+  overflow: hidden;
 }
 
 h2 {
@@ -206,4 +205,34 @@ h2 {
   top: 5px;
   right: 5px;
   padding: 1rem;
+}
+
+.logo{
+  max-width: 200px;
+  height: auto;
+}
+
+a {
+  color: #77654B;
+}
+
+.cover {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1.5px solid #77654B;
+}
+
+.comp_info {
+  margin-left: 0.8rem;
+  margin-top: 1.4rem;
+}
+
+.logo {
+  position: absolute;
+  top: 142px;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 1rem;
 }

@@ -8,29 +8,30 @@
 <div class="comp_container">
     <h2>Contact information</h2>
     <div class="comp_contact_info">
-        <label for="picture">Company Logo:</label><br>
-        <img src="{{ company.logo }}" alt="Company Logo" width="100" height="100"><br>
+        <div class="cover">
+            <img class="cover" src="{{ company.cover }}" alt="Company Cover"><br>
+        </div>
+        <div class="comp_info">
+            <img class="logo" src="{{ company.logo }}" alt="Company Logo"><br>   
 
-        <label for="picture">Company Cover:</label><br>
-        <img src="{{ company.cover }}" alt="Company Cover" width="100" height="100"><br>
+            <label for="name">Company Name</label>
+            <p id="name">{{ user.first_name }}</p>
+            
+            <label for="email">Email</label>
+            <p id="email">{{ user.email}}</p>
+            
+            <label for="address">Address</label>
+            <p id="address">{{ company.address }}</p>
+            
+            <label for="website">Website</label>
+            <p id="website"><a href="{{ company.website }}" target="_blank">{{ company.website }}</a></p>
 
-        <label for="name"><strong>Company Name:</strong></label>
-        <p id="name">{{ user.first_name }}</p>
-        
-        <label for="email"><strong>Email:</strong></label>
-        <p id="email">{{ user.email}}</p>
-        
-        <label for="address"><strong>Address:</strong></label>
-        <p id="address">{{ company.address }}</p>
-        
-        <label for="website"><strong>Website:</strong></label>
-        <p id="website">{{ company.website }}</p>
-
-        <label for="website"><strong>Description:</strong></label>
-        <p id="website">{{ company.description }}</p>
-    </div>
-    <div class="edit_company_link">
-        <a href="{% url 'edit_company' %}"></a>
+            <label for="website">Description</label>
+            <p id="website">{{ company.description }}</p>
+            <div class="edit_company_link">
+                <a href="{% url 'edit_company' %}"></a>
+            </div>
+        </div>
     </div>
 </div>
 
