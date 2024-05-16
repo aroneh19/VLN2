@@ -9,7 +9,6 @@ class CustomCompanyCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].label = 'Social Security Number'
         self.fields['first_name'].label = 'Company Name'
     class Meta:
         model = User
