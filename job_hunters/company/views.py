@@ -17,7 +17,6 @@ def register_view(request):
             print(form.errors)
     else:
         form = CustomCompanyCreationForm()
-    
     return render(request, 'user/register.html', {'form': form})
 
 def login_view(request):
