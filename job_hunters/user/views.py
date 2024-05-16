@@ -107,6 +107,8 @@ def add_recommendation(request):
         if form.is_valid():
             recommendation = form.save(commit=False)
             recommendation.profile = request.user.profile
+            may_be_contacted = request.POST.get('checkbox', False)
+            recommendation.may_be_contacted = may_be_contacted == "True"
             recommendation.save()
             messages.success(request, 'Recommendation added successfully!')
             return redirect('user_profile')

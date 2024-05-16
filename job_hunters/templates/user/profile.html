@@ -18,30 +18,31 @@
           <label for="last_name"><strong>Last Name:</strong></label>
           <p id="last_name">{{ user.last_name }}</p>
         </div>
-
-        <label for="email"><strong>Email:</strong></label>
-        <p id="email">{{ user.email }}</p>
-        
-        <label for="phone"><strong>Phone Number:</strong></label>
-        <p id="phone">{{ profile.phone }}</p>
-        
-        <label for="street_name"><strong>Street Name:</strong></label>
-        <p id="street_name">{{ profile.street_name }}</p>
-
-        <label for="house_number"><strong>House Number:</strong></label>
-        <p id="house_number">{{ profile.house_number }}</p>
         
         <label for="dob"><strong>Date of Birth:</strong></label>
         <p id="dob">{{ profile.date_of_birth|date:'d-m-Y' }}</p>
         
         <label for="country"><strong>Country:</strong></label>
         <p id="country">{{ profile.country.country }}</p>
-
-        <label for="postcode"><strong>Post Code:</strong></label>
-        <p id="postcode">{{ profile.location.postcode }}</p>
-
+        
         <label for="city"><strong>City:</strong></label>
         <p id="city">{{ profile.location.city }}</p>
+        
+        <label for="street_name"><strong>Street Name:</strong></label>
+        <p id="street_name">{{ profile.street_name }}</p>
+        
+        <label for="house_number"><strong>House Number:</strong></label>
+        <p id="house_number">{{ profile.house_number }}</p>
+        
+        <label for="postcode"><strong>Post Code:</strong></label>
+        <p id="postcode">{{ profile.location.postcode }}</p>
+        
+        <label for="email"><strong>Email:</strong></label>
+        <p id="email">{{ user.email }}</p>
+        
+        <label for="phone"><strong>Phone Number:</strong></label>
+        <p id="phone">{{ profile.phone }}</p>
+        
         <div class="edit-profile-link">
           <a href="{% url 'user_edit' %}">
             {% comment %} <img src="images/svg/edit.svg" alt="Edit Profile Icon" width="24" height="24"> {% endcomment %}

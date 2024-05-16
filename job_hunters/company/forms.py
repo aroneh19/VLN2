@@ -14,8 +14,6 @@ class CustomCompanyCreationForm(UserCreationForm):
         model = User
         fields = ("username", "first_name", "email", "password1", "password2")
         
-        
-        
 class EditProfile(forms.ModelForm):
     class Meta:
         model = Company    
