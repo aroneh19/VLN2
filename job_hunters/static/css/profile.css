@@ -171,7 +171,7 @@ h1 {
   font-size: 1.2rem;
 }
 
-.comp_contact-info {
+.comp_contact_info {
   background-color: #F0E5D8;
   border-width: 0.1rem;
   border-style: solid;
@@ -191,6 +191,19 @@ h2 {
 }
 
 .comp_container {
-  margin: 6% auto 15%; /* Adjust the top and bottom margins as needed */
-  width: 35%; /* Adjust the width as needed */
+  margin: 6% auto 15%;
+  width: 35%;
+}
+
+.edit_company_link {
+  background: url('../svg/edit.svg');
+  border: none;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  background-size: cover;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 1rem;
 }

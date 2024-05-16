@@ -86,7 +86,7 @@ def change_password(request):
         if form.is_valid():
             form.save()
             messages.info(request, 'Your password was successfully updated!')
-            return redirect('user_profile')
+            return redirect('company_profile')
         else:
             messages.error(request, 'Password change failed!')
             messages.error(request, form.errors)

@@ -7,7 +7,7 @@
 
 <div class="comp_container">
     <h2>Contact information</h2>
-    <div class="comp_contact-info">
+    <div class="comp_contact_info">
         <label for="picture">Company Logo:</label><br>
         <img src="{{ company.logo }}" alt="Company Logo" width="100" height="100"><br>
 
@@ -29,7 +29,9 @@
         <label for="website"><strong>Description:</strong></label>
         <p id="website">{{ company.description }}</p>
     </div>
+    <div class="edit_company_link">
+        <a href="{% url 'edit_company' %}"></a>
+    </div>
 </div>
 
-<a href="{% url 'edit_company' %}">Edit Profile</a>
 {% endblock %} 
