@@ -103,17 +103,13 @@
   background-size: contain;
 }
 
-h1 {
-  text-align: center;
-  margin-top: 50px;
+h2 {
+  text-align: left;
+  margin-top: 150px;
+  margin-right: 50%;
 }
 
 .landing-description {
   text-align: center;
   margin-top: 10px;
-}
-
-h2 {
-  text-align: center;
-  margin-top: 20px;
 }
