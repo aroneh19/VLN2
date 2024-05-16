@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.company-container {
+    background-color: #F0E5D8;
+    border-width: 0.2rem;
+    border-style: solid;
+    border-color: #77654B;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 16rem;
+    margin: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.company-container a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem; /* Adjusted margin to reduce space */
+}
+
+.image-container img.cover {
+    width: 100px;
+    height: 50px; /* Fixed height for cover image */
+    margin-bottom: 0.5rem;
+}
+
+.image-container img.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1; /* Ensures text-container takes remaining space */
+}
+
+.text-container p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.text-container p.name {
+    font-weight: bold;
+}
+
+.text-container p.address {
+    font-size: 0.9rem;
+    color: #77654B;
+}
+
+h1 {
+text-align: center;
+}
