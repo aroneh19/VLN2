@@ -5,30 +5,24 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/user_app.css' %}">
 
+<div class="header"><h1>Your Applications</h1></div>
 <div class="applications-container">
-  <div class="header"><h1>Your Applications</h1></div>
   {% for application in applications %}
   <div class="application">
     <div class="application-info">
-      <h3>{{ application.job.title }}</h3>
       <img src="{{ application.job.company.logo }}" alt="{{ application.job.company.user.first_name }}" class="company-logo">
+      <h3 class="job-title">{{ application.job.title }}</h3>
       <div class="details">
         <div class="detail">
-          <label>Company:</label>
-          <p>{{ application.job.company.user.first_name }}</p>
+          <p>-{{ application.job.company.user.first_name }}-</p>
         </div>
         <div class="detail">
-          <label>Application Date:</label>
           <p>{{ application.date_applied }}</p>
         </div>
-        <div class="detail">
-          <label>Status of Application:</label>
-          <p>{{ application.status.status }}</p>
-        </div>
-        <div class="detail">
-          <label>Job Type:</label>
-          <p>{{ application.job.jobtype.type }}</p>
-        </div>
+      </div>
+      <div class="application-status-type">
+        <p class="application-status">{{ application.status.status }}</p>
+        <p class="application-type">{{ application.job.jobtype.type }}</p>
       </div>
     </div>
   </div>
