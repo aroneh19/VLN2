@@ -4,15 +4,17 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/application.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
 <div class="container">
     <form action="{% url 'submit_application' %}?job_jid={{ job }}" method="post">
         {% csrf_token %}
         <div class="main-content">
             <div class="step-navigation">
                 <button type="button" onclick="showStep(1)">Contact Information</button>
-                <button type="button" onclick="showStep(2)">Cover Letter</button>
-                <button type="button" onclick="showStep(3)">Experiences</button>
-                <button type="button" onclick="showStep(4)">Recommendations</button>
+                <button type="button" onclick="showStep(2)">Experiences</button>
+                <button type="button" onclick="showStep(3)">Recommendations</button>
+                <button type="button" onclick="showStep(4)">Cover Letter</button>
                 <button type="button" onclick="showStep(5)">Review</button>
             </div>
 
@@ -34,16 +36,9 @@
             </div>
 
             <div class="step" id="step2" style="display:none;">
-                <h2>Cover Letter</h2>
-                <div class="cover-letter">
-                    <textarea name="cover_letter" id="cover_letter" cols="30" rows="10" required>{{ cover_letter }}</textarea>
-                </div>
-            </div>
-
-            <div class="step" id="step3" style="display:none;">
                 <h2>Experiences</h2>
                 {% for experience in experiences %}
-                <div class="experiences">
+                <div class="experiences rec">
                     <p><span class="label">Place of Work:</span> {{ experience.place_of_work }}</p>
                     <p><span class="label">Role:</span> {{ experience.role }}</p>
                     <p><span class="label">Start Date:</span> {{ experience.start_date|date:'Y-m-d' }}</p>
@@ -52,10 +47,10 @@
                 {% endfor %}
             </div>
 
-            <div class="step" id="step4" style="display:none;">
+            <div class="step" id="step3" style="display:none;">
                 <h2>Recommendations</h2>
                 {% for recommendation in recommendations %}
-                <div class="recommendations">
+                <div class="recommendations rec">
                     <p><span class="label">Name:</span> {{ recommendation.name }}</p>
                     <p><span class="label">Email address:</span> {{ recommendation.email }}</p>
                     <p><span class="label">Phone Number:</span> {{ recommendation.phone_number }}</p>
@@ -63,6 +58,13 @@
                     <p><span class="label">Role:</span> {{ recommendation.role }}</p>
                 </div>
                 {% endfor %}
+            </div>
+
+            <div class="step" id="step4" style="display:none;">
+                <h2>Cover Letter</h2>
+                <div class="cover-letter">
+                    <textarea name="cover_letter" id="cover_letter" cols="30" rows="10" required>{{ cover_letter }}</textarea>
+                </div>
             </div>
 
             <div class="step" id="step5" style="display:none;">
