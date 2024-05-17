@@ -63,6 +63,12 @@
                 <p><span class="label">Role:</span> {{ recommendation.role }}</p>
             </div>
         {% endfor %}
+
+        <form method="post" action="{% url 'review' %}">
+            {% csrf_token %}
+            <input type="hidden" name="cover_letter" value="{{ cover_letter }}">
+            <button type="submit">Post</button>
+        </form>
     </div>
 </div>
 {% endblock %}

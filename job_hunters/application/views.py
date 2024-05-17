@@ -33,11 +33,9 @@ def review(request):
             application.user = request.user
             application.save()
             return redirect('application/confirmation_page')
-        else:
-            return
     else:
+        cover_letter = request.POST.get('cover_letter_hidden')
         application = Application.objects.filter(user=request.user).first()
-        cover_letter = application.cover_letter if application else None
 
         context = {
             'user_profile': user_profile,
