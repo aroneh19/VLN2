@@ -11,17 +11,11 @@ def application_form(request):
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
 
-    if request.method == 'POST':
-        form = ApplicationForm(request.POST)
-    else:
-        form = ApplicationForm()
-
     context = {
         'recommendations': recommendations,
         'experiences': experiences,
         'user_profile': user_profile,
         'job': job,
-        'form': form
     }
     return render(request, 'application/application.html', context)
 
@@ -52,11 +46,7 @@ def review_application(request):
             'cover_letter': cover_letter,
             'form': ApplicationForm()
         }
-        return render(request, 'review_application.html', context)
-
-
-def submit_application(request):
-    return render(request, 'application/confirmation.html')
+        return render(request, 'review.html', context)
 
 @login_required
 def confirmation_page(request):
