@@ -21,7 +21,7 @@ def application_form(request):
 
 
 @login_required
-def review_application(request):
+def review(request):
     user_profile = Profile.objects.get(user=request.user.id)
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
@@ -32,7 +32,7 @@ def review_application(request):
             application = form.save(commit=False)
             application.user = request.user
             application.save()
-            return redirect('confirmation_page')
+            return redirect('application/confirmation_page')
         else:
             return
     else:
@@ -46,7 +46,7 @@ def review_application(request):
             'cover_letter': cover_letter,
             'form': ApplicationForm()
         }
-        return render(request, 'review.html', context)
+        return render(request, 'application/review.html', context)
 
 @login_required
 def confirmation_page(request):

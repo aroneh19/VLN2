@@ -5,5 +5,5 @@ urlpatterns = [
     path('application/', views.application_form, name='application_form'),
     path('confirmation/', views.confirmation_page, name='confirmation_page'),
     path('user_applications.html/', views.user_application, name="User_Applications"),
-    path('review_application/', views.review_application, name='review_application'),
+    path('review/', views.review, name='review'),
 ]
