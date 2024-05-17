@@ -7,7 +7,12 @@ from .models import Profile, Country, Location, Experience, Recommendation
 from .forms import (CustomAuthenticationForm, CustomUserCreationForm, ProfileForm, 
                     UserChangeForm, RecommendationForm, ExperienceForm)
 
-def register_view(request):    
+def register_view(request):
+    """Renders the registration page and handles user registration.
+
+    Returns:
+    - Rendered HTTP response for registration.
+    """    
     if request.method == 'POST':
         form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
@@ -24,6 +29,11 @@ def register_view(request):
     return render(request, 'user/register.html', context)
 
 def login_view(request):
+    """Renders the login page and handles user login.
+
+    Returns:
+    - Rendered HTTP response for login.
+    """
     if request.method == "POST":
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -40,6 +50,12 @@ def login_view(request):
 
 @login_required
 def profile_view(request):
+    """
+    Renders the user's profile page with recommendations and experiences.
+
+    Returns:
+    - Rendered HTTP response for the user's profile.
+    """
     profile = Profile.objects.get(user=request.user)
     recommendation = Recommendation.objects.filter(profile=profile)
     experience = Experience.objects.filter(profile=profile)
@@ -52,6 +68,11 @@ def profile_view(request):
 
 @login_required
 def edit_view(request):
+    """Renders the edit profile page and handles profile editing.
+
+    Returns:
+    - Rendered HTTP response for editing profile.
+    """
     user = request.user
     profile = Profile.objects.get(user=user)
     countries = Country.objects.all()
@@ -86,6 +107,11 @@ def edit_view(request):
 
 @login_required
 def change_password(request):
+    """Renders the change password page and handles password change.
+
+    Returns:
+    - Rendered HTTP response for changing password.
+    """
     user = request.user
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=user)
@@ -104,6 +130,11 @@ def change_password(request):
     return render(request, 'user/change-password.html', context)
 
 def add_recommendation(request):
+    """Renders the recommendation form and handles adding a recommendation.
+
+    Returns:
+    - Rendered HTTP response for adding a recommendation.
+    """
     if request.method == 'POST':
         form = RecommendationForm(request.POST)
         if form.is_valid():
@@ -112,7 +143,6 @@ def add_recommendation(request):
             may_be_contacted = request.POST.get('checkbox', False)
             recommendation.may_be_contacted = may_be_contacted == "True"
             recommendation.save()
-            messages.success(request, 'Recommendation added successfully.')
             return redirect('user_profile')
         else:
             messages.error(request, 'Failed to add recommendation. Please correct the errors below.')
@@ -120,13 +150,17 @@ def add_recommendation(request):
     return render(request,'user/recommendation.html')
         
 def add_experience(request):
+    """Renders the experience form and handles adding an experience.
+
+    Returns:
+    - Rendered HTTP response for adding an experience.
+    """
     if request.method == 'POST':
         form = ExperienceForm(request.POST)
         if form.is_valid():
             experience = form.save(commit=False)
             experience.profile = request.user.profile
             experience.save()
-            messages.success(request, 'Experience added successfully.')
             return redirect('user_profile')
         else:
             messages.error(request, 'Failed to add experience. Please correct the errors below.')
@@ -134,19 +168,43 @@ def add_experience(request):
     return render(request,'user/experience.html')
     
 def delete_experience(request, eid):
+    """Deletes the specified experience and redirects to the user's profile.
+
+    Args:
+    - eid: ID of the experience to delete.
+
+    Returns:
+    - Redirects to the user's profile after deleting the experience.
+    """
     experience = Experience.objects.get(eid = eid)
     experience.delete()
-    messages.info(request, 'Experience deleted successfully.')
     return redirect('user_profile') 
 
 def delete_recommendation(request, rid):
+    """Deletes the specified recommendation and redirects to the user's profile.
+
+    Args:
+    - rid: ID of the recommendation to delete.
+
+    Returns:
+    - Redirects to the user's profile after deleting the recommendation.
+    """
     recommendation = Recommendation.objects.get(rid = rid)
     recommendation.delete()
-    messages.info(request, 'Recommendation deleted successfully.')
     return redirect('user_profile')
  
 def c_or_u_login(request):
+    """Renders the choice between company or user login page.
+
+    Returns:
+    - Rendered HTTP response for choosing between company or user login.
+    """
     return render(request, 'user/comp_or_login.html')
 
 def c_or_u_signup(request):
+    """Renders the choice between company or user signup page.
+
+    Returns:
+    - Rendered HTTP response for choosing between company or user signup.
+    """
     return render(request, 'user/comp_or_user_signup.html')

@@ -6,6 +6,11 @@ from .forms import CustomCompanyCreationForm, EditProfile
 from job.models import Job
 
 def register_view(request):
+    """Renders the registration page and handles company registration.
+
+    Returns:
+    - Rendered HTTP response for company registration.
+    """
     if request.method == 'POST':
         form = CustomCompanyCreationForm(data=request.POST)
         if form.is_valid():
@@ -22,6 +27,11 @@ def register_view(request):
     return render(request, 'user/register.html', {'form': form})
 
 def companies_view(request):
+    """Renders the page displaying all registered companies.
+
+    Returns:
+    - Rendered HTTP response displaying all companies.
+    """
     companies = Company.objects.all()
     context = {
         'companies': companies
@@ -29,6 +39,11 @@ def companies_view(request):
     return render(request, 'company/companies.html', context)
 
 def company_view(request):
+    """Renders the page displaying details about a specific company and its jobs.
+
+    Returns:
+    - Rendered HTTP response displaying company details and its jobs.
+    """ 
     company_id = request.GET.get('company_id')
     company = Company.objects.get(user=company_id)
     jobs = Job.objects.filter(company=company)
@@ -40,6 +55,11 @@ def company_view(request):
 
 @login_required
 def profile_view(request):
+    """Renders the company's profile page.
+
+    Returns:
+    - Rendered HTTP response for the company's profile.
+    """
     context = {
         'company': Company.objects.get(user=request.user)
     }
@@ -47,6 +67,11 @@ def profile_view(request):
 
 @login_required
 def edit_view(request):
+    """Renders the edit profile page and handles company profile editing.
+    
+    Returns:
+    - Rendered HTTP response for editing company profile.
+    """
     user = request.user
     company = Company.objects.get(user=user)
 

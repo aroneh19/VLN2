@@ -8,6 +8,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def application_form(request):
+    """Renders the application form page for a specific job.
+
+    Returns:
+    - Rendered HTTP response for the application form page.
+    """
     job_id = request.GET.get('job_jid')
     job = Job.objects.get(jid = job_id)
     user_profile = Profile.objects.get(user=request.user.id)
@@ -22,9 +27,13 @@ def application_form(request):
     }
     return render(request, 'application/application.html', context)
 
-
 @login_required
 def review(request):
+    """Renders the review page for the application before submission.
+
+    Returns:
+    - Rendered HTTP response for the review page.
+    """
     user_profile = Profile.objects.get(user=request.user.id)
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
@@ -42,10 +51,13 @@ def review(request):
     }
     return render(request, 'application/review.html', context)
 
-
-
 @login_required
 def submit_review(request):
+    """Handles the submission of an application.
+
+    Returns:
+    - Rendered HTTP response for the confirmation page or redirects to the jobs page.
+    """
     if request.method == 'POST':
         cover_letter = request.POST.get('cover_letter')
         user_id = request.user.id
@@ -66,10 +78,21 @@ def submit_review(request):
 
 @login_required
 def confirmation_page(request):
+    """
+    Renders the confirmation page after submitting an application.
+
+    Returns:
+    - Rendered HTTP response for the confirmation page.
+    """
     return render(request, 'application/confirmation.html')
 
 @login_required
 def user_application(request):
+    """Renders the page displaying applications submitted by the current user.
+
+    Returns:
+    - Rendered HTTP response for the user's applications page.
+    """
     user_profile = Profile.objects.get(user = request.user.id)
     applications = Application.objects.filter(user=user_profile.user)
     return render(request, 'application/user_applications.html', {'applications': applications})

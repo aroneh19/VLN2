@@ -146,9 +146,6 @@ def company_listings(request):
 def job_applicants(request):
     """Displays job applicants for a particular job.
 
-    Args:
-    - request: HTTP request object.
-
     Returns:
     - Rendered HTTP response displaying job applicants.
     """
@@ -160,7 +157,6 @@ def renderJobApplicants(request, job_id):
     Renders job applicants for a particular job.
 
     Args:
-    - request: HTTP request object.
     - job_id: ID of the job.
 
     Returns:
@@ -187,9 +183,6 @@ def calculate_age(born):
 
 def status_response(request):
     """Handles accepting or rejecting job applications.
-
-    Args:
-    - request: HTTP request object.
 
     Returns:
     - Rendered HTTP response displaying updated job applicants.
