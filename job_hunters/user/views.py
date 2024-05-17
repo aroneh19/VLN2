@@ -13,6 +13,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             profile = Profile.objects.create(user=user)
+            messages.success(request, 'Registration successful. You can now log in.')
             return redirect('login')
         else:
             messages.error(request, 'Registration failed. Please correct the errors below.')
@@ -28,10 +29,10 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+            messages.success(request, 'Login successful.')
             return redirect('home')
         else:
             messages.error(request, 'Login failed!')
-            messages.error(request, form.errors)
     context = {
         'form': CustomAuthenticationForm()
     }
@@ -64,6 +65,7 @@ def edit_view(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
+            messages.success(request, 'Profile updated successfully.')
             return redirect('user_profile')
         else:
             messages.error(request, 'Please correct the errors below.')
@@ -89,6 +91,7 @@ def change_password(request):
         form = PasswordChangeForm(data=request.POST, user=user)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Password changed successfully.')
             return redirect('home')
         else:
             messages.error(request, 'Password change failed!')
@@ -109,6 +112,7 @@ def add_recommendation(request):
             may_be_contacted = request.POST.get('checkbox', False)
             recommendation.may_be_contacted = may_be_contacted == "True"
             recommendation.save()
+            messages.success(request, 'Recommendation added successfully.')
             return redirect('user_profile')
         else:
             messages.error(request, 'Failed to add recommendation. Please correct the errors below.')
@@ -122,6 +126,7 @@ def add_experience(request):
             experience = form.save(commit=False)
             experience.profile = request.user.profile
             experience.save()
+            messages.success(request, 'Experience added successfully.')
             return redirect('user_profile')
         else:
             messages.error(request, 'Failed to add experience. Please correct the errors below.')
@@ -131,11 +136,13 @@ def add_experience(request):
 def delete_experience(request, eid):
     experience = Experience.objects.get(eid = eid)
     experience.delete()
+    messages.info(request, 'Experience deleted successfully.')
     return redirect('user_profile') 
 
 def delete_recommendation(request, rid):
     recommendation = Recommendation.objects.get(rid = rid)
     recommendation.delete()
+    messages.info(request, 'Recommendation deleted successfully.')
     return redirect('user_profile')
  
 def c_or_u_login(request):

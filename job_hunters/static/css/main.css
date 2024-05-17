@@ -1,23 +1,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-.inter {
-  font-family: "Inter";
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "slnt" 0;
-}
-
 body {
     margin: 0;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     background-color: #93A87E;
     font-size: 100%;
     color: #F0E5D8;
 }
 
-.content-container {
-    margin-left: 150px;
-    margin-right: 150px;
+/* Hide content, navbar, and footer by default */
+.content-container,
+.navbar-container,
+.footer-container {
+    display: none;
 }
+
+/* Hide the unsupported screen size message by default */
+.unsupported-screen-size {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffcc00;
+    color: #000;
+}
+
+/* Show content, navbar, and footer between 850px and 1700px */
+@media screen and (min-width: 850px) and (max-width: 1700px) {
+    .content-container,
+    .navbar-container,
+    .footer-container {
+        display: block;
+    }
+    .content-container {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+}
+
+/* Show unsupported screen size message below 850px */
+@media screen and (max-width: 849px) {
+    .unsupported-screen-size {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Show unsupported screen size message above 1700px */
+@media screen and (min-width: 1701px) {
+    .unsupported-screen-size {
+        display: block;
+        width: 100%;
+    }
+}
+
+.messages ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.messages li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+

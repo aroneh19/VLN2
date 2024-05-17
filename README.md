@@ -5,3 +5,7 @@ Aron Elí Ragnarsson Herreros, Sölvi Gunnarsson, Tómas Bent Magnússon, Tómas
 Requirement Analysis Report on Google Docs [here](https://docs.google.com/document/d/18NP_eq1KmzK2KGfvF_tgKQRqVgTc0ElvcTGdtfwHTKI/edit?usp=sharing).
 
 Design Report on Google Docs [here](https://docs.google.com/document/d/1hTUxb41fbNVtzjfpmLWgjVjRQS48iY3ORAu0INuR35M/edit?usp=sharing).
+
+Extra Requirements:
+
+- 

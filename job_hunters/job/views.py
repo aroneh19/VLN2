@@ -8,6 +8,7 @@ from .forms import JobForm
 from django.http import HttpResponse
 from datetime import date
 from django.utils import timezone
+from django.contrib import messages
 
 def job(request):
     current_date = date.today()
@@ -53,7 +54,6 @@ def filter_job_offerings(request):
         companies = Company.objects.all()
         return render(request, 'job/jobs.html', {'jobs': filtered_jobs, 'categories': categories, 'companies': companies})
     else:
-        # Handle other request methods, e.g., POST
         redirect('jobs')
 
 def job_info(request, applied_date=None, status=None, is_company=False):
@@ -88,15 +88,16 @@ def postjob_view(request):
             job = form.save(commit=False)
             job.company = Company.objects.get(user=user)
             job.save()
+            messages.success(request, 'Job posted successfully.')
             return redirect('company_profile')
+        else:
+            messages.error(request, 'Failed to post job. Please correct the errors below.')
     return render(request, "job/post-job.html", {'form': JobForm()})
 
 def company_listings(request):
     curr_user = request.user
     curr_company = Company.objects.get(user_id = curr_user.id)   
     jobs = Job.objects.filter(company = curr_company)
-    
-    
     return render(request, 'company/company_listings.html', {'jobs': jobs})
 
 def job_applicants(request):
@@ -129,6 +130,5 @@ def status_response(request):
         elif action == 'reject':
             application.status = Status.objects.get(sid=3)
         application.save()
-
+        messages.success(request, 'Application status updated successfully.')
         return renderJobApplicants(request,job_id)
-        #return HttpResponse('Success: Application status updated')  # Return success message
