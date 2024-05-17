@@ -20,16 +20,6 @@
         {% include 'navbar.html' %}
     </div>
 
-    <div class="messages">
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li class="{{ message.tags }}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
-
     <div id="content" class="content-container">
         {% block content %}
         {% endblock %}

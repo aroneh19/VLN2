@@ -31,12 +31,10 @@
     document
       .querySelector(".create_account")
       .addEventListener("click", function () {
-        // Check which radio button is checked
         var userType = document.querySelector(
           'input[name="user_type"]:checked'
         ).value;
 
-        // Redirect based on the checked radio button
         if (userType === "company") {
           window.location.href = "{% url 'company_register' %}";
         } else if (userType === "individual") {
