@@ -9,6 +9,8 @@
 <div class="container">
     <form method='POST' action="{% url 'application_form' %}?job_jid={{ job.id }}">
         {% csrf_token %}
+        {{job}}
+        <input type="hidden" name="job_jid" value="{{job}}">
         <div class="main-content">
             <div class="step-navigation">
                 <div>
@@ -86,7 +88,6 @@
                 <div class="cover-letter">
                     <textarea name="cover_letter" id="cover_letter" cols="30" rows="10" required>{{ cover_letter }}</textarea>
                 </div>
-                <input type="hidden" name="cover_letter_hidden" id="cover_letter_hidden">
                 <button type="submit">Review</button>
             </div>
         </div>

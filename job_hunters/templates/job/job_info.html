@@ -36,11 +36,11 @@
             {% if applied_date %}
                 <h3 class="job-info-applied">Already applied on {{applied_date}}</h3>
                 <h3 class="job-info-status">Status {{status}}</h3>
-            {% elif not is_company and current_date <= job.due_date %}
-            <form action="{% url 'application_form' %}?job_jid={{ job.jid }}">
+            {% else %}
+            <a href="{% url 'application_form' %}?job_jid={{ job.jid }}">
                 {% csrf_token %}
                 <button class="job-info-apply-button" name="next_btn">Apply Now</button>
-            </form>
+            </a>
             {% endif %}
         </div>
     </div>
