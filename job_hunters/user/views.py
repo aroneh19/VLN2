@@ -141,3 +141,8 @@ def delete_recommendation(request, rid):
     messages.success(request, 'Item deleted successfully!')
     return redirect('user_profile')
  
+def c_or_u_login(request):
+    return render(request, 'user/comp_or_user_login.html')
+
+def c_or_u_signup(request):
+    return render(request, 'user/comp_or_user_signup.html')
