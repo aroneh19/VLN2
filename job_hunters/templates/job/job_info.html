@@ -37,7 +37,7 @@
                 <h3>Already applied on {{applied_date}} </h3>
                 <h3>Status {{status}}</h3>
             {% else %}
-            <form action="{% url 'application_form' %}?job_jid={{ job.jid }}" method="post">
+            <form action="{% url 'application_form' %}?job_jid={{ job.jid }}">
                 {% csrf_token %}
                 <button name="next_btn">Apply Now</button>
             </form>

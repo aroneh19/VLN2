@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Review Application{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="review">
+        <h2>Contact Information</h2>
+        <div class="contact-info">
+            <img class="profile-picture" src="{{ user_profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
+            <p><span class="label">First Name:</span> {{ user_profile.user.first_name }}</p>
+            <p><span class="label">Last Name:</span> {{ user_profile.user.last_name }}</p>
+            <p><span class="label">Date Of Birth:</span> {{ user_profile.date_of_birth }}</p>
+            <p><span class="label">Country:</span> {{ user_profile.country }}</p>
+            <p><span class="label">City:</span> {{ user_profile.location.city }}</p>
+            <p><span class="label">Street Name:</span> {{ user_profile.street_name }}</p>
+            <p><span class="label">House number:</span> {{ user_profile.house_number }}</p>
+            <p><span class="label">Postal Code:</span> {{ user_profile.location.postcode }}</p>
+            <p><span class="label">Email:</span> {{ user_profile.user.email }}</p>
+            <p><span class="label">Phone Number:</span> {{ user_profile.phone }}</p>
+        </div>
+
+        <h2>Cover Letter</h2>
+        <div class="cover-letter">
+            <p>{{ cover_letter }}</p>
+        </div>
+
+        <h2>Experiences</h2>
+        {% for recommendation in recommendations %}
+            <div class="rec-list">
+                <div>
+                <label for="name"><strong>Name:</strong></label>
+                <p id="name">{{ recommendation.name }}</p>
+        
+                <label for="email"><strong>Email Address:</strong></label>
+                <p id="email">{{ recommendation.email }}</p>
+        
+                <label for="contact"><strong>May Be Contacted:</strong></label>
+                <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+                </div>
+        
+                <div>
+                <label for="phone"><strong>Phone Number:</strong></label>
+                <p id="phone">{{ recommendation.phone_number }}</p>
+        
+                <label for="role"><strong>Role:</strong></label>
+                <p id="role">{{ recommendation.role }}</p>
+        
+                <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="delete_button"></button>
+                </form>
+                </div>
+            </div>
+        {% endfor %}
+
+        <h2>Recommendations</h2>
+        {% for recommendation in recommendations %}
+            <div class="recommendations rec">
+                <p><span class="label">Name:</span> {{ recommendation.name }}</p>
+                <p><span class="label">Email address:</span> {{ recommendation.email }}</p>
+                <p><span class="label">Phone Number:</span> {{ recommendation.phone_number }}</p>
+                <p><span class="label">May be contacted:</span> {% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+                <p><span class="label">Role:</span> {{ recommendation.role }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
