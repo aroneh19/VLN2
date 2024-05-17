@@ -44,6 +44,10 @@ class CustomUserCreationForm(UserCreationForm):
         })
     )
 
+    class Meta:
+        model = User
+        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
+
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Type in username', 'class': 'form-control'})
