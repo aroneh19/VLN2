@@ -75,10 +75,31 @@ a {
 }
 
 .c_card {
-  background-image: url('svg/company.svg');
+  position: relative;
+  background-color: #F0E5D8;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 1rem;
+  width: 18rem;
+  padding: 1rem;
+  background-image: url('../svg/company.svg');
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  background-position: 10px 10px;
+}
+
+.u_card {
+  position: relative;
+  background-color: #F0E5D8;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 1rem;
+  width: 18rem;
+  padding: 1rem;
+  background-image: url('../svg/user.svg');
+  background-repeat: no-repeat;
+  background-position: 10px 10px;
 }
 
 .c_card input[type="radio"],

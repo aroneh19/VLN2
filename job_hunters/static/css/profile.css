@@ -195,6 +195,11 @@ h1 {
   margin-left: 0.6rem;
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
+  margin-right: 0.6rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h2 {
@@ -224,10 +229,16 @@ h2 {
   padding: 1rem;
 }
 
-.logo{
-  max-width: 200px;
-  height: auto;
+.logo {
+  max-height: 25%;
+  max-width: 25%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  object-fit: cover;
 }
+
+
 
 a {
   color: #77654B;
@@ -241,15 +252,6 @@ a {
 }
 
 .comp_info {
+  margin: 0;
   margin-left: 0.8rem;
-  margin-top: 0.8rem;
-}
-
-.logo {
-  position: absolute;
-  top: 142px;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-color: #77654B;
-  border-radius: 1rem;
 }

@@ -39,13 +39,15 @@
 }
 
 .job_info > div {
-  margin: 0 11%;
+  margin: 0 8%;
 }
 
 .job_info {
   display: flex;
   justify-content: space-between;
-  margin: 8% 2% 8% 2%;
+  margin: 0;
+  margin-top: 8%;
+  margin-bottom: 8%;
   width: 100%;
 }
 
@@ -102,8 +104,11 @@ a {
   font-size: 1.1rem;
 }
 
-
 h3{
   color: #77654B;
   margin: 0;
+}
+
+.job_1 {
+  margin-left: 0;
 }
