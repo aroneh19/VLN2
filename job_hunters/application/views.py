@@ -11,6 +11,11 @@ def application_form(request):
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
 
+    if request.method == 'POST':
+        cover_letter = request.POST.get('cover_letter')
+        request.session['cover_letter'] = cover_letter
+        return redirect('review')
+
     context = {
         'recommendations': recommendations,
         'experiences': experiences,
@@ -34,7 +39,7 @@ def review(request):
             application.save()
             return redirect('application/confirmation_page')
     else:
-        cover_letter = request.POST.get('cover_letter_hidden')
+        cover_letter = request.session.get('cover_letter', '')
 
         context = {
             'user_profile': user_profile,
