@@ -16,7 +16,7 @@ def application_form(request):
     if request.method == 'POST':
         cover_letter = request.POST.get('cover_letter')
         request.session['cover_letter'] = cover_letter
-        return redirect('review')
+        return redirect('review', job_jid=job_id)
 
     context = {
         'recommendations': recommendations,
@@ -33,7 +33,7 @@ def review(request):
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
 
-    cover_letter = request.GET.get('cover_letter')
+    cover_letter = request.GET.get('cover_letter', '')
     job_id = request.GET.get('job_jid')
     job = Job.objects.get(jid = job_id)
     context = {

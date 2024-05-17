@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 <link rel="stylesheet" href="{% static 'css/add.css' %}">
 <div class="container">
-    <form method='POST' action="{% url 'application_form' %}?job_jid={{ job.id }}">
+    <form method='POST' action="{% url 'application_form' %}?job_jid={{ job.jid }}">
         {% csrf_token %}
         {{job}}
         <input type="hidden" name="job_jid" value="{{job}}">
