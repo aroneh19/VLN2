@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <title>Zavant {% if title %}| {{title}}{% endif %}</title>
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
@@ -12,7 +12,13 @@
 </head>
 
 <body>
-    {% include 'navbar.html' %}
+    <div id="unsupported-screen-size" class="unsupported-screen-size">
+        <p>This website does not support screens of that sizes.</p>
+    </div>
+
+    <div id="navbar" class="navbar-container">
+        {% include 'navbar.html' %}
+    </div>
 
     <div class="messages">
         {% if messages %}
@@ -29,6 +35,8 @@
         {% endblock %}
     </div>
 
-    {% include 'footer.html' %}
+    <div id="footer" class="footer-container">
+        {% include 'footer.html' %}
+    </div>
 </body>
 </html>
