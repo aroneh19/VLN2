@@ -68,7 +68,7 @@
             {% csrf_token %}
             <input type="hidden" name="cover_letter" value="{{ cover_letter }}">
             <input type="hidden" name="user" value="{{ user_profile.user_id }}">
-            <input type="hidden" name="job" value="{{ job }}">
+            <input type="hidden" name="job_jid" value="{{ job.jid }}">
 
             <button type="submit">Post</button>
         </form>

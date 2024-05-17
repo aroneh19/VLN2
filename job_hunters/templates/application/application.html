@@ -7,10 +7,10 @@
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 <link rel="stylesheet" href="{% static 'css/add.css' %}">
 <div class="container">
-    <form method='POST' action="{% url 'application_form' %}?job_jid={{ job.jid }}">
+    <form action="{% url 'review' %}?job_jid={{ job.id }}">
         {% csrf_token %}
-        {{job}}
-        <input type="hidden" name="job_jid" value="{{job}}">
+        <input type="hidden" name="job_jid" value="{{job.jid}}">
+
         <div class="main-content">
             <div class="step-navigation">
                 <div>
@@ -28,19 +28,69 @@
             </div>
 
             <div class="step" id="step1">
-                <h2>Contact Information</h2>
                 <div class="contact-info">
                     <img class="profile-picture" src="{{ user_profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
-                    <p><span class="label">First Name:</span> {{ user_profile.user.first_name }}</p>
-                    <p><span class="label">Last Name:</span> {{ user_profile.user.last_name }}</p>
-                    <p><span class="label">Date Of Birth:</span> {{ user_profile.date_of_birth }}</p>
-                    <p><span class="label">Country:</span> {{ user_profile.country }}</p>
-                    <p><span class="label">City:</span> {{ user_profile.location.city }}</p>
-                    <p><span class="label">Street Name:</span> {{ user_profile.street_name }}</p>
-                    <p><span class="label">House number:</span> {{ user_profile.house_number }}</p>
-                    <p><span class="label">Postal Code:</span> {{ user_profile.location.postcode }}</p>
-                    <p><span class="label">Email:</span> {{ user_profile.user.email }}</p>
-                    <p><span class="label">Phone Number:</span> {{ user_profile.phone }}</p>
+                    <div class="name">
+                        <label for="first_name"><strong>First Name:</strong></label>
+                        <p id="first_name">{{ user_profile.user.first_name }}</p>
+
+                        <label for="last_name"><strong>Last Name:</strong></label>
+                        <p id="last_name">{{ user_profile.user.last_name }}</p>
+                    </div>
+
+                    <label for="dob"><strong>Date of Birth:</strong></label>
+                    <p id="dob">{{ user_profile.profile.date_of_birth|date:'d-m-Y' }}</p>
+
+                    <label for="country"><strong>Country:</strong></label>
+                    <p id="country">{{ user_profile.profile.country.country }}</p>
+
+                    <label for="city"><strong>City:</strong></label>
+                    <p id="city">{{ user_profile.profile.location.city }}</p>
+
+                    <label for="street_name"><strong>Street Name:</strong></label>
+                    <p id="street_name">{{ user_profile.profile.street_name }}</p>
+
+                    <label for="house_number"><strong>House Number:</strong></label>
+                    <p id="house_number">{{ user_profile.profile.house_number }}</p>
+
+                    <label for="postcode"><strong>Post Code:</strong></label>
+                    <p id="postcode">{{ user_profile.profile.location.postcode }}</p>
+
+                    <label for="email"><strong>Email:</strong></label>
+                    <p id="email">{{ user_profile.user.email }}</p>
+
+                    <label for="phone"><strong>Phone Number:</strong></label>
+                    <p id="phone">{{ user_profile.profile.phone }}</p>
+                </div>
+            </div>
+
+            <div class="step" id="step2" style="display:none;">
+                <div class="xp-box">
+                    <div class="xp-lists">
+                        {% if experiences %}
+                        {% for experience in experiences %}
+                        <div class="app-xp-list">
+                            <div class="xp-work">
+                                <label for="place_of_work"><strong>Place of Work:</strong></label>
+                                <p id="place_of_work">{{ experience.place_of_work }}</p>
+
+                                <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
+                                <p id="role">{{ experience.role }}</p>
+                            </div>
+                            <div class="xp-dates">
+                                <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
+                                <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
+
+                                <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
+                                <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p id="nothing-added">You haven't added any experiences yet</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
 
@@ -84,15 +134,14 @@
             </div>
 
             <div class="step" id="step4" style="display:none;">
-                <h2>Cover Letter</h2>
                 <div class="cover-letter">
                     <textarea name="cover_letter" id="cover_letter" cols="30" rows="10" required>{{ cover_letter }}</textarea>
                 </div>
                 <button type="submit">Review</button>
             </div>
         </div>
-</div>
     </form>
+</div>
 <script>
     function showStep(step) {
         var steps = document.getElementsByClassName('step');
