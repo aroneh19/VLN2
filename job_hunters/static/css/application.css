@@ -89,7 +89,33 @@ p, h2, h3 {
     transform: translateY(-2px);
 }
 
-.xp-list {
+.step-navigation {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.app-xp-lists {
+width: 100%;
+border: 1px solid #77654B;
+border-radius: 1rem;
+padding: 1rem;
+background-color: #F0E5D8;
+margin: 0;
+transition: padding-bottom 0.3s ease;
+}
+  
+.app-xp-list:not(:last-child) {
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+margin-bottom: 10px;
+}
+
+.app-xp-list {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* .xp-list {
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -112,4 +138,4 @@ p, h2, h3 {
 
   button {
     width: 48%;
-  }
+  } */

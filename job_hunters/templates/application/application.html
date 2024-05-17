@@ -26,68 +26,102 @@
             </div>
 
             <div class="step" id="step1">
-                <h2>Contact Information</h2>
                 <div class="contact-info">
                     <img class="profile-picture" src="{{ user_profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
-                    <p><span class="label">First Name:</span> {{ user_profile.user.first_name }}</p>
-                    <p><span class="label">Last Name:</span> {{ user_profile.user.last_name }}</p>
-                    <p><span class="label">Date Of Birth:</span> {{ user_profile.date_of_birth }}</p>
-                    <p><span class="label">Country:</span> {{ user_profile.country }}</p>
-                    <p><span class="label">City:</span> {{ user_profile.location.city }}</p>
-                    <p><span class="label">Street Name:</span> {{ user_profile.street_name }}</p>
-                    <p><span class="label">House number:</span> {{ user_profile.house_number }}</p>
-                    <p><span class="label">Postal Code:</span> {{ user_profile.location.postcode }}</p>
-                    <p><span class="label">Email:</span> {{ user_profile.user.email }}</p>
-                    <p><span class="label">Phone Number:</span> {{ user_profile.phone }}</p>
-                </div>
-            </div>
+                    <div class="name">
+                        <label for="first_name"><strong>First Name:</strong></label>
+                        <p id="first_name">{{ user_profile.user.first_name }}</p>
 
-            <div class="rec-lists" id="step2" style="display:none;">
-                <h2>Experiences</h2>
-                {% for recommendation in recommendations %}
-                <div class="rec-list">
-                  <div>
-                    <label for="name"><strong>Name:</strong></label>
-                    <p id="name">{{ recommendation.name }}</p>
-            
-                    <label for="email"><strong>Email Address:</strong></label>
-                    <p id="email">{{ recommendation.email }}</p>
-            
-                    <label for="contact"><strong>May Be Contacted:</strong></label>
-                    <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
-                  </div>
-            
-                  <div>
+                        <label for="last_name"><strong>Last Name:</strong></label>
+                        <p id="last_name">{{ user_profile.user.last_name }}</p>
+                    </div>
+
+                    <label for="dob"><strong>Date of Birth:</strong></label>
+                    <p id="dob">{{ user_profile.profile.date_of_birth|date:'d-m-Y' }}</p>
+
+                    <label for="country"><strong>Country:</strong></label>
+                    <p id="country">{{ user_profile.profile.country.country }}</p>
+
+                    <label for="city"><strong>City:</strong></label>
+                    <p id="city">{{ user_profile.profile.location.city }}</p>
+
+                    <label for="street_name"><strong>Street Name:</strong></label>
+                    <p id="street_name">{{ user_profile.profile.street_name }}</p>
+
+                    <label for="house_number"><strong>House Number:</strong></label>
+                    <p id="house_number">{{ user_profile.profile.house_number }}</p>
+
+                    <label for="postcode"><strong>Post Code:</strong></label>
+                    <p id="postcode">{{ user_profile.profile.location.postcode }}</p>
+
+                    <label for="email"><strong>Email:</strong></label>
+                    <p id="email">{{ user_profile.user.email }}</p>
+
                     <label for="phone"><strong>Phone Number:</strong></label>
-                    <p id="phone">{{ recommendation.phone_number }}</p>
-            
-                    <label for="role"><strong>Role:</strong></label>
-                    <p id="role">{{ recommendation.role }}</p>
-            
-                    <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
-                      {% csrf_token %}
-                      <button type="submit" class="delete_button"></button>
-                    </form>
-                  </div>
+                    <p id="phone">{{ user_profile.profile.phone }}</p>
                 </div>
-              {% endfor %}
             </div>
 
-            <div class="step" id="step3" style="display:none;">
-                <h2>Recommendations</h2>
-                {% for recommendation in recommendations %}
-                <div class="recommendations rec">
-                    <p><span class="label">Name:</span> {{ recommendation.name }}</p>
-                    <p><span class="label">Email address:</span> {{ recommendation.email }}</p>
-                    <p><span class="label">Phone Number:</span> {{ recommendation.phone_number }}</p>
-                    <p><span class="label">May be contacted:</span> {% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
-                    <p><span class="label">Role:</span> {{ recommendation.role }}</p>
+            <div class="step" id="step2" style="display:none;">
+                <div class="xp-box">
+                    <div class="xp-lists">
+                        {% if experiences %}
+                        {% for experience in experiences %}
+                        <div class="app-xp-list">
+                            <div class="xp-work">
+                                <label for="place_of_work"><strong>Place of Work:</strong></label>
+                                <p id="place_of_work">{{ experience.place_of_work }}</p>
+
+                                <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
+                                <p id="role">{{ experience.role }}</p>
+                            </div>
+                            <div class="xp-dates">
+                                <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
+                                <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
+
+                                <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
+                                <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p id="nothing-added">You haven't added any experiences yet</p>
+                        {% endif %}
+                    </div>
                 </div>
-                {% endfor %}
+            </div>
+
+            <div class="rec-lists" id="step3" style="display:none;">
+                {% if recommendations %}
+                  {% for recommendation in recommendations %}
+                    <div class="rec-list">
+                      <div>
+                        <label for="name"><strong>Name:</strong></label>
+                        <p id="name">{{ recommendation.name }}</p>
+                
+                        <label for="email"><strong>Email Address:</strong></label>
+                        <p id="email">{{ recommendation.email }}</p>
+                
+                        <label for="contact"><strong>May Be Contacted:</strong></label>
+                        <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+                      </div>
+                      <div>
+                        <label for="phone"><strong>Phone Number:</strong></label>
+                        <p id="phone">{{ recommendation.phone_number }}</p>
+                
+                        <label for="role"><strong>Role:</strong></label>
+                        <p id="role">{{ recommendation.role }}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  <p id="nothing-added">You haven't added any recommendations yet</p>
+                {% endif %}
+              </div>
             </div>
 
             <div class="step" id="step4" style="display:none;">
-                <h2>Cover Letter</h2>
                 <div class="cover-letter">
                     <textarea name="cover_letter" id="cover_letter" cols="30" rows="10" required>{{ cover_letter }}</textarea>
                 </div>
@@ -95,8 +129,8 @@
                 <button type="submit">Review</button>
             </div>
         </div>
-</div>
     </form>
+</div>
 <script>
     function showStep(step) {
         var steps = document.getElementsByClassName('step');
