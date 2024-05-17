@@ -5,6 +5,7 @@ from application.models import Status
 from user.models import User
 from application.models import Application
 from .forms import JobForm
+from django.http import HttpResponse
 from datetime import date
 
 def job(request):
@@ -83,16 +84,22 @@ def postjob_view(request):
 
 def company_listings(request):
     curr_user = request.user
-    if request.method == 'POST':
-        job_id = request.POST.get('job_id')
-        curr_job = Job.objects.get(jid = job_id)
-        applicants = Application.objects.filter(job = curr_job)
-        for applicant in applicants:
-                    applicant.user.profile.age = calculate_age(applicant.user.profile.date_of_birth)            
-        return render(request, 'company/job_applicants.html', {'applicants' :applicants}) 
     curr_company = Company.objects.get(user_id = curr_user.id)   
     jobs = Job.objects.filter(company = curr_company)
+    
+    
     return render(request, 'company/company_listings.html', {'jobs': jobs})
+
+def job_applicants(request):
+    job_id = request.GET.get('job_jid')
+    return renderJobApplicants(request,job_id)    
+        
+def renderJobApplicants(request, job_id):    
+    curr_job = Job.objects.get(jid = job_id)
+    applicants = Application.objects.filter(job = curr_job)
+    for applicant in applicants:
+        applicant.user.profile.age = calculate_age(applicant.user.profile.date_of_birth)    
+    return render(request, 'company/job_applicants.html', {'applicants' :applicants}) 
 
 def calculate_age(born):
     today = date.today()
@@ -101,15 +108,18 @@ def calculate_age(born):
 def status_response(request):
     if request.method == 'POST':
         application_id = request.POST.get('application_id')
+        job_id = request.POST.get('job_id')
         action = request.POST.get('action')
         try:
             application = Application.objects.get(aid=application_id)
+            
         except:
-            return redirect('company_listings')
+            return HttpResponse('Error: Application not found', status=400)  # Return error message with status code 400
         if action == 'accept':
             application.status = Status.objects.get(sid=1)
         elif action == 'reject':
             application.status = Status.objects.get(sid=3)
         application.save()
 
-        return redirect('company_listings')
+        return renderJobApplicants(request,job_id)
+        #return HttpResponse('Success: Application status updated')  # Return success message
