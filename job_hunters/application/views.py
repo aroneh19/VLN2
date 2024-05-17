@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import Application
-from .forms import *
-from job.models import Job
+from .forms import ApplicationForm
 from user.models import Recommendation, Experience, Country, Profile
 
 def application_form(request):
