@@ -39,28 +39,28 @@
                     </div>
 
                     <label for="dob"><strong>Date of Birth:</strong></label>
-                    <p id="dob">{{ user_profile.profile.date_of_birth|date:'d-m-Y' }}</p>
+                    <p id="dob">{{ user_profile.date_of_birth|date:'d-m-Y' }}</p>
 
                     <label for="country"><strong>Country:</strong></label>
-                    <p id="country">{{ user_profile.profile.country.country }}</p>
+                    <p id="country">{{ user_profile.country.country }}</p>
 
                     <label for="city"><strong>City:</strong></label>
-                    <p id="city">{{ user_profile.profile.location.city }}</p>
+                    <p id="city">{{ user_profile.location.city }}</p>
 
                     <label for="street_name"><strong>Street Name:</strong></label>
-                    <p id="street_name">{{ user_profile.profile.street_name }}</p>
+                    <p id="street_name">{{ user_profile.street_name }}</p>
 
                     <label for="house_number"><strong>House Number:</strong></label>
-                    <p id="house_number">{{ user_profile.profile.house_number }}</p>
+                    <p id="house_number">{{ user_profile.house_number }}</p>
 
                     <label for="postcode"><strong>Post Code:</strong></label>
-                    <p id="postcode">{{ user_profile.profile.location.postcode }}</p>
+                    <p id="postcode">{{ user_profile.location.postcode }}</p>
 
                     <label for="email"><strong>Email:</strong></label>
                     <p id="email">{{ user_profile.user.email }}</p>
 
                     <label for="phone"><strong>Phone Number:</strong></label>
-                    <p id="phone">{{ user_profile.profile.phone }}</p>
+                    <p id="phone">{{ user_profile.phone }}</p>
                 </div>
             </div>
 
