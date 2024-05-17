@@ -108,3 +108,9 @@
   background: url("../svg/percentage.svg");
   background-size: contain;
 }
+
+.application-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

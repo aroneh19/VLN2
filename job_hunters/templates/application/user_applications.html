@@ -8,6 +8,7 @@
 <div class="header"><h1>Your Applications</h1></div>
 <div class="applications-container">
   {% for application in applications %}
+  <a href="{% url 'job_info' %}?job_jid={{ application.job.jid }}" class="application-card-link">
   <div class="application">
     <div class="application-info">
       <img src="{{ application.job.company.logo }}" alt="{{ application.job.company.user.first_name }}" class="company-logo">
@@ -26,6 +27,7 @@
       </div>
     </div>
   </div>
+  </a>
   {% endfor %}
 </div>
 

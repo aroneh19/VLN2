@@ -54,7 +54,6 @@ def filter_job_offerings(request):
         companies = Company.objects.all()
         return render(request, 'job/jobs.html', {'jobs': filtered_jobs, 'categories': categories, 'companies': companies})
     else:
-        # Handle other request methods, e.g., POST
         redirect('jobs')
 
 def job_info(request, applied_date=None, status=None, is_company=False):
@@ -99,8 +98,6 @@ def company_listings(request):
     curr_user = request.user
     curr_company = Company.objects.get(user_id = curr_user.id)   
     jobs = Job.objects.filter(company = curr_company)
-    
-    
     return render(request, 'company/company_listings.html', {'jobs': jobs})
 
 def job_applicants(request):
