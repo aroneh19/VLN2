@@ -15,7 +15,7 @@
   align-items: center;
   text-align: center;
   transition: transform 0.2s;
-  height: 195px; 
+  height: 200px; 
   overflow: hidden;
 }
 
@@ -36,7 +36,7 @@
 .company-logo {
   max-width: 150px;
   max-height: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .details {
@@ -51,13 +51,13 @@
 }
 
 .detail p {
-  font-size: 0.9em;
+  font-size: 1em;
   color: #77654b;
   margin: 0;
 }
 
 .application-info h3 {
-  font-size: 1.1em;
+  font-size: 1.1rem;
   color: #77654b; 
   margin-bottom: 1rem; 
 }
@@ -73,7 +73,6 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 0 10px;
   margin-top: auto;
 }
 
