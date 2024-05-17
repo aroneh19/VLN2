@@ -55,11 +55,13 @@ def filter_job_offerings(request):
         # Handle other request methods, e.g., POST
         redirect('jobs')
 
-def job_info(request, applied_date=None, status=None):
+def job_info(request, applied_date=None, status=None, is_company=False):
     job_id = request.GET.get('job_jid')
     job = Job.objects.get(jid = job_id)
     
     current_user = request.user.id
+    if current_user:
+        is_company = Company.objects.filter(user=request.user).exists()
     application = Application.objects.filter(job=job, user=current_user).first()
     if application:
         applied_date = application.date_applied
@@ -67,7 +69,8 @@ def job_info(request, applied_date=None, status=None):
     context = {
         'job': job,
         'applied_date': applied_date,
-        'status': status
+        'status': status,
+        'is_company': is_company
     }
     return render(request,'job/job_info.html', context)
 
