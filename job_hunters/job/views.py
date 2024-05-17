@@ -11,6 +11,14 @@ from django.utils import timezone
 from django.contrib import messages
 
 def job(request):
+    """Renders the job listings page with filtering options.
+
+    Args:
+    - request: HTTP request object.
+
+    Returns:
+    - Rendered HTTP response displaying job listings.
+    """
     current_date = date.today()
     jobs = Job.objects.filter(due_date__gte=current_date)
     categories = Category.objects.all()
@@ -23,6 +31,14 @@ def job(request):
     return render(request, 'job/jobs.html', context)
 
 def filter_job_offerings(request):
+    """Renders the job listings page with filtering options.
+
+    Args:
+    - request: HTTP request object.
+
+    Returns:
+    - Rendered HTTP response displaying job listings.
+    """
     if request.method == 'GET':
         company_name = request.GET.get('company')
         category_name = request.GET.get('category')  # Get the selected category from the request
@@ -57,6 +73,17 @@ def filter_job_offerings(request):
         redirect('jobs')
 
 def job_info(request, applied_date=None, status=None, is_company=False):
+    """Displays detailed information about a job including application status.
+
+    Args:
+    - request: HTTP request object.
+    - applied_date (optional): Date when the user applied for the job.
+    - status (optional): Application status.
+    - is_company (optional): Boolean indicating if the user is a company.
+
+    Returns:
+    - Rendered HTTP response displaying job details.
+    """
     job_id = request.GET.get('job_jid')
     job = Job.objects.get(jid = job_id)
     
@@ -81,6 +108,14 @@ def job_info(request, applied_date=None, status=None, is_company=False):
 
 @login_required
 def postjob_view(request):
+    """Handles posting a new job by a logged-in user.
+
+    Args:
+    - request: HTTP request object.
+
+    Returns:
+    - Rendered HTTP response for posting a job.
+    """
     user = request.user
     if request.method == 'POST':
         form = JobForm(data=request.POST)
@@ -95,16 +130,42 @@ def postjob_view(request):
     return render(request, "job/post-job.html", {'form': JobForm()})
 
 def company_listings(request):
+    """Displays job listings for the current company.
+
+    Args:
+    - request: HTTP request object.
+
+    Returns:
+    - Rendered HTTP response displaying job listings for the company.
+    """
     curr_user = request.user
     curr_company = Company.objects.get(user_id = curr_user.id)   
     jobs = Job.objects.filter(company = curr_company)
     return render(request, 'company/company_listings.html', {'jobs': jobs})
 
 def job_applicants(request):
+    """Displays job applicants for a particular job.
+
+    Args:
+    - request: HTTP request object.
+
+    Returns:
+    - Rendered HTTP response displaying job applicants.
+    """
     job_id = request.GET.get('job_jid')
     return renderJobApplicants(request,job_id)    
         
-def renderJobApplicants(request, job_id):    
+def renderJobApplicants(request, job_id):
+    """
+    Renders job applicants for a particular job.
+
+    Args:
+    - request: HTTP request object.
+    - job_id: ID of the job.
+
+    Returns:
+    - Rendered HTTP response displaying job applicants.
+    """    
     curr_job = Job.objects.get(jid = job_id)
     applicants = Application.objects.filter(job = curr_job)
     for applicant in applicants:
@@ -112,10 +173,27 @@ def renderJobApplicants(request, job_id):
     return render(request, 'company/job_applicants.html', {'applicants' :applicants}) 
 
 def calculate_age(born):
+    """
+    Calculates age based on the provided date of birth.
+
+    Args:
+    - born: Date of birth (datetime object).
+
+    Returns:
+    - Age in years (integer).
+    """
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 def status_response(request):
+    """Handles accepting or rejecting job applications.
+
+    Args:
+    - request: HTTP request object.
+
+    Returns:
+    - Rendered HTTP response displaying updated job applicants.
+    """
     if request.method == 'POST':
         application_id = request.POST.get('application_id')
         job_id = request.POST.get('job_id')
