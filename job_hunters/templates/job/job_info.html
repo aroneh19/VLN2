@@ -7,7 +7,7 @@
 <div class="job_box">
     <div class="job_container">
         <div class="logo">
-            <a href="{% url 'company_info' %}?company_id={{ company.user.id }}"><img src={{job.company.logo}} alt="Logo"></a>
+            <a href="{% url 'company_info' %}?company_id={{ job.company.user.id }}"><img src={{job.company.logo}} alt="Logo"></a>
         </div>
         <div class="job_info">
             <div class="job_1">
