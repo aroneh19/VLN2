@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import Company
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomCompanyCreationForm(UserCreationForm):
     email = forms.EmailField(
         required=True,
         widget=forms.EmailInput(attrs={
@@ -15,13 +15,6 @@ class CustomUserCreationForm(UserCreationForm):
         max_length=50,
         widget=forms.TextInput(attrs={
             'placeholder': 'Type in first name',
-            'class': 'form-control'
-        })
-    )
-    last_name = forms.CharField(
-        max_length=50,
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Type in last name',
             'class': 'form-control'
         })
     )
@@ -39,14 +32,20 @@ class CustomUserCreationForm(UserCreationForm):
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(attrs={
-            'placeholder': 'Confirm password',
+            'placeholder': 'Type in password',
             'class': 'form-control'
         })
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].label = 'Company Name'
+        self.fields['password1'].label = 'Password'
+        self.fields['password2'].label = 'Confirm Password'
+
     class Meta:
         model = User
-        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
+        fields = ("username", "first_name", "email", "password1", "password2")
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
@@ -57,16 +56,16 @@ class CustomAuthenticationForm(AuthenticationForm):
     )
 
 
-class CustomCompanyCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(max_length=50)
+# class CustomCompanyCreationForm(UserCreationForm):
+#     email = forms.EmailField(required=True)
+#     first_name = forms.CharField(max_length=50)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['first_name'].label = 'Company Name'
-    class Meta:
-        model = User
-        fields = ("username", "first_name", "email", "password1", "password2")
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['first_name'].label = 'Company Name'
+#     class Meta:
+#         model = User
+#         fields = ("username", "first_name", "email", "password1", "password2")
         
 class EditProfile(forms.ModelForm):
     class Meta:
