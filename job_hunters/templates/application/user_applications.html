@@ -7,6 +7,7 @@
 <div class="applications">
     {% for application in applications %}
     <fieldset>
+      <img src="{{ application.job.company.logo }}" alt="Company Logo" width="100" height="50">
       <legend>Application for {{ application.job.title }}</legend>
       <p><span class="large-text">Job Title:</span> {{ application.job.title }}</p>
       <p><span class="large-text">Company: </span>{{ application.job.company.user.first_name }}</p>
