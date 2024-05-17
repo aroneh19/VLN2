@@ -11,11 +11,21 @@
         {% csrf_token %}
         <div class="main-content">
             <div class="step-navigation">
-                <button type="button" onclick="showStep(1)">Contact Information</button>
-                <button type="button" onclick="showStep(2)">Experiences</button>
-                <button type="button" onclick="showStep(3)">Recommendations</button>
-                <button type="button" onclick="showStep(4)">Cover Letter</button>
-                <button type="button" onclick="showStep(5)">Review</button>
+                <div>
+                    <button type="button" onclick="showStep(1)">Contact Information</button>
+                </div>
+                <div>
+                    <button type="button" onclick="showStep(2)">Experiences</button>
+                </div>
+                <div>
+                    <button type="button" onclick="showStep(3)">Recommendations</button>
+                </div>
+                <div>
+                    <button type="button" onclick="showStep(4)">Cover Letter</button>
+                </div>
+                <div>
+                    <button type="button" onclick="showStep(5)">Review</button>
+                </div>
             </div>
 
             <div class="step" id="step1">
@@ -35,16 +45,35 @@
                 </div>
             </div>
 
-            <div class="step" id="step2" style="display:none;">
+            <div class="rec-lists" id="step2" style="display:none;">
                 <h2>Experiences</h2>
-                {% for experience in experiences %}
-                <div class="experiences rec">
-                    <p><span class="label">Place of Work:</span> {{ experience.place_of_work }}</p>
-                    <p><span class="label">Role:</span> {{ experience.role }}</p>
-                    <p><span class="label">Start Date:</span> {{ experience.start_date|date:'Y-m-d' }}</p>
-                    <p><span class="label">End Date:</span> {{ experience.end_date|date:'Y-m-d' }}</p>
+                {% for recommendation in recommendations %}
+                <div class="rec-list">
+                  <div>
+                    <label for="name"><strong>Name:</strong></label>
+                    <p id="name">{{ recommendation.name }}</p>
+            
+                    <label for="email"><strong>Email Address:</strong></label>
+                    <p id="email">{{ recommendation.email }}</p>
+            
+                    <label for="contact"><strong>May Be Contacted:</strong></label>
+                    <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+                  </div>
+            
+                  <div>
+                    <label for="phone"><strong>Phone Number:</strong></label>
+                    <p id="phone">{{ recommendation.phone_number }}</p>
+            
+                    <label for="role"><strong>Role:</strong></label>
+                    <p id="role">{{ recommendation.role }}</p>
+            
+                    <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="delete_button"></button>
+                    </form>
+                  </div>
                 </div>
-                {% endfor %}
+              {% endfor %}
             </div>
 
             <div class="step" id="step3" style="display:none;">

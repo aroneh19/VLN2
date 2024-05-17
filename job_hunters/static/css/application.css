@@ -1,14 +1,11 @@
 .container {
-    display: flex;
     justify-content: center;
     margin: 0 auto;
-    width: 80%;
-    padding: 20px;
+    width: 100%;
 }
 
-.main-content {
-    display: flex;
-    width: 100%;
+.content-container {
+    justify-content: center;
 }
 
 .step-navigation {
@@ -91,3 +88,28 @@ p, h2, h3 {
     background-color: #5a4b3c;
     transform: translateY(-2px);
 }
+
+.xp-list {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .xp-lists {
+    width: 100%;
+    border: 1px solid #77654B;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: #F0E5D8;
+    margin: 0;
+    transition: padding-bottom 0.3s ease;
+  }
+
+  .step-navigation {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    width: 48%;
+  }
