@@ -5,8 +5,6 @@ from .forms import *
 from job.models import Job
 from user.models import Recommendation, Experience, Country, Profile
 
-
-
 def application_form(request):
     job = request.GET.get('job_jid')
     user_profile = Profile.objects.get(user=request.user.id)  # Retrieve the Profile object for the logged-in user
