@@ -1,0 +1,63 @@
+.applications-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: center; /* Center the cards horizontally */
+    padding: 20px;
+  }
+  .header{
+    text-align: center;
+
+  } 
+    
+  .application {
+    background-color: #f5ecd7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px; /* Adjust margin between cards */
+    width: calc(33.33% - 20px); /* Set width of each card */
+    max-width: 300px; /* Limit max width of each card */
+    padding: 20px;
+  }
+  
+  .application-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 1rem;
+    color: #77654b;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  p,
+  label,
+  h1 {
+    color: #77654b;
+    margin: 0;
+  }
+  
+  .details {
+    margin-top: 10px;
+  }
+  
+  .detail {
+    margin-bottom: 5px;
+  }
+  
+  .company-logo {
+    max-width: 100px; /* Limiting max width of the company logo */
+    margin-bottom: 10px;
+  }
+  

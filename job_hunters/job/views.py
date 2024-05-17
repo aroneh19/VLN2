@@ -9,7 +9,8 @@ from django.http import HttpResponse
 from datetime import date
 
 def job(request):
-    jobs = Job.objects.all()
+    current_date = date.today()
+    jobs = Job.objects.filter(due_date__gte=current_date)
     categories = Category.objects.all()
     companies = Company.objects.all()
     context = {
@@ -27,8 +28,8 @@ def filter_job_offerings(request):
         order_by = request.GET.get('order_by')  # Get the selected ordering from the request
         search_query = request.GET.get('search_bar')
         
-        filtered_jobs = Job.objects.all() 
-        
+        current_date = date.today()
+        filtered_jobs = Job.objects.filter(due_date__gte=current_date)
         if category_name:
             filtered_jobs = filtered_jobs.filter(category__name = category_name)
         if company_name:
