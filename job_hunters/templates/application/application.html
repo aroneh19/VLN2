@@ -9,9 +9,8 @@
 <div class="container">
     <form action="{% url 'review' %}?job_jid={{ job.id }}">
         {% csrf_token %}
-        {{job}}
-        <input type="hidden" name="job_jid" value="{{job}}">
-        
+        <input type="hidden" name="job_jid" value="{{job.jid}}">
+
         <div class="main-content">
             <div class="step-navigation">
                 <div>
