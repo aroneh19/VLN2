@@ -13,7 +13,7 @@ def register_view(request):
             user = form.save()
             profile = Profile.objects.create(user=user)
             messages.success(request, 'Registration successful! You can now log in.')
-            return redirect('user_login')
+            return redirect('login')
         else:
             messages.error(request, 'Registration failed. Please correct the errors below.')
     context = {
@@ -142,7 +142,7 @@ def delete_recommendation(request, rid):
     return redirect('user_profile')
  
 def c_or_u_login(request):
-    return render(request, 'user/comp_or_user_login.html')
+    return render(request, 'user/comp_or_login.html')
 
 def c_or_u_signup(request):
     return render(request, 'user/comp_or_user_signup.html')

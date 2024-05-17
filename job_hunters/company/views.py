@@ -12,7 +12,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             company = Company.objects.create(user=user)
-            return redirect('company_login')
+            return redirect('login')
         else:
             print(form.errors)
     else:
