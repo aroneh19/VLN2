@@ -4,11 +4,11 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Company
-from .forms import CustomCompanyCreationForm, EditProfile
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, CustomCompanyCreationForm, EditProfile
 
 def register_view(request):
     if request.method == 'POST':
-        form = CustomCompanyCreationForm(data=request.POST)
+        form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
             company = Company.objects.create(user=user)
@@ -16,12 +16,13 @@ def register_view(request):
         else:
             print(form.errors)
     else:
-        form = CustomCompanyCreationForm()
+        form = CustomUserCreationForm()
+    
     return render(request, 'user/register.html', {'form': form})
 
 def login_view(request):
     if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
+        form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             profile_exists = Company.objects.filter(user=user).exists()
@@ -35,7 +36,7 @@ def login_view(request):
             messages.error(request, 'Login failed!')
             messages.error(request, form.errors)
     context = {
-        'form': AuthenticationForm()
+        'form': CustomAuthenticationForm()
     }
     return render(request, 'company/login.html', context)
 
