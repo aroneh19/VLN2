@@ -64,7 +64,6 @@ p, h2, h3 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
 }
 
 .btn button:hover {
@@ -81,7 +80,6 @@ p, h2, h3 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
 }
 
 .step-navigation button:hover {
@@ -128,7 +126,6 @@ margin-bottom: 10px;
     padding: 1rem;
     background-color: #F0E5D8;
     margin: 0;
-    transition: padding-bottom 0.3s ease;
   }
 
   .step-navigation {

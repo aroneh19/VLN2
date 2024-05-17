@@ -9,7 +9,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
-    align-items: center; /* Center vertically */
+    align-items: center;
     gap: 20px; 
 }
 
@@ -44,7 +44,7 @@ h1 {
 
 .image-container img {
     max-width: 100%;
-    max-height: 100px; /* Adjust this value as needed */
+    max-height: 100px; 
     height: auto;
     width: auto;
 }

@@ -51,9 +51,8 @@ button.btn.btn-primary {
     padding: 0.8rem 1.2rem;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     width: 100%;
-    max-width: 15rem; /* Reduced the maximum width */
+    max-width: 15rem;
     margin: 0 auto;
     display: block;
 }
@@ -87,7 +86,7 @@ form p a:active {
 
 .show-password-container {
     display: flex;
-    gap: 0.2rem; /* Adjust the gap value to reduce the space */
+    gap: 0.2rem; 
     margin: 0;
     margin-bottom: 1.2rem;
 
@@ -95,20 +94,9 @@ form p a:active {
 
 #show-password {
     display: inline-block;
-    margin-right: 0.2rem; /* Remove this if using gap property */
+    margin-right: 0.2rem; 
 }
 
 #id_password {
     margin-bottom: 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .container {
-        margin: 5% 1rem;
-        width: calc(100% - 2rem);
-    }
-
-    .form-section {
-        padding: 1rem;
-    }
 }
