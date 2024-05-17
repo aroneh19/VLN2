@@ -9,7 +9,7 @@
     <div class="company-container">
         <a href="{% url 'company_info' %}?company_id={{ company.user.id }}">
             <div class="image-container">
-                <img src="{{ company.cover }}" class="cover" alt="Cover Image">
+                {% comment %} <img src="{{ company.cover }}" class="cover" alt="Cover Image"> {% endcomment %}
                 <img src="{{ company.logo }}" class="logo" alt="Logo">
             </div>
             <div class="text-container">

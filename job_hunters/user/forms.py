@@ -39,10 +39,15 @@ class CustomUserCreationForm(UserCreationForm):
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(attrs={
-            'placeholder': 'Confirm password',
+            'placeholder': 'Type in password',
             'class': 'form-control'
         })
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].label = 'Password'
+        self.fields['password2'].label = 'Confirm Password'
 
     class Meta:
         model = User
