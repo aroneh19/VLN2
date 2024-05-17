@@ -58,22 +58,3 @@ def edit_view(request):
     else:
         form = EditProfile(instance=company)
     return render(request, "company/edit.html", {'form': form})
-
-@login_required
-def change_password(request):
-    user = request.user
-    if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=user)
-        if form.is_valid():
-            form.save()
-            messages.info(request, 'Your password was successfully updated!')
-            return redirect('company_profile')
-        else:
-            messages.error(request, 'Password change failed!')
-            messages.error(request, form.errors)
-    else:
-        form = PasswordChangeForm(user=user)
-    context = {
-        'form': form,
-    }
-    return render(request, 'user/change-password.html', context)

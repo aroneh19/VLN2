@@ -25,11 +25,3 @@ def home(request):
 
 def zavant(request):
     return render(request, 'why_zavant.html')
-
-def handler404(request, *args, **argv):
-    messages.error(request, 'The page you were looking does not exist.')
-    return redirect('home')
-
-def handler500(request, *args, **argv):
-    messages.error(request, "Something bad happened, we are very sorry.")
-    return redirect('home')
