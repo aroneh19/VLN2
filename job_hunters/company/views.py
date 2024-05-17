@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Company
 from .forms import CustomAuthenticationForm, CustomCompanyCreationForm, EditProfile
+from job.models import Job
 
 def register_view(request):
     if request.method == 'POST':
@@ -30,7 +31,12 @@ def companies_view(request):
 def company_view(request):
     company_id = request.GET.get('company_id')
     company = Company.objects.get(user=company_id)
-    return render(request, 'company/company-info.html', {'company': company})
+    jobs = Job.objects.filter(company=company)
+    context = {
+        'company': company,
+        'jobs': jobs
+    }
+    return render(request, 'company/company-info.html', context)
 
 @login_required
 def profile_view(request):
