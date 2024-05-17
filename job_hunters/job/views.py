@@ -7,7 +7,6 @@ from application.models import Application
 from .forms import JobForm
 from datetime import date
 
-
 def job(request):
     jobs = Job.objects.all()
     categories = Category.objects.all()
@@ -26,7 +25,9 @@ def filter_job_offerings(request):
         applied_jobs = request.GET.get('checkbox')
         order_by = request.GET.get('order_by')  # Get the selected ordering from the request
         search_query = request.GET.get('search_bar')
+        
         filtered_jobs = Job.objects.all() 
+        
         if category_name:
             filtered_jobs = filtered_jobs.filter(category__name = category_name)
         if company_name:
@@ -38,14 +39,13 @@ def filter_job_offerings(request):
             if logged_user.is_authenticated:
                 applied_jobs = Application.objects.filter(user = logged_user.id)
                 filtered_jobs = filtered_jobs.exclude(application__in= applied_jobs)
-        
         if search_query:
             filtered_jobs = filtered_jobs.filter(title__icontains=search_query)
-        
         if order_by == 'date_offering':
             filtered_jobs = filtered_jobs.order_by('date_of_offering')
         elif order_by == 'due_date':
             filtered_jobs = filtered_jobs.order_by('due_date')
+        
         categories = Category.objects.all()
         companies = Company.objects.all()
         return render(request, 'job/jobs.html', {'jobs': filtered_jobs, 'categories': categories, 'companies': companies})
@@ -53,19 +53,21 @@ def filter_job_offerings(request):
         # Handle other request methods, e.g., POST
         redirect('jobs')
 
-def job_info(request):
+def job_info(request, applied_date=None, status=None):
     job_id = request.GET.get('job_jid')
     job = Job.objects.get(jid = job_id)
     
     current_user = request.user.id
     application = Application.objects.filter(job=job, user=current_user).first()
-    applied_date = None
-    status = None
     if application:
         applied_date = application.date_applied
         status = application.status.status
-    return render(request,'job/job_info.html', {'job': job, 'applied_date': applied_date, 'status': status})
-
+    context = {
+        'job': job,
+        'applied_date': applied_date,
+        'status': status
+    }
+    return render(request,'job/job_info.html', context)
 
 @login_required
 def postjob_view(request):
@@ -97,7 +99,6 @@ def calculate_age(born):
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 def status_response(request):
-    
     if request.method == 'POST':
         application_id = request.POST.get('application_id')
         action = request.POST.get('action')
@@ -106,10 +107,9 @@ def status_response(request):
         except:
             return redirect('company_listings')
         if action == 'accept':
-            application.status = Status.objects.get(sid=1)  # Assuming status id 1 is for "Accepted"
+            application.status = Status.objects.get(sid=1)
         elif action == 'reject':
             application.status = Status.objects.get(sid=3)
-        
         application.save()
 
         return redirect('company_listings')

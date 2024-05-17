@@ -7,7 +7,7 @@
 <div class="job_box">
     <div class="job_container">
         <div class="logo">
-            <img src={{job.company.logo}} alt="Logo">
+            <a href="{% url 'company_info' %}?company_id={{ company.user.id }}"><img src={{job.company.logo}} alt="Logo"></a>
         </div>
         <div class="job_info">
             <div class="job_1">
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="job_description">
-        <label id="title">{{job.title}}</label>
+        <label id="title">{{ job.title }}</label>
         <p id="val">{{ job.description }}</p>
     </div>
 </div>
