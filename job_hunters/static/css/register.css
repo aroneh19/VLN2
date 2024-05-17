@@ -55,7 +55,6 @@ button.btn.btn-primary {
     padding: 0.8rem 1.2rem;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     width: 100%;
     max-width: 15rem;
     margin: 0 auto;
@@ -88,15 +87,4 @@ button.btn.btn-primary:active {
 
 .sign-up a:active {
     color: #42392e;
-}
-
-@media (max-width: 768px) {
-    .container {
-        margin: 5% 1rem;
-        width: calc(100% - 2rem);
-    }
-
-    .form-section {
-        padding: 1rem;
-    }
 }

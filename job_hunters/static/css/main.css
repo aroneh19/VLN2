@@ -8,14 +8,12 @@ body {
     color: #F0E5D8;
 }
 
-/* Hide content, navbar, and footer by default */
 .content-container,
 .navbar-container,
 .footer-container {
     display: none;
 }
 
-/* Hide the unsupported screen size message by default */
 .unsupported-screen-size {
     display: none;
     text-align: center;
@@ -24,7 +22,6 @@ body {
     color: #000;
 }
 
-/* Show content, navbar, and footer between 850px and 1700px */
 @media screen and (min-width: 850px) and (max-width: 1700px) {
     .content-container,
     .navbar-container,
@@ -37,7 +34,6 @@ body {
     }
 }
 
-/* Show unsupported screen size message below 850px */
 @media screen and (max-width: 849px) {
     .unsupported-screen-size {
         display: block;
@@ -45,7 +41,6 @@ body {
     }
 }
 
-/* Show unsupported screen size message above 1700px */
 @media screen and (min-width: 1701px) {
     .unsupported-screen-size {
         display: block;
@@ -63,4 +58,5 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
 }
+
 
