@@ -1,0 +1,114 @@
+/* applicants.css */
+
+h1 {
+    text-align: center;
+    color: #F0E5D8;
+    margin-bottom: 30px;
+}
+
+.applicant-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Changed from space-between to flex-start */
+    gap: 20px; /* Add some space between items */
+}
+
+.applicant {
+    background-color: #F0E5D8;
+    border-width: 0.2rem;
+    border-style: solid;
+    border-color: #77654B;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    width: 16rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Remove margin-right, margin should be bottom only */
+}
+
+.applicant a {
+    text-decoration: none;
+    color: black;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100px; /* Adjust this value as needed */
+    height: auto;
+    width: auto;
+}
+
+.text-container {
+    text-align: center;
+}
+
+.text-container p {
+    margin: 0;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #77654B;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.Accept, .Reject {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    margin: 10px 0;
+}
+
+button {
+    background-color: #77654B;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.text-container .status {
+    text-align: center;
+    color: black;
+    background-color: #77654B;
+}
+
+
+button#accept {
+    background-color: #4CAF50;
+}
+
+button#reject {
+    background-color: #F44336;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .applicant-container {
+        justify-content: center;
+    }
+
+    .applicant {
+        width: 90%;
+        margin-right: 0;
+    }
+}

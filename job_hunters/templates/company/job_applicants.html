@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/applicants.css' %}">
+<body>
+    <h1>Applicants For {% if applicants %}{{ applicants.0.job.title }}{% else %}No Job Title{% endif %}</h1>
+    <div class="applicant-container">
+        {% for applicant in applicants %}
+            <div class="applicant">
+                <div class="image-container">
+                    <img src="{{ applicant.user.profile.picture }}" alt="{{ applicant.user.first_name }} {{ applicant.user.last_name }}">
+                </div>
+                <div class="text-container">
+                    <p id="applicant">{{ applicant.user.first_name }} {{applicant.user.last_name}}</p>
+                    <p id="date_of_birht">{{ applicant.user.profile.age}} years old</p>
+                    <p id="email">{{ applicant.user.email }}</p>
+                    <div class="action-buttons">
+                        {% if applicant.status_id == 2 %}
+                        <form action="{% url 'status_response' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ applicant.aid }}">
+                            <input type="hidden" name="action" value="accept">
+                            <button type="submit" name="accept" id="accept">Accept</button>
+                        </form>
+                        <form action="{% url 'status_response' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ applicant.aid }}">
+                            <input type="hidden" name="action" value="reject">
+                            <button type="submit" name="reject" id="reject">Reject</button>
+                        </form>
+                        {% else %}
+                        <p id="status">
+                            {% if applicant.status_id == 1 %}
+                                Accepted
+                            {% elif applicant.status_id == 3 %}
+                                Rejected
+                            {% endif %}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+{% endblock %}
