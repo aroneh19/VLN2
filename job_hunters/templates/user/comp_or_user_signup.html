@@ -3,21 +3,25 @@ endblock %} {% block content %}
 <link rel="stylesheet" href="{% static 'css/comp_or_user.css' %}" />
 
 <div class="box">
-  <div class="comp_or_user">
-    <h1>Join as a company or individual</h1>
-    <div class="cards">
-      <div class="c_card">
-        <p>We're a company looking for employees</p>
-        <input type="radio" id="company" name="user_type" value="company" />
-      </div>
-      <div class="u_card">
-        <p>I'm an individual looking for a job</p>
-        <input
-          type="radio"
-          id="individual"
-          name="user_type"
-          value="individual" />
-      </div>
+    <div class="comp_or_user">
+        <h1>Join as a company or individual</h1>
+        <div class="cards">
+            <div class="c_card" onclick="document.getElementById('company').checked = true;">
+                <p>We're a company looking for employees</p>
+                <input type="radio" id="company" name="user_type" value="company">
+            </div>
+            <div class="u_card" onclick="document.getElementById('individual').checked = true;">
+                <p>I'm an individual looking for a job</p>
+                <input type="radio" id="individual" name="user_type" value="individual">
+            </div>
+        </div>
+        <div class="button">
+            <button class="create_account">Create Account</button>
+        </div>
+        <div class="already">
+            <p>Already have an account?</p>
+            <a href="{% url 'user_login' %}">Log in</a>
+        </div>
     </div>
     <div class="button">
       <button class="create_account">Create Account</button>
@@ -49,4 +53,4 @@ endblock %} {% block content %}
   });
 </script>
 
-{% endblock %}
+{% endblock %} 

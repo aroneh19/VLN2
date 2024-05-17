@@ -30,13 +30,16 @@
                             <button type="submit" name="reject" id="reject">Reject</button>
                         </form>
                         {% else %}
-                        <p id="status">
+                        <div class="status">
+                            <p id="status" 
+                            data-status="{% if applicant.status_id == 1 %}accepted{% elif applicant.status_id == 3 %}rejected{% endif %}">                                
                             {% if applicant.status_id == 1 %}
-                                Accepted
+                                    Accepted
                             {% elif applicant.status_id == 3 %}
-                                Rejected
+                                    Rejected
                             {% endif %}
-                        </p>
+                            </p>
+                        </div>
                         {% endif %}
                     </div>
                 </div>

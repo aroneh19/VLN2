@@ -38,7 +38,7 @@ def filter_job_offerings(request):
             logged_user = request.user
             if logged_user.is_authenticated:
                 applied_jobs = Application.objects.filter(user = logged_user.id)
-                filtered_jobs = filtered_jobs.exclude(application__in= applied_jobs)
+                filtered_jobs = filtered_jobs.filter(application__in= applied_jobs)
         if search_query:
             filtered_jobs = filtered_jobs.filter(title__icontains=search_query)
         if order_by == 'date_offering':

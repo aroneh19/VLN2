@@ -1,6 +1,7 @@
 .welcome {
     text-align: center;
     margin-bottom: 2rem;
+    margin-top: 5rem;
 }
 
 .welcome h1 {
@@ -32,7 +33,6 @@ form {
     display: block;
     color: #77654B;
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
 }
 
 .form-group input,
