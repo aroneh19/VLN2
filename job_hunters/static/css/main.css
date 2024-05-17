@@ -48,15 +48,5 @@ body {
     }
 }
 
-.messages ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.messages li {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
 
 
