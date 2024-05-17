@@ -8,4 +8,7 @@ Design Report on Google Docs [here](https://docs.google.com/document/d/1hTUxb41f
 
 Extra Requirements:
 
-- 
+- Added is a company interface
+- Company can post jobs, see applications, change the status of the applicatns (hired or rejected)
+- More option to edit profile for both profiles and company
+- In company view you can see all their availabvle jobs
