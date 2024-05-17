@@ -6,13 +6,12 @@
 
 <h1>Jobs You Might Like</h1>
 <div class="filter-container">
-    <div class="filter-logo">
-        <a href="#filter-options" id="filter-logo" class="filter-logo"></a>
-    </div>
+    <input type="checkbox" id="toggle-filter" class="toggle-filter">
+    <label for="toggle-filter" class="filter-logo"></label>
     <div id="filter-options" class="filter-options">
         <form action="{% url 'filter_job_offerings' %}" method="get">
             <div class="filter-section">
-                <label for="category ">Filter by Category</label>
+                <label for="category">Filter by Category</label>
                 <select name="category" id="category">
                     <option value="">None</option>
                     {% for category in categories %}
@@ -72,15 +71,4 @@
   {% endfor %}
 </div>
 
-<script>
-    document.querySelector(".filter-logo").addEventListener("click", ()=> {
-        let filterOptions = document.querySelector(".filter-options");
-        if (filterOptions.style.display === "block") {
-            filterOptions.style.display = "none";
-        }
-        else{
-            filterOptions.style.display = 'block'
-        }
-    });
-</script>
 {% endblock %}
