@@ -54,20 +54,7 @@ def submit_review(request):
             application.save()
             return redirect('application/confirmation_page')
     else:
-<<<<<<< HEAD
         redirect('jobs')
-=======
-        cover_letter = request.session.get('cover_letter', '')
-
-        context = {
-            'user_profile': user_profile,
-            'experiences': experiences,
-            'recommendations': recommendations,
-            'cover_letter': cover_letter,
-            'form': ApplicationForm()
-        }
-        return render(request, 'application/review.html', context)
->>>>>>> e54a6d102d1cb199c6ee7a23fa451a073f1af72a
 
 @login_required
 def confirmation_page(request):
