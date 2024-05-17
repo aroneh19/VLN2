@@ -71,4 +71,15 @@
   {% endfor %}
 </div>
 
+<script>
+    document.querySelector(".filter-logo").addEventListener("click", ()=> {
+        let filterOptions = document.querySelector(".filter-options");
+        if (filterOptions.style.display === "block") {
+            filterOptions.style.display = "none";
+        }
+        else{
+            filterOptions.style.display = 'block'
+        }
+    });
+</script>
 {% endblock %}
