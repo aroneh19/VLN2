@@ -1,38 +1,32 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Sign Up{% endblock %}
-
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% extends 'base.html' %} {% load static %} {% block title %}Sign Up{% endblock
+%} {% block content %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}" />
 
 <div class="welcome">
-    <h1>Your Dream Job Awaits: Sign Up Now!</h1>
+  <h1>Your Dream Job Awaits: Sign Up Now!</h1>
 </div>
 
 <form method="post">
-    <div class="container">
-        {% csrf_token %}
-        <div class="form-section">
-            {% for field in form %}
-                <div class="form-group">
-                    {{ field.label_tag }}<br>
-                    {{ field }}
-                    {% if field.help_text %}
-                        <small class="form-text text-muted">{{ field.help_text }}</small>
-                    {% endif %}
-                    {% for error in field.errors %}
-                        <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-        <p class="sign-up">
-            Already have an account?<br />
-            <a href="{% url 'user_login' %}">Log In</a>
-        </p>
+  <div class="container">
+    {% csrf_token %}
+    <div class="form-section">
+      {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}<br />
+        {{ field }} {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %} {% for error in field.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+      {% endfor %}
     </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    <p class="sign-up">
+      Already have an account?<br />
+      <a href="{% url 'login' %}">Log In</a>
+    </p>
+  </div>
 </form>
 
 {% endblock %}

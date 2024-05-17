@@ -8,7 +8,6 @@
     <form action="{% url 'submit_application' %}?job_jid={{ job }}" method="post">
         {% csrf_token %}
         <div class="main-content">
-            <!-- Navigation for steps -->
             <div class="step-navigation">
                 <button type="button" onclick="showStep(1)">Contact Information</button>
                 <button type="button" onclick="showStep(2)">Cover Letter</button>
@@ -17,10 +16,10 @@
                 <button type="button" onclick="showStep(5)">Review</button>
             </div>
 
-            <!-- Step 1: Contact Information -->
             <div class="step" id="step1">
                 <h2>Contact Information</h2>
                 <div class="contact-info">
+                    <img class="profile-picture" src="{{ user_profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
                     <p><span class="label">First Name:</span> {{ user_profile.user.first_name }}</p>
                     <p><span class="label">Last Name:</span> {{ user_profile.user.last_name }}</p>
                     <p><span class="label">Date Of Birth:</span> {{ user_profile.date_of_birth }}</p>
@@ -34,7 +33,6 @@
                 </div>
             </div>
 
-            <!-- Step 2: Cover Letter -->
             <div class="step" id="step2" style="display:none;">
                 <h2>Cover Letter</h2>
                 <div class="cover-letter">
@@ -42,7 +40,6 @@
                 </div>
             </div>
 
-            <!-- Step 3: Experiences -->
             <div class="step" id="step3" style="display:none;">
                 <h2>Experiences</h2>
                 {% for experience in experiences %}
@@ -55,7 +52,6 @@
                 {% endfor %}
             </div>
 
-            <!-- Step 4: Recommendations -->
             <div class="step" id="step4" style="display:none;">
                 <h2>Recommendations</h2>
                 {% for recommendation in recommendations %}
@@ -69,7 +65,6 @@
                 {% endfor %}
             </div>
 
-            <!-- Step 5: Review -->
             <div class="step" id="step5" style="display:none;">
                 <h2>Review</h2>
                 <div class="review">

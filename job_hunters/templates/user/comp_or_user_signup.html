@@ -1,48 +1,52 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Company Profile{% endblock %}
-
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/comp_or_user.css' %}">
+{% extends 'base.html' %} {% load static %} {% block title %}Company Profile{%
+endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/comp_or_user.css' %}" />
 
 <div class="box">
-    <div class="comp_or_user">
-        <h1>Join as a company or individual</h1>
-        <div class="cards">
-            <div class="c_card">
-                <p>We're a company looking for employees</p>
-                <input type="radio" id="company" name="user_type" value="company">
-            </div>
-            <div class="u_card">
-                <p>I'm an individual looking for a job</p>
-                <input type="radio" id="individual" name="user_type" value="individual">
-            </div>
-        </div>
-        <div class="button">
-            <button class="create_account">Create Account</button>
-        </div>
-        <div class="already">
-            <p>Already have an account?</p>
-            <a href="{% url 'user_login' %}">Log in</a>
-        </div>
+  <div class="comp_or_user">
+    <h1>Join as a company or individual</h1>
+    <div class="cards">
+      <div class="c_card">
+        <p>We're a company looking for employees</p>
+        <input type="radio" id="company" name="user_type" value="company" />
+      </div>
+      <div class="u_card">
+        <p>I'm an individual looking for a job</p>
+        <input
+          type="radio"
+          id="individual"
+          name="user_type"
+          value="individual" />
+      </div>
     </div>
+    <div class="button">
+      <button class="create_account">Create Account</button>
+    </div>
+    <div class="already">
+      <p>Already have an account?</p>
+      <a href="{% url 'login' %}">Log in</a>
+    </div>
+  </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.create_account').addEventListener('click', function() {
-            // Check which radio button is checked
-            var userType = document.querySelector('input[name="user_type"]:checked').value;
-            
-            // Redirect based on the checked radio button
-            if (userType === 'company') {
-                window.location.href = "{% url 'company_register' %}";
-            } else if (userType === 'individual') {
-                window.location.href = "{% url 'user_register' %}";
-            }
-        });
-    });
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .querySelector(".create_account")
+      .addEventListener("click", function () {
+        // Check which radio button is checked
+        var userType = document.querySelector(
+          'input[name="user_type"]:checked'
+        ).value;
+
+        // Redirect based on the checked radio button
+        if (userType === "company") {
+          window.location.href = "{% url 'company_register' %}";
+        } else if (userType === "individual") {
+          window.location.href = "{% url 'user_register' %}";
+        }
+      });
+  });
 </script>
 
-
-{% endblock %} 
+{% endblock %}
