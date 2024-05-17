@@ -1,41 +1,40 @@
-<header class="header">
-  <h1><a href="{% url 'home' %}">ZAVANT</a></h1>
-  <nav>
-    <div class="info">
-      <a href="{% url 'jobs' %}">Jobs</a>
-      <a href="{% url 'companies' %}">Companies</a>
-      <a href="{% url 'why_zavant' %}">Why Zavant</a>
+<header class="navbar-header">
+  <h1 class="navbar-title"><a class="navbar-title-link" href="{% url 'home' %}">ZAVANT</a></h1>
+  <nav class="navbar-nav">
+    <div class="navbar-info">
+      <a class="navbar-link" href="{% url 'jobs' %}">Jobs</a>
+      <a class="navbar-link" href="{% url 'companies' %}">Companies</a>
+      <a class="navbar-link" href="{% url 'why_zavant' %}">Why Zavant</a>
     </div>
-    <div class="profile">
+    <div class="navbar-profile">
       {% if user.is_authenticated %}
       {% if not is_company %}
-      <a href="{% url 'user_profile' %}"><img src="{{ photo }}" width="50" height="50"/></a>
+      <a class="navbar-link" href="{% url 'user_profile' %}"><img class="navbar-profile-image" src="{{ photo }}" width="50" height="50"/></a>
       {% else %}
-      <a href="{% url 'company_profile' %}"><img src="{{ photo }}" width="50" height="50"/></a>
+      <a class="navbar-link" href="{% url 'company_profile' %}"><img class="navbar-profile-image" src="{{ photo }}" width="50" height="50"/></a>
       {% endif %}
-        <div class="dropdown">
-          <input type="checkbox" id="dropdown-toggle" style="display: none;">
-          <label for="dropdown-toggle" class="dropbtn"></label>
-          <div class="dropdown-content">
+        <div class="navbar-dropdown">
+          <input type="checkbox" id="navbar-dropdown-toggle" class="navbar-dropdown-toggle">
+          <label for="navbar-dropdown-toggle" class="navbar-dropbtn"></label>
+          <div class="navbar-dropdown-content">
             {% if not is_company %}
-              <a href="{% url 'user_profile' %}">My Profile</a>
-              <a href="{% url 'User_Applications' %}">Application</a>
+              <a class="navbar-dropdown-link" href="{% url 'user_profile' %}">My Profile</a>
+              <a class="navbar-dropdown-link" href="{% url 'User_Applications' %}">Application</a>
             {% else %}
-              <a href="{% url 'company_profile' %}">Company Profile</a>
-              <a href="{% url 'post_job' %}">Post Job</a>
-              <a href="{% url 'company_listings' %}">Job Listings</a>
+              <a class="navbar-dropdown-link" href="{% url 'company_profile' %}">Company Profile</a>
+              <a class="navbar-dropdown-link" href="{% url 'post_job' %}">Post Job</a>
+              <a class="navbar-dropdown-link" href="{% url 'company_listings' %}">Job Listings</a>
             {% endif %}
-            <a href="{% url 'change_password' %}">Change Password</a>
-            <form method="post" action="{% url 'user_logout' %}">
+            <a class="navbar-dropdown-link" href="{% url 'change_password' %}">Change Password</a>
+            <form class="navbar-logout-form" method="post" action="{% url 'user_logout' %}">
               {% csrf_token %}
-              <button type="submit" class="logout-button">Log Out</button>
+              <button type="submit" class="navbar-logout-button">Log Out</button>
             </form>
           </div>
         </div>
-      </div>
       {% else %}
-      <a href="{% url 'login' %}"">Login</a>
-      <a href="{% url 'c_or_u_signup' %}">Sign up</a>
+      <a class="navbar-link" href="{% url 'login' %}">Login</a>
+      <a class="navbar-link" href="{% url 'c_or_u_signup' %}">Sign up</a>
       {% endif %}
     </div>
   </nav>

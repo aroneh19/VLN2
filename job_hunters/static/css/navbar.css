@@ -1,4 +1,4 @@
-.header {
+.navbar-header {
     padding-top: 10px;
     display: flex;
     align-items: center;
@@ -8,53 +8,53 @@
     font-size: 22px;
 }
 
-.header h1 {
+.navbar-title {
     margin: 0;
     font-size: 28px;
 }
 
-.header h1 a {
+.navbar-title-link {
     color: #F0E5D8;
     text-decoration: none;
 }
 
-.header nav {
+.navbar-nav {
     display: flex;
     width: 100%;
 }
 
-.header nav .info {
+.navbar-info {
     justify-content: center;
     flex: 1;
 }
 
-.header nav .info a {
+.navbar-link {
     text-decoration: none;
+    color: #F0E5D8;
+    margin: 0 10px;
 }
 
-.header nav .info, .header nav .profile {
+.navbar-link:hover {
+    color: #77654B;
+}
+
+.navbar-title-link:hover {
+    color: #77654B;
+}
+
+.navbar-info, .navbar-profile {
     display: flex;
     align-items: center;
 }
 
-.header nav a {
-    color: #F0E5D8;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.header a:hover {
-    color: #77654B;
-}
-
-.dropdown {
+.navbar-dropdown {
     position: relative;
     display: inline-block;
     color: #77654B;
     background-size: cover;
 }
 
-.dropbtn {
+.navbar-dropbtn {
     background-color: transparent;
     padding: 16px;
     font-size: 12px;
@@ -65,7 +65,7 @@
     display: block;
 }
 
-.dropdown-content {
+.navbar-dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -75,7 +75,7 @@
     padding: 0;
 }
 
-.header nav .dropdown-content a {
+.navbar-dropdown-link {
     color: #77654B;
     padding: 12px 16px;
     text-decoration: none;
@@ -83,31 +83,30 @@
     border-radius: 10px; 
 }
 
-.header nav .dropdown-content a:hover {
+.navbar-dropdown-link:hover {
     color: black; 
     background-color: #F0E5D8; 
 }
 
-input[type="checkbox"] {
+.navbar-dropdown-toggle {
     display: none; 
 }
 
-input[type="checkbox"]:checked + label.dropbtn {
+.navbar-dropdown-toggle:checked + label.navbar-dropbtn {
     background-image: url('../svg/caret_up.svg');
     display: block;
 }
 
-input[type="checkbox"]:checked + label.dropbtn + .dropdown-content {
+.navbar-dropdown-toggle:checked + label.navbar-dropbtn + .navbar-dropdown-content {
     display: block;
 }
 
-input[type="checkbox"] + label.dropbtn::before {
+.navbar-dropdown-toggle + label.navbar-dropbtn::before {
     content: '';
     display: none;
 }
 
-.dropdown-content a,
-.logout-button {
+.navbar-logout-button {
     background-color: #77654B;
     padding: 12px 12px;
     text-decoration: none;
@@ -118,18 +117,29 @@ input[type="checkbox"] + label.dropbtn::before {
     box-sizing: border-box;
     cursor: pointer;
     border-radius: 10px; 
+    font-size: 12px;
 }
 
-.dropdown-content a:hover,
-.logout-button:hover {
-    color: #F0E5D8; 
+.navbar-logout-button:hover {
+    color: #77654B; 
     background-color: #F0E5D8; 
 }
 
-.dropdown-content,
-.dropdown-content a,
-.dropdown-content form,
-.logout-button {
+.navbar-profile-image {
+    border-radius: 50%;
+    margin: 0;
+}
+
+.navbar-logout-form {
+    width: 100%;
+    margin: 0;
+    padding-left: 12px;
+}
+
+.navbar-dropdown-content,
+.navbar-dropdown-content a,
+.navbar-dropdown-content form,
+.navbar-logout-button {
     text-align: center;
     width: auto;
     background-color: #F0E5D8;
@@ -143,23 +153,8 @@ input[type="checkbox"] + label.dropbtn::before {
     border-radius: 10px; 
 }
 
-.dropdown-content a:hover,
-.logout-button:hover {
+.navbar-dropdown-content a:hover,
+.navbar-logout-button:hover {
     color: black;
     background-color: #F0E5D8;
-}
-
-.dropdown-content form {
-    width: 100%;
-    margin: 0;
-    padding-left: 20px;
-}
-
-.logout-button {
-    font-size: 12px;
-}
-
-.profile img {
-    border-radius: 50%;
-    margin: 0;
 }
