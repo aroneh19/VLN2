@@ -11,6 +11,7 @@ def application_form(request):
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
     countries = Country.objects.all()
+
     context = {
         'recommendations': recommendations,
         'experiences': experiences,
@@ -20,18 +21,12 @@ def application_form(request):
     }
     return render(request, 'application/application.html', context)
 
-@login_required
 def submit_application(request):
-    print(request.POST)
-    if request.method == 'POST':
-        form = ApplicationForm(request.POST)
-        if form.is_valid():
-            application = form.save(commit=False)
-            application.save()
-        else:
-            print(form.errors)
-        return redirect('jobs')
-    return redirect('jobs')
+    return render(request, 'application/confirmation.html')
+
+@login_required
+def confirmation_page(request):
+    return render(request, 'application/confirmation.html')
 
 @login_required
 def user_application(request):
