@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def application_form(request):
-    job = request.GET.get('job_jid')
+    job_id = request.GET.get('job_jid')
+    job = Job.objects.get(jid = job_id)
     user_profile = Profile.objects.get(user=request.user.id)
     recommendations = Recommendation.objects.filter(profile=user_profile)
     experiences = Experience.objects.filter(profile=user_profile)
