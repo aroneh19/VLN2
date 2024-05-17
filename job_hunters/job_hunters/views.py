@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.shortcuts import render
 from job.models import Job
 from random import sample, seed
 from datetime import date
