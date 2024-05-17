@@ -8,6 +8,7 @@ from .forms import JobForm
 from django.http import HttpResponse
 from datetime import date
 from django.utils import timezone
+from django.contrib import messages
 
 def job(request):
     current_date = date.today()
@@ -88,7 +89,10 @@ def postjob_view(request):
             job = form.save(commit=False)
             job.company = Company.objects.get(user=user)
             job.save()
+            messages.success(request, 'Job posted successfully.')
             return redirect('company_profile')
+        else:
+            messages.error(request, 'Failed to post job. Please correct the errors below.')
     return render(request, "job/post-job.html", {'form': JobForm()})
 
 def company_listings(request):
@@ -129,6 +133,5 @@ def status_response(request):
         elif action == 'reject':
             application.status = Status.objects.get(sid=3)
         application.save()
-
+        messages.success(request, 'Application status updated successfully.')
         return renderJobApplicants(request,job_id)
-        #return HttpResponse('Success: Application status updated')  # Return success message
