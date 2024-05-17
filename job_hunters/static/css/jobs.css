@@ -1,14 +1,7 @@
 .filter-container {
-    margin: 2% auto;
-    width: 90%;
     display: flex;
-    align-items: center;
-    /* border: 1px solid #77654B; */
-    /* border-radius: 1rem; */
-    padding: 1rem;
-    position: relative;
     justify-content: flex-end;
-    background-color: transparent; /* Transparent background when unchecked */
+    background-color: transparent; 
 }
 
 .toggle-filter {
@@ -19,9 +12,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* background-color: #F0E5D8;  */
     padding: 1rem;
-    /* border: 1px solid #77654B; */
     border-radius: 1rem;
 }
 
@@ -128,7 +119,7 @@ button[type="submit"]:hover {
 
 .job-logo img {
   max-width: 150px;
-  max-height: 75px;
+  max-height: 50px;
   margin-bottom: 10px;
 }
 
@@ -216,7 +207,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px; /* Adjust as needed */
+  margin-bottom: 20px; 
 }
 
 .headers .listing {

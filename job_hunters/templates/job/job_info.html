@@ -4,49 +4,49 @@
 
 <link rel="stylesheet" href="{% static 'css/job_info.css' %}">
 
-<div class="job_box">
-    <div class="job_container">
-        <div class="logo">
-            <a href="{% url 'company_info' %}?company_id={{ job.company.user.id }}"><img src={{job.company.logo}} alt="Logo"></a>
+<div class="job-info-box">
+    <div class="job-info-container">
+        <div class="job-info-logo">
+            <a href="{% url 'company_info' %}?company_id={{ job.company.user.id }}"><img class="job-info-logo-img" src="{{ job.company.logo }}" alt="Logo"></a>
         </div>
-        <div class="job_info">
-            <div class="job_1">
-                <label id="name">Company</label>
-                <p id="val">{{ job.company }}</p>
-                <label id="name">Posted</label>
-                <p id="val">{{ job.date_of_offering }}</p>
-                <label id="name">Category</label>
-                <p id="val">{{ job.category }}</p>
-                <label id="name">Website</label>
-                <p id="name"><a href="{{ job.company.website }}">{{ job.company.website }}</a></p>
+        <div class="job-info-details">
+            <div class="job-info-section job-info-1">
+                <label class="job-info-label">Company</label>
+                <p class="job-info-value">{{ job.company }}</p>
+                <label class="job-info-label">Posted</label>
+                <p class="job-info-value">{{ job.date_of_offering }}</p>
+                <label class="job-info-label">Category</label>
+                <p class="job-info-value">{{ job.category }}</p>
+                <label class="job-info-label">Website</label>
+                <p class="job-info-value"><a class="job-info-link" href="{{ job.company.website }}">{{ job.company.website }}</a></p>
             </div>
-            <div class="job_2">
-                <label id="name">Location</label>
-                <p id="val">{{ job.location }}</p>
-                <label id="name">Deadline</label>
-                <p id="val">{{ job.due_date }}</p>
-                <label id="name">Job Type</label>
-                <p id="val">{{ job.jobtype.type }}</p>
-                <label id="name">Start Date</label>
-                <p id="val">{{ job.start_date }}</p>
+            <div class="job-info-section job-info-2">
+                <label class="job-info-label">Location</label>
+                <p class="job-info-value">{{ job.location }}</p>
+                <label class="job-info-label">Deadline</label>
+                <p class="job-info-value">{{ job.due_date }}</p>
+                <label class="job-info-label">Job Type</label>
+                <p class="job-info-value">{{ job.jobtype.type }}</p>
+                <label class="job-info-label">Start Date</label>
+                <p class="job-info-value">{{ job.start_date }}</p>
             </div>
         </div>
 
-        <div class="apply">
+        <div class="job-info-apply">
             {% if applied_date %}
-                <h3>Already applied on {{applied_date}} </h3>
-                <h3>Status {{status}}</h3>
+                <h3 class="job-info-applied">Already applied on {{applied_date}}</h3>
+                <h3 class="job-info-status">Status {{status}}</h3>
             {% else %}
             <form action="{% url 'application_form' %}?job_jid={{ job.jid }}">
                 {% csrf_token %}
-                <button name="next_btn">Apply Now</button>
+                <button class="job-info-apply-button" name="next_btn">Apply Now</button>
             </form>
             {% endif %}
         </div>
     </div>
-    <div class="job_description">
-        <label id="title">{{ job.title }}</label>
-        <p id="val">{{ job.description }}</p>
+    <div class="job-info-description">
+        <label class="job-info-title">{{ job.title }}</label>
+        <p class="job-info-value">{{ job.description }}</p>
     </div>
 </div>
 

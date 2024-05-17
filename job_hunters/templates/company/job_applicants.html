@@ -17,15 +17,17 @@
                     <p id="email">{{ applicant.user.email }}</p>
                     <div class="action-buttons">
                         {% if applicant.status_id == 2 %}
-                        <form action="{% url 'status_response' %}" method="post">
+                        <form action="{% url 'status_response' %}" method="post" onsubmit="submitForm()">
                             {% csrf_token %}
                             <input type="hidden" name="application_id" value="{{ applicant.aid }}">
+                            <input type="hidden" name="job_id" value="{{ applicant.job_id }}">
                             <input type="hidden" name="action" value="accept">
                             <button type="submit" name="accept" id="accept">Accept</button>
                         </form>
-                        <form action="{% url 'status_response' %}" method="post">
+                        <form action="{% url 'status_response' %}" method="post" onsubmit="submitForm()">
                             {% csrf_token %}
                             <input type="hidden" name="application_id" value="{{ applicant.aid }}">
+                            <input type="hidden" name="job_id" value="{{ applicant.job_id }}">
                             <input type="hidden" name="action" value="reject">
                             <button type="submit" name="reject" id="reject">Reject</button>
                         </form>
@@ -48,5 +50,14 @@
     </div>
 
 </body>
+
+<script>
+        const submitForm = () => {
+        // Submit the form
+        document.getElementById("statusForm").submit();
+        // Reload the page
+        location.reload();
+    };
+</script>
 
 {% endblock %}

@@ -26,13 +26,9 @@ def login_view(request):
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            profile_exists = Profile.objects.filter(user=user).exists()
-            if profile_exists:
-                login(request, user)
-                messages.success(request, 'Login successful! Welcome back.')
-                return redirect('home')
-            else:
-                messages.error(request, 'Profile does not exist!')
+            login(request, user)
+            messages.success(request, 'Login successful! Welcome back.')
+            return redirect('home')
         else:
             messages.error(request, 'Login failed!')
     context = {
