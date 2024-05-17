@@ -7,6 +7,7 @@ from application.models import Application
 from .forms import JobForm
 from django.http import HttpResponse
 from datetime import date
+from django.utils import timezone
 
 def job(request):
     current_date = date.today()
@@ -66,11 +67,15 @@ def job_info(request, applied_date=None, status=None, is_company=False):
     if application:
         applied_date = application.date_applied
         status = application.status.status
+    
+    current_date = timezone.now().date()
+
     context = {
         'job': job,
         'applied_date': applied_date,
         'status': status,
-        'is_company': is_company
+        'is_company': is_company,
+        'current_date': current_date,
     }
     return render(request,'job/job_info.html', context)
 
