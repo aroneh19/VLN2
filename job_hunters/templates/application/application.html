@@ -94,41 +94,36 @@
                 </div>
             </div>
 
-            <div class="step rec-lists" id="step2" style="display:none;">
-                <h2>Experiences</h2>
-                {% for recommendation in recommendations %}
-                <div class="rec-list">
-                  <div>
-                    <label for="name"><strong>Name:</strong></label>
-                    <p id="name">{{ recommendation.name }}</p>
-            
-                    <label for="email"><strong>Email Address:</strong></label>
-                    <p id="email">{{ recommendation.email }}</p>
-            
-                    <label for="contact"><strong>May Be Contacted:</strong></label>
-                    <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
-                  </div>
-            
-                  <div>
-                    <label for="phone"><strong>Phone Number:</strong></label>
-                    <p id="phone">{{ recommendation.phone_number }}</p>
-            
-                    <label for="role"><strong>Role:</strong></label>
-                    <p id="role">{{ recommendation.role }}</p>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-
             <div class="step" id="step3" style="display:none;">
-                <h2>Recommendations</h2>
-                {% for recommendation in recommendations %}
-                <div class="recommendations rec">
-                    <p><span class="label">Name:</span> {{ recommendation.name }}</p>
-                    <p><span class="label">Email address:</span> {{ recommendation.email }}</p>
-                    <p><span class="label">Phone Number:</span> {{ recommendation.phone_number }}</p>
-                    <p><span class="label">May be contacted:</span> {% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
-                    <p><span class="label">Role:</span> {{ recommendation.role }}</p>
+                <div class="rec-box">
+                  <div class="rec-lists">
+                    {% if recommendations %}
+                      {% for recommendation in recommendations %}
+                        <div class="rec-list">
+                          <div>
+                            <label for="name"><strong>Name:</strong></label>
+                            <p id="name">{{ recommendation.name }}</p>
+                    
+                            <label for="email"><strong>Email Address:</strong></label>
+                            <p id="email">{{ recommendation.email }}</p>
+                    
+                            <label for="contact"><strong>May Be Contacted:</strong></label>
+                            <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+                          </div>
+                    
+                          <div>
+                            <label for="phone"><strong>Phone Number:</strong></label>
+                            <p id="phone">{{ recommendation.phone_number }}</p>
+                    
+                            <label for="role"><strong>Role:</strong></label>
+                            <p id="role">{{ recommendation.role }}</p>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <p id="nothing-added">You haven't added any recommendations yet</p>
+                    {% endif %}
+                  </div>
                 </div>
             </div>
 
