@@ -15,7 +15,7 @@
   align-items: center;
   text-align: center;
   transition: transform 0.2s;
-  height: 195px;
+  height: 175px;
   overflow: hidden;
 }
 
@@ -41,15 +41,16 @@
   margin-bottom: 10px;
 }
 
-.image-container img.cover {
+/* .image-container img.cover {
   width: auto;
   height: 50px;
   margin-bottom: 10px;
-}
+} */
 
 .image-container img.logo {
   width: auto;
-  height: 50px;
+  max-height: 100px;
+  max-width: 100px;
 }
 
 .text-container {
@@ -62,7 +63,7 @@
 
 .text-container p {
   margin: 5px 0;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .text-container p.name {
@@ -71,7 +72,7 @@
 }
 
 .text-container p.address {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: #77654b;
 }
 
