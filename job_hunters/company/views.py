@@ -20,26 +20,6 @@ def register_view(request):
     
     return render(request, 'user/register.html', {'form': form})
 
-def login_view(request):
-    if request.method == "POST":
-        form = CustomAuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            profile_exists = Company.objects.filter(user=user).exists()
-            if profile_exists:
-                login(request, user)
-                return redirect('home')
-            else:
-                messages.error(request, 'Profile does not exist!')
-        else:
-            print(form.errors)
-            messages.error(request, 'Login failed!')
-            messages.error(request, form.errors)
-    context = {
-        'form': CustomAuthenticationForm()
-    }
-    return render(request, 'company/login.html', context)
-
 def companies_view(request):
     companies = Company.objects.all()
     context = {

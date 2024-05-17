@@ -21,18 +21,16 @@
             <div class="step" id="step1">
                 <h2>Contact Information</h2>
                 <div class="contact-info">
-                    <p><span class="label">Name:</span> {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</p>
+                    <p><span class="label">First Name:</span> {{ user_profile.user.first_name }}</p>
+                    <p><span class="label">Last Name:</span> {{ user_profile.user.last_name }}</p>
+                    <p><span class="label">Date Of Birth:</span> {{ user_profile.date_of_birth }}</p>
+                    <p><span class="label">Country:</span> {{ user_profile.country }}</p>
+                    <p><span class="label">City:</span> {{ user_profile.location.city }}</p>
                     <p><span class="label">Street Name:</span> {{ user_profile.street_name }}</p>
                     <p><span class="label">House number:</span> {{ user_profile.house_number }}</p>
-                    <p><span class="label">City:</span> {{ user_profile.location.city }}</p>
                     <p><span class="label">Postal Code:</span> {{ user_profile.location.postcode }}</p>
-                    <p><span class="label">Country:</span>
-                        <select name="country" required>
-                            {% for country in countries %}
-                            <option value="{{ country.id }}" {% if country.id == user_profile.country.id %}selected{% endif %}>{{ country.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </p>
+                    <p><span class="label">Email:</span> {{ user_profile.user.email }}</p>
+                    <p><span class="label">Phone Number:</span> {{ user_profile.phone }}</p>
                 </div>
             </div>
 
