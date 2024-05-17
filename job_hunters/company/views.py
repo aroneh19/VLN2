@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Company
-from .forms import CustomAuthenticationForm, CustomUserCreationForm, CustomCompanyCreationForm, EditProfile
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, EditProfile
 
 def register_view(request):
     if request.method == 'POST':
@@ -58,7 +58,6 @@ def profile_view(request):
         'company': Company.objects.get(user=request.user)
     }
     return render(request, 'company/profile.html', context)
-
 
 @login_required
 def edit_view(request):
