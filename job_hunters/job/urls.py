@@ -6,4 +6,6 @@ urlpatterns = [
     path('job/jobs/', views.filter_job_offerings, name='filter_job_offerings'),
     path('job_info/',views.job_info, name="job_info" ),
     path('post-job/', views.postjob_view, name='post_job'),
+    path('company_listings', views.company_listings, name='company_listings'),
+    path('applicants', views.status_response, name= 'status_response')
 ]
