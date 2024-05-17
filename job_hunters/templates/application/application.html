@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 <link rel="stylesheet" href="{% static 'css/add.css' %}">
 <div class="container">
-    <form action="{% url 'review' %}?job_jid={{ job }}">
+    <form method='POST' action="{% url 'application_form' %}?job_jid={{ job.id }}">
         {% csrf_token %}
         {{job}}
         <input type="hidden" name="job_jid" value="{{job}}">
@@ -65,11 +65,6 @@
             
                     <label for="role"><strong>Role:</strong></label>
                     <p id="role">{{ recommendation.role }}</p>
-            
-                    <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
-                      {% csrf_token %}
-                      <button type="submit" class="delete_button"></button>
-                    </form>
                   </div>
                 </div>
               {% endfor %}

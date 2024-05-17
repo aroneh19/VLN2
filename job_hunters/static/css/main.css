@@ -21,3 +21,30 @@ body {
     margin-left: 150px;
     margin-right: 150px;
 }
+
+
+.messages ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.messages li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.messages .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.messages .info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
