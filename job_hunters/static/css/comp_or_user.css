@@ -1,0 +1,112 @@
+.box {
+  margin: 0;
+  margin-left: 3%;
+  margin-top: 6%;
+  margin-bottom: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comp_or_user {
+  width: 58%;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4%;
+}
+
+.c_card,
+.u_card {
+  position: relative;
+  background-color: #F0E5D8;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #77654B;
+  border-radius: 1rem;
+  width: 18rem;
+  padding: 1rem;
+}
+
+div > a,
+div > h1,
+div > p {
+  text-align: center;
+}
+
+.c_card p ,
+.u_card p {
+  margin-top: 3.5rem;
+  margin-bottom: 3rem;
+  color: #77654B;
+  font-size: 1.4rem;
+}
+
+.already p {
+  color: #F0E5D8;
+  margin: 0;
+  margin-top: 0.1rem;
+  font-size: 1rem;
+}
+
+.create_account {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #F0E5D8;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #77654B;
+}
+
+a {
+  color: #F0E5D8;
+}
+
+.c_card {
+  background-image: url('svg/company.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.c_card input[type="radio"],
+.u_card input[type="radio"] {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: 2px solid #77654B;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  appearance: none;
+}
+
+.c_card input[type="radio"]:checked,
+.u_card input[type="radio"]:checked {
+  background-color: #77654B;
+}
+
+h1 {
+  font-size: 2.6rem;
+  margin: 0;
+  margin-bottom: 1.2rem;
+}
+
+.already {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
