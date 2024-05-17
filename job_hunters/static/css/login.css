@@ -7,69 +7,8 @@
     align-items: center;
 }
 
-.who{
-    display: flex;
-    justify-content: space-between;
-    border-radius: 1rem;
-    background-color: #F0E5D8;
-    border-width: 0.1rem;
-    border-style: solid;
-    margin-bottom: 1.5rem;
-    margin-top: 1rem;
-}
-
-.u {
-    background-color: #77654B;
-    color: #F0E5D8;
-    border-width: 0.1rem;
-    border-radius: 1rem;
-    width: 6rem;
-    text-align: center;
-    border: none;
-}
-
-.c {
-    background-color: #F0E5D8;
+label {
     color: #77654B;
-    border-width: 0.1rem;
-    border-radius: 1rem;
-    width: 6rem;
-    text-align: center;
-    border: none;
-}
-
-.c_c {
-    background-color: #77654B;
-    color: #F0E5D8;
-    border-width: 0.1rem;
-    border-radius: 1rem;
-    width: 6rem;
-    text-align: center;
-    border: none;
-}
-
-.c_u {
-    background-color: #F0E5D8;
-    color: #77654B;
-    border-width: 0.1rem;
-    border-radius: 1rem;
-    width: 6rem;
-    text-align: center;
-    border: none;
-}
-
-.c:hover {
-    cursor: pointer;
-}
-
-.c_u:hover {
-    cursor: pointer;
-}
-
-h1 {
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    text-align: center;
 }
 
 h2 {
@@ -144,6 +83,23 @@ form p a:hover {
 
 form p a:active {
     color: #42392e;
+}
+
+.show-password-container {
+    display: flex;
+    gap: 0.2rem; /* Adjust the gap value to reduce the space */
+    margin: 0;
+    margin-bottom: 1.2rem;
+
+}
+
+#show-password {
+    display: inline-block;
+    margin-right: 0.2rem; /* Remove this if using gap property */
+}
+
+#id_password {
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
