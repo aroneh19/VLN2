@@ -9,7 +9,6 @@
 
 label {
     color: #77654B;
-    
 }
 
 h2 {
@@ -86,8 +85,21 @@ form p a:active {
     color: #42392e;
 }
 
+.show-password-container {
+    display: flex;
+    gap: 0.2rem; /* Adjust the gap value to reduce the space */
+    margin: 0;
+    margin-bottom: 1.2rem;
+
+}
+
 #show-password {
     display: inline-block;
+    margin-right: 0.2rem; /* Remove this if using gap property */
+}
+
+#id_password {
+    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {

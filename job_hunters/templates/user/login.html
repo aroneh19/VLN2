@@ -4,28 +4,32 @@
 
 <div class="container">
   <h1>Welcome back!</h1>
-    <div class="form-section">
-      <h2>Login and reconnect with your career goals.</h2>
-
-      <form action="{% url 'login' %}" method="post">
-          {% csrf_token %}
-          <div>
-              <label for="id_username">Username</label>
-              <input type="text" id="id_username" name="username">
-          </div>
-          <div>
-              <label for="id_password">Password</label>
-              <input type="password" id="id_password" name="password">
-          </div>
-          <div>
-              <input type="checkbox" id="show-password"> 
-          </div>
-          <button type="submit" class="btn btn-primary">Log in</button>
-          <p class="sign-up">
-              Don't have an account yet? <br /><a href="{% url 'user_register' %}">Sign up</a>
-          </p>
-      </form>
-    </div>
+  <div class="form-section">
+    <h2>Login and reconnect with your career goals.</h2>
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      <div>
+        <label for="id_username">Username</label>
+        <input type="text" id="id_username" name="username">
+      </div>
+      <div>
+        <label for="id_password">Password</label>
+        <input type="password" id="id_password" name="password">
+      </div>
+      <div class="show-password-container">
+        <div class="Checkbox">
+          <label for="show-password">Show password</label>
+        </div>
+        <div class="show_password">
+          <input type="checkbox" id="show-password">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Log in</button>
+      <p class="sign-up">
+        Don't have an account yet? <br /><a href="{% url 'user_register' %}">Sign up</a>
+      </p>
+    </form>
+  </div>
 </div>
 
 <script>
