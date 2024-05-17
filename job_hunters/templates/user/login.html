@@ -11,15 +11,38 @@
     <div class="form-section">
       <h2>Login and reconnect with your career goals.</h2>
 
-      <form action="{% url 'user_login' %}" method="post">
+      <form action="{% url 'login' %}" method="post">
           {% csrf_token %}
-            {{ form.as_p }}
+          <div>
+              <label for="id_username">Username</label>
+              <input type="text" id="id_username" name="username">
+          </div>
+          <div>
+              <label for="id_password">Password</label>
+              <input type="password" id="id_password" name="password">
+          </div>
+          <div>
+              <input type="checkbox" id="show-password"> 
+          </div>
           <button type="submit" class="btn btn-primary">Log in</button>
           <p class="sign-up">
               Don't have an account yet? <br /><a href="{% url 'user_register' %}">Sign up</a>
           </p>
       </form>
-     </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('show-password').addEventListener('change', function() {
+            var password = document.getElementById('id_password');
+            if (password.type === 'password') {
+                password.type = 'text';
+            } else {
+                password.type = 'password';
+            }
+        });
+    });
+</script>
 
 {% endblock %}
