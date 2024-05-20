@@ -1,106 +1,148 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Application{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/application.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/add.css' %}">
+<div class="container">
+    <form action="{% url 'review' %}?job_jid={{ job.id }}">
+        {% csrf_token %}
+        <input type="hidden" name="job_jid" value="{{job.jid}}">
 
-<body>
-    <div class="Contact_Info">
-        <fieldset>
-            <legend>Contact Information</legend>
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" value="{{ user.name }}"><br>
-            
-            <label for="street">Street Name:</label>
-            <input type="text" name="street" id="street" value="{{ user.street_name }}"><br>
-            
-            <label for="House_number">House number:</label>
-            <input type="text" name="house" id="house" value="{{ user.house_number }}"><br>
-            
-            <label for="city">City:</label>
-            <input type="text" name="city" id="city" value="{{ user.location.city }}"><br>
-            
-            <label for="Postal_code">Postal Code:</label>
-            <input type="text" name="postal" id="postal" value="{{ user.location.postcode }}"><br>
-            
-            <label for="country">Country:</label>
-            <select id="country" name="country" required>
-                <option value="">Select Country</option>
-                {% for country in countries %}
-                    <option value="{{ country.country }}" {% if country.coid == user.country.coid %}selected{% endif %}>{{ country.country }}</option>
-                {% endfor %}
-            </select><br>             
-        </fieldset>
-    </div>
-    <label for="cover_letter">Cover Letter:</label>
-    <div class="cover_letter">
-        <fieldset>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </fieldset>
-    </div>
-    <div class="recommendations">
-        {% for recommendation in recommendations %}
-        <fieldset>
-            <legend>Recommendation</legend>  
-            <label for="name{{ recommendation.name }}">Name:</label>
-            <input type="text" id="name{{ recommendation.rid  }}" name="name{{ recommendation.rid  }}" value="{{ recommendation.name }}"><br>
-    
-            <label for="email{{ recommendation.rid  }}">Email address:</label>
-            <input type="email" id="email{{ recommendation.rid  }}" name="email{{ recommendation.rid  }}" value="{{ recommendation.email }}"><br>
-    
-            <label for="phone{{ recommendation.rid  }}">Phone number:</label>
-            <input type="tel" id="phone{{ recommendation.rid  }}" name="phone{{ recommendation.rid  }}" value="{{ recommendation.phone_number}}"><br>
-    
-            <label for="contact{{ recommendation.rid  }}">May be contacted:</label>
-            <input type="checkbox" id="contact{{ recommendation.rid  }}" name="contact{{ recommendation.rid  }}" {% if recommendation.may_be_contacted %}checked{% endif %}><br>
-        </fieldset>
-        {% endfor %}
-    </div>
-    <div class="experiences">
-        {% for experience in experiences %}
-        <fieldset>
-            <legend>Experience</legend>  
-            <label for="place_of_work{{ experience.eid }}">Place of Work:</label>
-            <input type="text" id="place_of_work{{ experience.eid }}" name="place_of_work{{ experience.eid }}" value="{{ experience.place_of_work }}"><br>
-    
-            <label for="role{{ experience.eid }}">Role:</label>
-            <input type="text" id="role{{ experience.eid }}" name="role{{ experience.eid }}" value="{{ experience.role }}"><br>
-    
-            <label for="start_date{{ experience.eid }}">Start Date:</label>
-            <input type="date" id="start_date{{ experience.eid }}" name="start_date{{ experience.eid }}" value="{{ experience.start_date|date:'Y-m-d' }}"><br>
-    
-            <label for="end_date{{ experience.eid }}">End Date:</label>
-            <input type="date" id="end_date{{ experience.eid }}" name="end_date{{ experience.eid }}" value="{{ experience.end_date|date:'Y-m-d' }}"><br>
-        </fieldset>
-        {% endfor %}
-    </div>
-    <div>
-        <input type="submit" value="APPLY">
-    </div>
-</body>
+        <div class="main-content">
+            <div class="step-navigation">
+                <div>
+                    <button type="button" onclick="showStep(1)">Contact Information</button>
+                </div>
+                <div>
+                    <button type="button" onclick="showStep(2)">Experiences</button>
+                </div>
+                <div>
+                    <button type="button" onclick="showStep(3)">Recommendations</button>
+                </div>
+                <div>
+                    <button type="button" onclick="showStep(4)">Cover Letter</button>
+                </div>
+            </div>
 
+            <div class="step" id="step1">
+                <div class="contact-info">
+                    <img class="profile-picture" src="{{ user_profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
+                    <div class="name">
+                        <label for="first_name"><strong>First Name:</strong></label>
+                        <p id="first_name">{{ user_profile.user.first_name }}</p>
+
+                        <label for="last_name"><strong>Last Name:</strong></label>
+                        <p id="last_name">{{ user_profile.user.last_name }}</p>
+                    </div>
+
+                    <label for="dob"><strong>Date of Birth:</strong></label>
+                    <p id="dob">{{ user_profile.date_of_birth|date:'d-m-Y' }}</p>
+
+                    <label for="country"><strong>Country:</strong></label>
+                    <p id="country">{{ user_profile.country.country }}</p>
+
+                    <label for="city"><strong>City:</strong></label>
+                    <p id="city">{{ user_profile.location.city }}</p>
+
+                    <label for="street_name"><strong>Street Name:</strong></label>
+                    <p id="street_name">{{ user_profile.street_name }}</p>
+
+                    <label for="house_number"><strong>House Number:</strong></label>
+                    <p id="house_number">{{ user_profile.house_number }}</p>
+
+                    <label for="postcode"><strong>Post Code:</strong></label>
+                    <p id="postcode">{{ user_profile.location.postcode }}</p>
+
+                    <label for="email"><strong>Email:</strong></label>
+                    <p id="email">{{ user_profile.user.email }}</p>
+
+                    <label for="phone"><strong>Phone Number:</strong></label>
+                    <p id="phone">{{ user_profile.phone }}</p>
+                </div>
+            </div>
+
+            <div class="step" id="step2" style="display:none;">
+                <div class="xp-box">
+                    <div class="xp-lists">
+                        {% if experiences %}
+                        {% for experience in experiences %}
+                        <div class="app-xp-list">
+                            <div class="xp-work">
+                                <label for="place_of_work"><strong>Place of Work:</strong></label>
+                                <p id="place_of_work">{{ experience.place_of_work }}</p>
+
+                                <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
+                                <p id="role">{{ experience.role }}</p>
+                            </div>
+                            <div class="xp-dates">
+                                <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
+                                <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
+
+                                <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
+                                <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p id="nothing-added">You haven't added any experiences yet</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="step" id="step3" style="display:none;">
+                <div class="rec-box">
+                  <div class="rec-lists">
+                    {% if recommendations %}
+                      {% for recommendation in recommendations %}
+                        <div class="rec-list">
+                          <div>
+                            <label for="name"><strong>Name:</strong></label>
+                            <p id="name">{{ recommendation.name }}</p>
+                    
+                            <label for="email"><strong>Email Address:</strong></label>
+                            <p id="email">{{ recommendation.email }}</p>
+                    
+                            <label for="contact"><strong>May Be Contacted:</strong></label>
+                            <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+                          </div>
+                    
+                          <div>
+                            <label for="phone"><strong>Phone Number:</strong></label>
+                            <p id="phone">{{ recommendation.phone_number }}</p>
+                    
+                            <label for="role"><strong>Role:</strong></label>
+                            <p id="role">{{ recommendation.role }}</p>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      <p id="nothing-added">You haven't added any recommendations yet</p>
+                    {% endif %}
+                  </div>
+                </div>
+            </div>
+
+            <div class="step" id="step4" style="display:none;">
+                <div class="cover-letter">
+                    <textarea name="cover_letter" id="cover_letter" cols="30" rows="10" required>{{ cover_letter }}</textarea><br>
+                    <button type="submit">Review</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function showStep(step) {
+        var steps = document.getElementsByClassName('step');
+        for (var i = 0; i < steps.length; i++) {
+            steps[i].style.display = 'none';
+        }
+        document.getElementById('step' + step).style.display = 'block';
+    }
+</script>
 {% endblock %}
-
-<!--Applying for a job - should be a multi step phase
-○ Contact information
-■ Full name
-■ Street name
-■ House number
-■ City
-■ Country (displayed as a <select> HTML element)
-■ Postal code
-○ Cover letter
-■ A text section to write a cover letter
-○ Experiences
-■ A list of experiences related to previous jobs
-● Place of work
-● Role
-● Start date
-● End date
-○ Recommendations
-■ A list of contacts which can be contacted for recommendations
-● Name
-● Email address
-● Phone number
-● Checkbox whether they may be contacted or not
-● Role, e.g. Manager at Reykjavik Seafood-->

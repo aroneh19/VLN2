@@ -1,16 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Company(models.Model):
-    cid = models.AutoField(primary_key=True)
-    ssn = models.CharField(max_length=100, unique=True)
-    name = models.CharField(max_length=100)
-    password = models.CharField(max_length=255, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     address = models.CharField(max_length=100)
-    logo = models.URLField(default="http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcR0NrOJEpfjkM0zxD-aO9b-bWqW3mhY57jPMg3aSbxTYO__R4jOvx8T2Oa7Fm9yxXOGg4B_ns3SZaZGCiBOPQw")
-    cover = models.URLField(default="http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcR0NrOJEpfjkM0zxD-aO9b-bWqW3mhY57jPMg3aSbxTYO__R4jOvx8T2Oa7Fm9yxXOGg4B_ns3SZaZGCiBOPQw")
+    logo = models.URLField()
+    cover = models.URLField()
     description = models.TextField()
     website = models.URLField()
 
+    # def available_jobs(self):
+    #     return self.jobs.filter(is_available=True).count()
+
     def __str__(self):
-        return self.name
+        return self.user.first_name

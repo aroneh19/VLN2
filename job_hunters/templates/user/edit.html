@@ -1,31 +1,65 @@
 {% extends 'base.html' %}
-
+{%load static%}
 {% block title %}Edit Profile{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/edit.css' %}">
 
 <div class="container">
-        <div class="contact-info">
-            <h2>Contact information</h2>
-            <p><strong>Full name:</strong></p>
-            <p><strong>Email:</strong></p>
-            <p><strong>Phone number:</strong></p>
-            <p><strong>Address:</strong></p>
-            <p><strong>Social security number:</strong></p>
-            <p><strong>Date of birth:</strong></p>
-            <p><strong>Country:</strong></p>
-        </div>
-        <div class="other-info">
-            <div class="recommendation box">
-                <h2>Recommendation</h2>
+    <h1>Edit Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-section">
+            <h2>User Information</h2>
+            <div class="form-group">
+                <label for="id_first_name">First Name:</label>
+                {{ user_form.first_name }}
             </div>
-            <div class="education box">
-                <h2>Education</h2>
+            <div class="form-group">
+                <label for="id_last_name">Last Name:</label>
+                {{ user_form.last_name }}
             </div>
-            <div class="experience box">
-                <h2>Experience</h2>
+            <div class="form-group">
+                <label for="id_email">Email:</label>
+                {{ user_form.email }}
             </div>
         </div>
-    </div> 
+
+        <div class="form-section">
+            <h2>Profile Information</h2>
+            <div class="form-group">
+                <label for="id_phone">Phone Number:</label>
+                {{ profile_form.phone }}
+            </div>
+            <div class="form-group">
+                <label for="id_date_of_birth">Date of Birth:</label>
+                {{ profile_form.date_of_birth }}
+            </div>
+            <div class="form-group">
+                <label for="id_country">Country:</label>
+                {{ profile_form.country }}
+            </div>
+            <div class="form-group">
+                <label for="id_location">Location:</label>
+                {{ profile_form.location }}
+            </div>
+            <div class="form-group">
+                <label for="id_street_name">Street Name:</label>
+                {{ profile_form.street_name }}
+            </div>
+            <div class="form-group">
+                <label for="id_house_number">House Number:</label>
+                {{ profile_form.house_number }}
+            </div>
+            <div class="form-group">
+                <label for="id_picture">Profile Picture:</label>
+                {{ profile_form.picture }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+    </form>
+</div>
 
 {% endblock %} 

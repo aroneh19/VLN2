@@ -1,10 +1,41 @@
-
-<header class="header">
-        <h1><a href="{% url 'home' %}">ZAVANT</a></h1>
-        <nav>
-            <a href="{% url 'jobs' %}">Jobs</a>
-            <a href="{% url 'company_profile' %}">Companies</a>
-            <a href="">Why Zavant</a>
-            <a href="{% url 'user_profile' %}">Profile</a>
-        </nav>
-    </header>    
+<header class="navbar-header">
+  <h1 class="navbar-title"><a class="navbar-title-link" href="{% url 'home' %}">ZAVANT</a></h1>
+  <nav class="navbar-nav">
+    <div class="navbar-info">
+      <a class="navbar-link" href="{% url 'jobs' %}">Jobs</a>
+      <a class="navbar-link" href="{% url 'companies' %}">Companies</a>
+      <a class="navbar-link" href="{% url 'why_zavant' %}">Why Zavant</a>
+    </div>
+    <div class="navbar-profile">
+      {% if user.is_authenticated %}
+      {% if not is_company %}
+      <a class="navbar-link" href="{% url 'user_profile' %}"><img class="navbar-profile-image" src="{{ photo }}" width="50" height="50"/></a>
+      {% else %}
+      <a class="navbar-link" href="{% url 'company_profile' %}"><img class="navbar-profile-image" src="{{ photo }}" width="50" height="50"/></a>
+      {% endif %}
+        <div class="navbar-dropdown">
+          <input type="checkbox" id="navbar-dropdown-toggle" class="navbar-dropdown-toggle">
+          <label for="navbar-dropdown-toggle" class="navbar-dropbtn"></label>
+          <div class="navbar-dropdown-content">
+            {% if not is_company %}
+              <a class="navbar-dropdown-link" href="{% url 'user_profile' %}">My Profile</a>
+              <a class="navbar-dropdown-link" href="{% url 'User_Applications' %}">Application</a>
+            {% else %}
+              <a class="navbar-dropdown-link" href="{% url 'company_profile' %}">Company Profile</a>
+              <a class="navbar-dropdown-link" href="{% url 'post_job' %}">Post Job</a>
+              <a class="navbar-dropdown-link" href="{% url 'company_listings' %}">Job Listings</a>
+            {% endif %}
+            <a class="navbar-dropdown-link" href="{% url 'change_password' %}">Change Password</a>
+            <form class="navbar-logout-form" method="post" action="{% url 'user_logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="navbar-logout-button">Log Out</button>
+            </form>
+          </div>
+        </div>
+      {% else %}
+      <a class="navbar-link" href="{% url 'login' %}">Login</a>
+      <a class="navbar-link" href="{% url 'c_or_u_signup' %}">Sign up</a>
+      {% endif %}
+    </div>
+  </nav>
+</header>

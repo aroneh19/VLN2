@@ -1,10 +1,5 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
-
-from datetime import datetime
-
+from django.contrib.auth.models import User
 
 class Location(models.Model):
     lid = models.AutoField(primary_key=True)
@@ -12,7 +7,7 @@ class Location(models.Model):
     city = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.postcode}"
+        return f"{self.postcode} {self.city}"
 
 class Country(models.Model):
     coid = models.AutoField(primary_key=True)
@@ -21,19 +16,19 @@ class Country(models.Model):
     def __str__(self):
         return self.country
 
-class User(models.Model):
-    uid = models.AutoField(primary_key=True)
-    ssn = models.IntegerField(unique=True)
-    name = models.CharField(max_length=100)
-    password = models.CharField(max_length=255)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     phone = models.CharField(max_length=20)
-    email = models.EmailField(unique=True)
     street_name = models.CharField(max_length=255)
     house_number = models.CharField(max_length=10)
-    date_of_birth = models.DateField(default=datetime(2000, 1, 1).date())
-    picture = models.URLField(default="http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcR0NrOJEpfjkM0zxD-aO9b-bWqW3mhY57jPMg3aSbxTYO__R4jOvx8T2Oa7Fm9yxXOGg4B_ns3SZaZGCiBOPQw")
+    date_of_birth = models.DateField(null=True, blank=True)
+    picture = models.URLField()
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self) -> str:
+        return self.user.first_name
+
 
 class Experience(models.Model):
     eid = models.AutoField(primary_key=True)
@@ -41,7 +36,10 @@ class Experience(models.Model):
     role = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f"{self.place_of_work} - {self.role}"
 
 
 class Recommendation(models.Model):
@@ -51,4 +49,7 @@ class Recommendation(models.Model):
     phone_number = models.CharField(max_length=20)
     role = models.CharField(max_length=100)
     may_be_contacted = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.name

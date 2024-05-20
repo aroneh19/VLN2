@@ -1,79 +1,153 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Form</title>
-    <style>
-      .Contact_Info {
-        display: inline-block;
-      }
-    </style>
-  </head>
-  <body>
-    <label for="Contact_info"> Contact information</label><br>
-    <div class="Contact_Info">
-      <fieldset>
-        <label for="name">Full Name</label><br />
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Enter name"
-        /><br /><br />
-        <label for="email">Email</label><br />
-        <input
-          type="text"
-          id="email"
-          name="email"
-          placeholder="Enter email"
-        /><br /><br />
-        <label for="phone">Phone Number</label><br />
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="Enter phone number"
-        /><br /><br />
-        <label for="address">Address</label><br />
-        <input
-          type="text"
-          id="address"
-          name="address"
-          placeholder="Enter address"
-        /><br /><br />
-        <label for="ssn">Social Security Number</label><br />
-        <input
-          type="text"
-          id="ssn"
-          name="ssn"
-          placeholder="XXX-XX-XXXX"
-          pattern="\d{3}-\d{2}-\d{4}"
-          title="Please enter your SSN in the format XXX-XX-XXXX"
-          required
-        /><br /><br />
-        <label for="dob">Date of Birth</label><br />
-        <input type="date" id="dob" name="dob" /><br /><br />
-        <label for="country">Country</label><br />
-        <input
-          type="text"
-          id="country"
-          name="country"
-          placeholder="Enter country"
-        /><br /><br />
-      </fieldset>
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<div class="container">
+  <div class="info-box">
+    <h1>Contact information</h1>
+    <div class="contact-container">
+      <div class="contact-info">
+        <img class="profile-picture" src="{{ profile.picture }}" alt="Profile Picture" width="75" height="75"><br>
+        
+        <div class="name">
+          <label for="first_name"><strong>First Name:</strong></label>
+          <p id="first_name">{{ user.first_name }}</p>
+          
+          <label for="last_name"><strong>Last Name:</strong></label>
+          <p id="last_name">{{ user.last_name }}</p>
+        </div>
+        
+        <label for="dob"><strong>Date of Birth:</strong></label>
+        <p id="dob">{{ profile.date_of_birth|date:'d-m-Y' }}</p>
+        
+        <label for="country"><strong>Country:</strong></label>
+        <p id="country">{{ profile.country.country }}</p>
+        
+        <label for="city"><strong>City:</strong></label>
+        <p id="city">{{ profile.location.city }}</p>
+        
+        <label for="street_name"><strong>Street Name:</strong></label>
+        <p id="street_name">{{ profile.street_name }}</p>
+        
+        <label for="house_number"><strong>House Number:</strong></label>
+        <p id="house_number">{{ profile.house_number }}</p>
+        
+        <label for="postcode"><strong>Post Code:</strong></label>
+        <p id="postcode">{{ profile.location.postcode }}</p>
+        
+        <label for="email"><strong>Email:</strong></label>
+        <p id="email">{{ user.email }}</p>
+        
+        <label for="phone"><strong>Phone Number:</strong></label>
+        <p id="phone">{{ profile.phone }}</p>
+        
+        <div class="edit-profile-link">
+          <a href="{% url 'user_edit' %}"></a>
+        </div>
+      </div>
     </div>
-    <br><br><label for="recommendation">Recommendation</label><br>
-    <textarea id="recommendation" name="recommendation" rows="4" cols="50"></textarea><br>
-    <br><label for="education">Education</label><br>
-    <textarea id="education" name="education" rows="4" cols="50"></textarea><br>
-    <br><label for="experience">Experience</label><br>
-    <textarea id="experience" name="experience" rows="4" cols="50"></textarea><br>
-  </body>
-</html>
+  </div>
+
+  <div class="other-box">
+    <div class="rec-box">
+      <div class="rec-header">
+        <div class="rec-title">
+          <h1>Recommendation</h1>
+        </div>
+        <div class="rec-add">
+          <form action="{% url 'add_recommendation' %}" method="get">
+            <button type="submit" class="add-button"></button>
+          </form>
+        </div>
+      </div>
+      <div class="rec-lists">
+        {% if recommendations %}
+          {% for recommendation in recommendations %}
+            <div class="rec-list">
+              <div>
+                <label for="name"><strong>Name:</strong></label>
+                <p id="name">{{ recommendation.name }}</p>
+        
+                <label for="email"><strong>Email Address:</strong></label>
+                <p id="email">{{ recommendation.email }}</p>
+        
+                <label for="contact"><strong>May Be Contacted:</strong></label>
+                <p id="contact">{% if recommendation.may_be_contacted %}Yes{% else %}No{% endif %}</p>
+              </div>
+        
+              <div>
+                <label for="phone"><strong>Phone Number:</strong></label>
+                <p id="phone">{{ recommendation.phone_number }}</p>
+        
+                <label for="role"><strong>Role:</strong></label>
+                <p id="role">{{ recommendation.role }}</p>
+        
+                <form class="delete-rec" action="{% url 'delete_recommendation' recommendation.rid %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="delete_button"></button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p id="nothing-added">You haven't added any recommendations yet</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="xp-box">
+      <div class="xp-header">
+        <div class="xp-title">
+          <h1>Experience</h1>
+        </div>
+        <div class="xp-add">
+          <form action="{% url 'add_experience' %}" method="get">
+            <button type="submit" class="add-button"></button>
+          </form>
+        </div>
+      </div>
+      <div class="xp-lists">
+        {% if experiences %}
+          {% for experience in experiences %}
+            <div class="xp-list">
+              <div class ="xp-work">
+                <label for="place_of_work"><strong>Place of Work:</strong></label>
+                <p id="place_of_work">{{ experience.place_of_work }}</p>
+
+                <label for="role{{ experience.eid }}"><strong>Role:</strong></label>
+                <p id="role">{{ experience.role }}</p>
+              </div>
+              <div class="xp-dates">
+                <label for="start_date{{ experience.eid }}"><strong>Start Date:</strong></label>
+                <p id="start_date">{{ experience.start_date|date:'Y-m-d' }}</p>
+
+                <label for="end_date{{ experience.eid }}"><strong>End Date:</strong></label>
+                <p id="end_date">{{ experience.end_date|date:'Y-m-d' }}</p>
+              
+                <form class="delete-xp" action="{% url 'delete_experience' experience.eid %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="delete_button">
+                  </button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p id="nothing-added">You haven't added any experiences yet</p>
+        {% endif %}
+      </div>  
+    </div>
+  </div>
+</div>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
 {% endblock %}

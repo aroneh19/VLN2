@@ -1,0 +1,75 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.company-container {
+  background-color: #f5ecd7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 175px;
+  overflow: hidden;
+}
+
+.company-container:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.company-container a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.image-container img.logo {
+  width: auto;
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.text-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-container p {
+  margin: 5px 0;
+  font-size: 1.25rem;
+}
+
+.text-container p.name {
+  font-weight: bold;
+  color: #77654b;
+}
+
+.text-container p.address {
+  font-size: 1.1rem;
+  color: #77654b;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}

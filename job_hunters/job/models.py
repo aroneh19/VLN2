@@ -1,14 +1,21 @@
 from django.db import models
 from company.models import Company
+from django.utils import timezone
 
 # Create your models here.
 class Category(models.Model):
     caid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class JobType(models.Model):
     joid = models.AutoField(primary_key=True)
     type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type
 
 class Job(models.Model):
     jid = models.AutoField(primary_key=True)
@@ -17,6 +24,11 @@ class Job(models.Model):
     jobtype = models.ForeignKey(JobType, on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    start_date = models.DateField()
+    date_of_offering = models.DateField()
     due_date = models.DateField()
+    start_date = models.DateField()
     description = models.TextField()
+
+    def __str__(self):
+        return self.title
+    

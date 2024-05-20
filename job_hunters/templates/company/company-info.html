@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Company Profile{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/jobs.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<div class="comp_container">
+    <div class="comp">
+    <h2>Contact information</h2>
+        <div class="comp_contact_info">
+            <div class="cover">
+                <img class="cover" src="{{ company.cover }}" alt="Company Cover"><br>
+            </div>
+            <div class="comp_info">
+                <img class="logo" src="{{ company.logo }}" alt="Company Logo"><br>
+
+                <label for="name">Company Name</label>
+                <p id="name">{{ company.user.first_name }}</p>
+                
+                <label for="email">Email</label>
+                <p id="email">{{ company.user.email}}</p>
+                
+                <label for="address">Address</label>
+                <p id="address">{{ company.address }}</p>
+                
+                <label for="website">Website</label>
+                <p id="website"><a href="http://{{ company.website }}" target="_blank">{{ company.website }}</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="comp_desc">
+    <h2>About us</h2>
+        <div class="desc">
+            <p id="desc">{{ company.description }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="job-container">
+    {% for job in jobs %}
+    <a href="{% url 'job_info' %}?job_jid={{ job.jid }}" class="job-card-link">
+      <div class="job-card">
+        <div class="job-logo">
+          <img
+            src="{{ job.company.logo }}"
+            alt="{{ job.company.user.first_name }} logo" />
+        </div>
+        <div class="job-info">
+          <h3 class="job-title">{{ job.title }}</h3>
+          <p class="company-name">-{{ job.company.user.first_name }}-</p>
+          <p class="job-time">{{ job.date_of_offering|timesince }} ago</p>
+        </div>
+        <div class="job-location-type">
+          <p class="job-location">{{ job.location }}</p>
+          <p class="job-type">{{ job.jobtype.type }}</p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

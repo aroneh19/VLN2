@@ -1,0 +1,116 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+}
+
+.step-navigation {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.step-content {
+    flex: 3;
+    background-color: #F9F7F1;
+    border: 1px solid #77654B;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container, .recommendation-container, .experience-container {
+    background-color: #F0E5D8;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: #77654B;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.recommendations, .experiences {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #77654B;
+}
+
+.recommendations:last-child, .experiences:last-child {
+    border-bottom: none;
+}
+
+p, h2, h3 {
+    text-decoration: none;
+    color: #77654B;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.btn {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.btn button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn button:hover {
+    background-color: #45a049;
+}
+
+.step-navigation button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #77654B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.step-navigation button:hover {
+    background-color: #5a4b3c;
+    transform: translateY(-2px);
+}
+
+.step-navigation {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.app-xp-lists {
+width: 100%;
+border: 1px solid #77654B;
+border-radius: 1rem;
+padding: 1rem;
+background-color: #F0E5D8;
+margin: 0;
+transition: padding-bottom 0.3s ease;
+}
+  
+.app-xp-list:not(:last-child) {
+border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+margin-bottom: 10px;
+}
+
+.app-xp-list {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
